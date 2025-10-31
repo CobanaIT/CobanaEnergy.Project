@@ -1,5 +1,0 @@
------ LOG ENTRY -----
-Time: 17:45:45
-Message: Login failed for Rao: The model backing the 'ApplicationDBContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
-Location: AccountController.cs -> Login() [Line 259]
-

@@ -1,5 +1,0 @@
-Enable-Migrations  //(if not)
-
-Add-Migration InitialMapping -IgnoreChanges
-
-Update-Database
