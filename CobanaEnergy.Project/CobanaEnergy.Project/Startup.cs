@@ -44,7 +44,6 @@ namespace CobanaEnergy.Project
                     regenerateIdentity: (manager, user) => manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie))
                 }
             });
-
             // SignalR mapping - must be last
             GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => new CustomUserIdProvider());
             app.MapSignalR();
