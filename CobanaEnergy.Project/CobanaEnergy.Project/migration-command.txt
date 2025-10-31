@@ -1,5 +1,5 @@
 Enable-Migrations  //(if not)
 
-Add-Migration InitialMapping -IgnoreChanges
+Add-Migration addyourname-the_task_you_did_InitialMapping -IgnoreChanges
 
 Update-Database
