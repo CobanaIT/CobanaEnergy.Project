@@ -1,0 +1,74 @@
+﻿@model CobanaEnergy.Project.Models.Accounts.MainCampaign.CampaignDashboardViewModel
+
+@{
+    ViewBag.Title = "CampaignDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    <div class="campaign-dashboard">
+        <div class="dashboard-title">
+            Campaign Dashboard
+        </div>
+        <div class="filters d-flex flex-wrap gap-4 mb-4 align-items-end">
+            <div>
+                <label for="supplierFilter" class="form-label fw-semibold">Supplier</label>
+                @Html.DropDownListFor(m => m.SupplierId, Model.Suppliers, "All Suppliers", new { @class = "form-select", id = "supplierFilter" })
+            </div>
+            <div>
+                <label for="campaignFilter" class="form-label fw-semibold">Campaign</label>
+                <select id="campaignFilter" name="CampaignId" class="form-select dropdown-arrow" title="Please Select the Campaign">
+                    <option value="">Select Campaign</option>
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="table-container">
+            <form id="campaignForm" autocomplete="off">
+                @Html.AntiForgeryToken()
+
+                <table id="campaignTable" class="table display table-bordered table-striped w-100">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Business Name</th>
+                            <th>MPAN/MPRN</th>
+                            <th>Input Date</th>
+                            <th>Bonus (£)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated dynamically via AJAX -->
+                    </tbody>
+                </table>
+                <div class="campaign-summary-box mt-3">
+                    Contracts: <span id="contractsCount">0</span>
+                </div>
+                <div class="campaign-summary-box mt-3">
+                    Bonus (£): <span id="totalBonus">0</span>
+                </div>
+                <div class="campaign-summary-box mt-3">
+                    Target Achieved: <span id="targetAchieved">0</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @section styles {
+        <link href="~/Content/Accounts/CampaignDashboard/campaignDashboard.css" rel="stylesheet" />
+    }
+    @section scripts {
+        <script src="~/Scripts/Accounts/CampaignDashboard/campaignDashboard.js"></script>
+    }
+
+}
+else
+{
+    <div class="alert alert-danger text-center mt-5">
+        <h4>Access Denied</h4>
+        <p>You are not authorized to view this page.</p>
+    </div>
+}

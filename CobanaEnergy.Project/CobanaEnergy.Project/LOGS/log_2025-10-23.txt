@@ -1,0 +1,35 @@
+----- LOG ENTRY -----
+Time: 11:07:14
+Message: Environment variable 'CobanaConnection' is not set or is empty.
+Location: ApplicationDBContext.cs -> GetConnectionStringFromEnvironment() [Line 35]
+
+----- LOG ENTRY -----
+Time: 11:09:56
+Message: Environment variable 'CobanaConnection' is not set or is empty.
+Location: ApplicationDBContext.cs -> GetConnectionStringFromEnvironment() [Line 35]
+
+----- LOG ENTRY -----
+Time: 11:10:00
+Message: Environment variable 'CobanaConnection' is not set or is empty.
+Location: ApplicationDBContext.cs -> GetConnectionStringFromEnvironment() [Line 35]
+
+----- LOG ENTRY -----
+Time: 11:15:07
+Message: CobanaConnection Environment Variable Value: 
+Location: ApplicationDBContext.cs -> GetConnectionStringFromEnvironment() [Line 31]
+
+----- LOG ENTRY -----
+Time: 11:15:10
+Message: CobanaConnection Environment Variable Value: 
+Location: ApplicationDBContext.cs -> GetConnectionStringFromEnvironment() [Line 31]
+
+----- LOG ENTRY -----
+Time: 11:22:10
+Message: CobanaConnection Environment Variable Value: 
+Location: ApplicationDBContext.cs -> GetConnectionStringFromEnvironment() [Line 31]
+
+----- LOG ENTRY -----
+Time: 11:22:11
+Message: CobanaConnection Environment Variable Value: 
+Location: ApplicationDBContext.cs -> GetConnectionStringFromEnvironment() [Line 31]
+

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Project Launcher",
+    "Projects": [
+      {
+        "Path": "CobanaEnergy.Project\\CobanaEnergy.Project.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Feature\\CobanaEnergy.BackgroundServices\\CobanaEnergy.BackgroundServices.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

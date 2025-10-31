@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Login";
+    ViewBag.HideLayoutElements = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="login-container">
+    <div class="form-container">
+        <h2 class="form-heading">Cobana Portal</h2>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "loginForm", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.TextBox("username", null, new { @class = "form-control", placeholder = "Enter Username", required = "required", pattern = "^[A-Za-z]{3,}$", title = "Only alphabets allowed (min 3 letters)", autocomplete = "off" })
+            </div>
+
+            <div class="form-group">
+                @Html.Password("password", null, new { @class = "form-control", placeholder = "Enter Password", required = "required" })
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-2">Login</button>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/Signup/login.js"></script>
+}
+@section styles {
+    <link href="~/Content/Signup/Login.css" rel="stylesheet" />
+}

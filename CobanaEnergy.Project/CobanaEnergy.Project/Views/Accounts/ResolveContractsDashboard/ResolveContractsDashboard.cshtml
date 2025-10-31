@@ -1,0 +1,59 @@
+﻿@model CobanaEnergy.Project.Models.Accounts.ResolveContractsDashboard.ResolveContractsDashboardViewModel
+@{
+    ViewBag.Title = "Resolve Contracts Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="resolve-contracts-dashboard">
+    <div class="dashboard-title">
+        Resolve Contracts Dashboard
+    </div>
+    <div class="filters d-flex flex-wrap gap-4 mb-4 align-items-end">
+        <div>
+            <label for="supplierFilter" class="form-label fw-semibold">Supplier</label>
+            @Html.DropDownListFor(m => m.SupplierId, Model.Suppliers, "All Suppliers", new { @class = "form-select", id = "supplierFilter" })
+        </div>
+        <div>
+            <label for="startDateFilter" class="form-label fw-semibold">Input Date From</label>
+            <input type="date" id="startDateFilter" class="form-control" />
+        </div>
+        <div>
+            <label for="endDateFilter" class="form-label fw-semibold">Input Date To</label>
+            <input type="date" id="endDateFilter" class="form-control" />
+        </div>
+        <div class="ms-auto">
+            <button type="button" class="btn btn-success" id="exportExcelBtn">
+                <i class="fas fa-file-excel me-2"></i> Export to Excel
+            </button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table id="resolveContractsTable" class="table display table-bordered table-striped w-100">
+            <thead class="table-light">
+                <tr>
+                    <th>Business Name</th>
+                    <th>MPAN</th>
+                    <th>MPRN</th>
+                    <th>Input EAC</th>
+                    <th>Input Date</th>
+                    <th>Start Date</th>
+                    <th>CED</th>
+                    <th>CED(COT)</th>
+                    <th>Contract Status</th>
+                    <th>Payment Status</th>
+                    <th>Cobana Due Commission (£)</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Content/Accounts/ResolveContractsDashboard/ResolveContractsDashboard.css" rel="stylesheet" />
+}
+@section scripts {
+    <script src="~/Scripts/Accounts/ResolveContractsDashboard/resolveContractsDashboard.js"></script>
+}

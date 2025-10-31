@@ -1,0 +1,116 @@
+﻿.reconciliations-dashboard {
+    padding: 40px 20px 20px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Raleway', sans-serif;
+    min-height: 92vh;
+    width: 99vw;
+    margin-left: calc(-49vw + 49%);
+    max-width: none;
+}
+
+    .reconciliations-dashboard .dashboard-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        text-align: center;
+        letter-spacing: 0.5px;
+    }
+
+    .reconciliations-dashboard .filters {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 28px rgba(80, 94, 128, 0.11);
+        padding: 16px 20px;
+        margin-bottom: 24px;
+    }
+
+        .reconciliations-dashboard .filters .form-label {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+    .reconciliations-dashboard .table-container {
+        overflow-x: auto;
+        max-width: 100%;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 28px 0 rgba(80,94,128,0.11);
+        padding: 24px 20px 20px 20px;
+    }
+
+#reconciliationsTable {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.94rem;
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-bottom: 0;
+    word-wrap: break-word; 
+}
+
+    #reconciliationsTable th,
+    #reconciliationsTable td {
+        text-align: center;
+        vertical-align: middle;
+        white-space: normal; 
+        padding: 12px 14px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 1rem;
+    }
+
+    #reconciliationsTable thead th {
+        font-family: 'Raleway', sans-serif;
+        font-size: 1.03rem;
+        font-weight: 700;
+        background: #fafbfc;
+        color: #232949;
+        border-bottom: 2px solid #ececec;
+    }
+
+    #reconciliationsTable tbody tr {
+        transition: background 0.15s;
+    }
+
+        #reconciliationsTable tbody tr:hover {
+            background: #f4f6fc;
+        }
+
+.invoice-summary-box {
+    display: inline-block;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #212529;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+    .reconciliations-dashboard {
+        padding: 16px 2px;
+    }
+
+        .reconciliations-dashboard .table-container {
+            padding: 8px 2px 4px 2px;
+        }
+
+        .reconciliations-dashboard .dashboard-title {
+            font-size: 1.22rem;
+            margin-bottom: 16px;
+        }
+
+    #reconciliationsTable th,
+    #reconciliationsTable td {
+        font-size: 0.94rem;
+    }
+}
+
+.reconciliations-dashboard .dataTables_wrapper .dataTables_length,
+.reconciliations-dashboard .dataTables_wrapper .dataTables_filter {
+    margin-bottom: 20px !important;
+}
+

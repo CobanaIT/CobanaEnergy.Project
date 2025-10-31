@@ -1,0 +1,15 @@
+----- LOG ENTRY -----
+Time: 12:02:56
+Message: Successfully parsed id '7' to int: 7
+Location: SectorController.cs -> Edit() [Line 880]
+
+----- LOG ENTRY -----
+Time: 12:02:56
+Message: Found sector: Abdul Rauf Bannian (ID: 7)
+Location: SectorController.cs -> Edit() [Line 898]
+
+----- LOG ENTRY -----
+Time: 12:02:56
+Message: Successfully built EditSectorViewModel for sector 7
+Location: SectorController.cs -> Edit() [Line 936]
+

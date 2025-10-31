@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Create User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Controls"))
+{
+    <div class="create-user-container">
+        <div class="form-container">
+            <h2 class="form-heading">Create New User</h2>
+
+            @using (Html.BeginForm("Create", "Account", FormMethod.Post, new { id = "createUserForm", @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.TextBox("Username", null, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Enter Username",
+                        required = "required",
+                        pattern = "^[A-Za-z]{3,}$",
+                        title = "Only alphabets allowed (min 3 letters)",
+                        autocomplete = "off"
+                    })
+                </div>
+
+                <div class="form-group">
+                    @Html.Password("Password", null, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Enter Password",
+                        required = "required"
+                    })
+                </div>
+
+                <div class="form-group">
+                    @Html.Password("ConfirmPassword", null, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Confirm Password",
+                        required = "required"
+                    })
+                </div>
+
+                <div class="form-group">
+                    @Html.DropDownList("roles", new SelectList(ViewBag.Roles, "Name", "Name"), new
+                    {
+                        @class = "form-control",
+                        multiple = "multiple",
+                        title = "Select roles",
+                        required = "required"
+                    })
+                </div>
+
+                <div class="form-group form-check mt-2">
+                    <label class="form-check-label">
+                        @Html.CheckBox("HasTimeRestriction", new { @class = "form-check-input" }) Login Time Restriction
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-2">Create User</button>
+            }
+        </div>
+    </div>
+
+    @section scripts {
+        @if (TempData["ToastMessage"] != null)
+        {
+            <script>
+                $(function () {
+                    const message = "@TempData["ToastMessage"]";
+                    const type = "@TempData["ToastType"]";
+
+                    if (type === "success") {
+                        showToastSuccess(message);
+                    } else if (type === "error") {
+                        showToastError(message);
+                    }
+                });
+            </script>
+        }
+
+        <script src="~/Scripts/Signup/userCreation.js"></script>
+    }
+
+    @section styles {
+        <link href="~/Content/Signup/CreateUser.css" rel="stylesheet" />
+    }
+}
+else
+{
+    <div class="alert alert-danger text-center mt-5">
+        <h4>Access Denied</h4>
+        <p>You are not authorized to view this page.</p>
+    </div>
+}

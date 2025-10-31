@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Edit Supplier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Controls"))
+{
+    <div class="page-container">
+        <h2 class="page-heading">Edit Supplier</h2>
+
+        <div id="editSupplierLoading" class="text-center my-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <div class="mt-2">Loading supplier data...</div>
+        </div>
+
+        <div class="supplier-dashboard-container d-none" id="editSupplierContainer">
+            <form id="editSupplierForm" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" id="supplierId" />
+
+                <div class="form-section supplier-meta-section">
+                    <div class="row align-items-center gx-3 gy-3">
+                        <div class="col-md-5">
+                            <label for="supplierName" class="form-label">Supplier Name</label>
+                            <input type="text" class="form-control" id="supplierName" placeholder="Enter supplier name" required autocomplete="off" />
+                        </div>
+
+                        <div class="col-md-5">
+                            <label for="supplierLink" class="form-label">Supplier Website Link</label>
+                            <input type="url" class="form-control" id="supplierLink" placeholder="https://example.com/" autocomplete="off" />
+                        </div>
+
+                        <div class="col-md-2 d-flex align-items-center pt-3 pt-md-4 justify-content-md-end justify-content-start">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="supplierStatus" />
+                                <label class="form-check-label ms-2" for="supplierStatus">Active</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4>Uplifts</h4>
+                    <div class="row mb-2 uplift-header gx-2">
+                        <div class="col-md-2 text-center">Fuel Type</div>
+                        <div class="col-md-2 text-center">Uplift</div>
+                        <div class="col-md-3 text-center">Start Date</div>
+                        <div class="col-md-3 text-center">End Date</div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div id="upliftContainer"></div>
+                    <button type="button" class="btn btn-secondary add-uplift">+ Add Uplift</button>
+                </div>
+
+                <div class="form-section">
+                    <h4>Contacts</h4>
+                    <div class="contact-header row mb-2 gx-2">
+                        <div class="col-md-2 text-center">Name</div>
+                        <div class="col-md-2 text-center">Role</div>
+                        <div class="col-md-2 text-center">Phone</div>
+                        <div class="col-md-2 text-center">Email</div>
+                        <div class="col-md-3 text-center">Notes</div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div id="contactContainer"></div>
+                    <button type="button" class="btn btn-secondary add-contact">+ Add Contact</button>
+                </div>
+
+                <div class="form-section">
+                    <h4>Products</h4>
+                    <div class="product-header row mb-2 gx-2">
+                        <div class="col-md-3 text-center">Product Name</div>
+                        <div class="col-md-2 text-center">Supplier Comms Type</div>
+                        <div class="col-md-2 text-center">Start Date</div>
+                        <div class="col-md-2 text-center">End Date</div>
+                        <div class="col-md-2 text-center">Commission</div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div id="productContainer"></div>
+                    <button type="button" class="btn btn-secondary add-product">+ Add Product</button>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Update Supplier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    @section styles {
+        <link href="~/Content/Supplier/EditSupplier.css" rel="stylesheet" />
+    }
+
+    @section scripts {
+        <script src="~/Scripts/Dropdown/dropdowns.js"></script>
+        <script src="~/Scripts/Supplier/editSupplier.js"></script>
+    }
+
+}
+else
+{
+    <div class="alert alert-danger text-center mt-5">
+        <h4>Access Denied</h4>
+        <p>You are not authorized to view this page.</p>
+    </div>
+}

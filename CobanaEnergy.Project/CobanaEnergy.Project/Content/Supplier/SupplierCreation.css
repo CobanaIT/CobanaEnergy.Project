@@ -1,0 +1,142 @@
+﻿.supplier-page-container {
+    padding: 30px 60px;
+    background-color: #f9f9f9;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.page-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-align: center;
+    color: #222;
+    margin-bottom: 40px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.form-section {
+    margin-bottom: 2.5rem;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #e2e2e2;
+}
+
+    .form-section h4 {
+        margin-bottom: 1.25rem;
+        font-weight: 600;
+        font-size: 1.25rem;
+    }
+
+.row .form-control {
+    margin-bottom: 8px;
+}
+
+button.btn-danger.btn-sm {
+    margin-top: 5px;
+    transition: background-color 0.2s ease;
+}
+
+    button.btn-danger.btn-sm:hover {
+        background-color: #c82333;
+    }
+
+.add-contact, .add-product {
+    margin-top: 10px;
+}
+
+.supplier-name-input {
+    max-width: 400px;
+}
+
+.remove-row {
+    width: 100%;
+    padding: 6px 0;
+}
+
+.supplier-name-label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    text-align: center;
+}
+
+.contact-notes {
+    min-height: 38px;
+    line-height: 1.4;
+}
+
+.supplier-meta-section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px 30px;
+    border: 1px solid #e2e2e2;
+    margin-bottom: 30px;
+}
+
+    .supplier-meta-section .form-label {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .supplier-meta-section .form-control {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+        border-radius: 6px;
+    }
+
+.product-row .form-control,
+.product-row select {
+    margin-bottom: 6px;
+    padding: 9px 10px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+}
+
+.product-row {
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.product-comms-type {
+    height: 38px;
+}
+
+.product-row > div {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.products-section {
+    padding-top: 15px;
+}
+
+    .products-section h4 {
+        margin-bottom: 16px;
+        font-weight: 600;
+    }
+
+.add-product {
+    margin-top: 10px;
+}
+
+.uplifts-section {
+    padding-top: 15px;
+}
+
+    .uplifts-section h4 {
+        margin-bottom: 16px;
+        font-weight: 600;
+    }
+
+.uplift-row .form-control,
+.uplift-row select {
+    margin-bottom: 6px;
+    padding: 9px 10px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+}

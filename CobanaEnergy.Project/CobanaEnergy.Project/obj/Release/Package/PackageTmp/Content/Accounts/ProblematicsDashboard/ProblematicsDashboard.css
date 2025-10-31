@@ -1,0 +1,161 @@
+﻿.problematics-dashboard {
+    padding: 40px 20px 20px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Raleway', sans-serif;
+    min-height: 92vh;
+    width: 99vw;
+    margin-left: calc(-49vw + 49%);
+    max-width: none;
+}
+
+    .problematics-dashboard .dashboard-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        text-align: center;
+        letter-spacing: 0.5px;
+    }
+
+    .problematics-dashboard .filters {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 28px rgba(80, 94, 128, 0.11);
+        padding: 16px 20px;
+        margin-bottom: 24px;
+    }
+
+        .problematics-dashboard .filters .form-label {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+    .problematics-dashboard .table-container {
+        overflow-x: auto;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 28px 0 rgba(80,94,128,0.11);
+        padding: 24px 20px 20px 20px;
+    }
+
+#problematicsTable {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.94rem;
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-bottom: 0;
+}
+
+    #problematicsTable th,
+    #problematicsTable td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 12px 14px;
+        font-size: 1rem;
+    }
+/* Edit column (first column) */
+#problematicsTable th:nth-child(1),
+#problematicsTable td:nth-child(1) {
+    width: 48px !important;
+    min-width: 48px !important;
+    max-width: 48px !important;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+    #problematicsTable thead th {
+        font-family: 'Raleway', sans-serif;
+        font-weight: 700;
+        background: #fafbfc;
+        color: #232949;
+        border-bottom: 2px solid #ececec;
+    }
+
+    #problematicsTable tbody tr {
+        transition: background 0.15s;
+    }
+
+        #problematicsTable tbody tr:hover {
+            background: #f4f6fc;
+        }
+
+.save-btn-wrapper {
+    margin-top: 28px;
+    text-align: right;
+}
+
+
+    .btn-primary:disabled {
+        background: #b9d1f6;
+        cursor: not-allowed;
+    }
+
+@media (max-width: 600px) {
+    .problematics-dashboard {
+        padding: 16px 2px;
+    }
+
+    .table-container {
+        padding: 8px 2px 4px 2px;
+    }
+
+    .dashboard-title {
+        font-size: 1.22rem;
+        margin-bottom: 16px;
+    }
+
+    .save-btn-wrapper {
+        text-align: center !important;
+        margin-top: 12px;
+    }
+
+    #problematicsTable th,
+    #problematicsTable td {
+        font-size: 0.94rem;
+    }
+}
+
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length {
+    margin-bottom: 20px !important;
+}
+
+.invoice-summary-box {
+    display: inline-block;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #212529;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.edit-btn {
+    background-color: #6b737a;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+    .edit-btn i {
+        font-size: 0.85rem;
+    }
+
+    .edit-btn:hover {
+        background-color: #545b61;
+        color: #fff;
+    }
+

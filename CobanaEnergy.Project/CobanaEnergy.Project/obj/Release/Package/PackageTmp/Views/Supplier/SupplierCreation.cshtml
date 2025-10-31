@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Create Supplier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Controls"))
+{
+    <div class="supplier-page-container">
+        <h2 class="page-heading">Create New Supplier</h2>
+
+        @using (Html.BeginForm("SupplierCreation", "Supplier", FormMethod.Post, new { id = "supplierForm", @class = "supplier-form", role = "form" }))
+        {
+            @Html.AntiForgeryToken();
+
+            <div class="form-section supplier-meta-section">
+                <div class="row gx-4 gy-3 align-items-center">
+                    <div class="col-md-6">
+                        <label for="supplierName" class="form-label required">Supplier Name</label>
+                        <input type="text" class="form-control" id="supplierName" name="Name" placeholder="Enter Supplier Name" required autocomplete="off" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="supplierLink" class="form-label">Supplier Website Link</label>
+                        <input type="url" class="form-control" id="supplierLink" name="Link" placeholder="https://example.com" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section uplifts-section">
+                <h4>Uplifts</h4>
+                <div id="upliftContainer"></div>
+                <button type="button" class="btn btn-secondary add-uplift">+ Add Uplift</button>
+            </div>
+
+            <div class="form-section contacts-section">
+                <h4>Contacts</h4>
+                <div id="contactContainer"></div>
+                <button type="button" class="btn btn-secondary add-contact">+ Add Contact</button>
+            </div>
+
+            <div class="form-section products-section">
+                <h4>Products</h4>
+                <div id="productContainer"></div>
+                <button type="button" class="btn btn-secondary add-product">+ Add Product</button>
+            </div>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Save Supplier</button>
+            </div>
+        }
+    </div>
+
+    @section scripts {
+        <script src="~/Scripts/Dropdown/dropdowns.js"></script>
+        <script src="~/Scripts/Supplier/supplierCreation.js"></script>
+    }
+
+    @section styles {
+        <link href="~/Content/Supplier/SupplierCreation.css" rel="stylesheet" />
+    }
+
+}
+else
+{
+    <div class="alert alert-danger text-center mt-5">
+        <h4>Access Denied</h4>
+        <p>You are not authorized to view this page.</p>
+    </div>
+}

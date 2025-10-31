@@ -1,0 +1,875 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\SixLabors.ImageSharp.3.1.11\build\SixLabors.ImageSharp.props" Condition="Exists('..\packages\SixLabors.ImageSharp.3.1.11\build\SixLabors.ImageSharp.props')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CEB8310A-2F9C-4FF8-9A1A-9E092AEC0527}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CobanaEnergy.Project</RootNamespace>
+    <AssemblyName>CobanaEnergy.Project</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44388</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=8.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.8.3.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=6.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.6.1.0\lib\net472\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=33.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.33.1.0\lib\net48\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Enums.NET, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ea1c1650d506225, processorArchitecture=MSIL">
+      <HintPath>..\packages\Enums.NET.4.0.1\lib\net45\Enums.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.8.0.0\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ExtendedNumerics.BigDecimal, Version=2025.1001.2.129, Culture=neutral, PublicKeyToken=65f1315a45ad8949, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExtendedNumerics.BigDecimal.2025.1001.2.129\lib\net48\ExtendedNumerics.BigDecimal.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.4.2.13, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.4.2\lib\netstandard2.0\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.Signed.5.0.0\lib\net48\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.4\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.4\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=9.0.0.8, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.9.0.8\lib\net462\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Diagnostics.Abstractions, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Diagnostics.Abstractions.8.0.1\lib\net462\Microsoft.Extensions.Diagnostics.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=9.0.0.8, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.9.0.8\lib\net462\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Hosting.Abstractions.8.0.1\lib\net462\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.3, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.3\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.8.0.2\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=9.0.0.8, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.9.0.8\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.1\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.3\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.3\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.2.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.3\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.3\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.Core, Version=2.7.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.7.2\lib\net472\NPOI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.7.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.7.2\lib\net472\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.7.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.7.2\lib\net472\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.7.2.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.7.2\lib\net472\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.1\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=9.0.0.8, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.9.0.8\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.6.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.8.0.1\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=8.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.8.0.2\lib\net462\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.6.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.3.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.3.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.3.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.3.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Accounts\AwaitingPaymentsDashboard\AwaitingPaymentsDashboard.css" />
+    <Content Include="Content\Accounts\BGBContracts\EditBGBContract.css" />
+    <Content Include="Content\Accounts\CrownContracts\crownContract.css" />
+    <Content Include="Content\Accounts\CoronaContracts\CoronaContract.css" />
+    <Content Include="Content\Accounts\BGLiteContracts\EditBGLiteContract.css" />
+    <Content Include="Content\Accounts\CalendarDashboard\CalendarDashboard.css" />
+    <Content Include="Content\Accounts\CampaignDashboard\campaignCreate.css" />
+    <Content Include="Content\Accounts\CampaignDashboard\campaignDashboard.css" />
+    <Content Include="Content\Accounts\ClawbacksDashboard\ClawbacksDashboard.css" />
+    <Content Include="Content\Accounts\EDFContracts\edfContract.css" />
+    <Content Include="Content\Accounts\EDFSMEContracts\editEDFSMEContract.css" />
+    <Content Include="Content\Accounts\InvoiceSupplierDashboard\ContractSelectListing.css" />
+    <Content Include="Content\Accounts\InvoiceSupplierDashboard\EditContractsInvoiceSupplier.css" />
+    <Content Include="Content\Accounts\MasterDashboard\accountMasterDashboard.css" />
+    <Content Include="Content\Accounts\ProblematicsDashboard\ProblematicsDashboard.css" />
+    <Content Include="Content\Accounts\ReconciliationsDashboard\ReconciliationsDashboard.css" />
+    <Content Include="Content\Accounts\ResolveContractsDashboard\ResolveContractsDashboard.css" />
+    <Content Include="Content\Accounts\ScottishPower\editScottishPowerContract.css" />
+    <Content Include="Content\Accounts\SSEContracts\EditSSEContract.css" />
+    <Content Include="Content\Accounts\TotalGasAndPower\totalGasAndPowerContract.css" />
+    <Content Include="Content\Common\filter.css" />
+    <Content Include="Content\PostSales\postSalesContract.css" />
+    <Content Include="Content\PostSales\statusDashboard.css" />
+    <Content Include="Content\Signup\userDashboard.css" />
+    <Content Include="Content\Dual\CreateDual.css" />
+    <Content Include="Content\Dual\EditDual.css" />
+    <Content Include="Content\Electric\CreateElectric.css" />
+    <Content Include="Content\Electric\EditElectric.css" />
+    <Content Include="Content\Gas\CreateGas.css" />
+    <Content Include="Content\Gas\EditGas.css" />
+    <Content Include="Content\Icons\favicon.png" />
+    <Content Include="Content\Accounts\InvoiceSupplierDashboard\InvoiceSupplierDashboard.css" />
+    <Content Include="Content\PreSales\Dashboard.css" />
+    <Content Include="Content\PreSales\PreSalesCalendar\PreSalesCalendar.css" />
+    <Content Include="Content\PreSales\PreSalesMasterDashboard\PreSalesMasterDashboard.css" />
+    <Content Include="Content\Signup\ChangePassword.css" />
+    <Content Include="Content\Signup\CreateUser.css" />
+    <Content Include="Content\Signup\UserProfileDashboard.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Signup\Login.css" />
+    <Content Include="Content\Supplier\EditSupplier.css" />
+    <Content Include="Content\Supplier\SupplierCreation.css" />
+    <Content Include="Content\Supplier\SupplierDashboard.css" />
+    <Content Include="Content\Sector\SectorDashboard.css" />
+    <Content Include="Content\Sector\CreateSector.css" />
+    <Content Include="Content\Sector\EditSector.css" />
+    <Content Include="Global.asax" />
+    <Content Include="migration-command.txt" />
+    <Content Include="Scripts\Accounts\AwaitingPaymentsDashboard\awaitingPaymentsDashboard.js" />
+    <Content Include="Scripts\Accounts\BGBContracts\editBGBContract.js" />
+    <Content Include="Scripts\Accounts\CrownContracts\editCrownContract.js" />
+    <Content Include="Scripts\Accounts\CoronaContracts\editCoronaContract.js" />
+    <Content Include="Scripts\Accounts\BGLiteContracts\editBGLiteContract.js" />
+    <Content Include="Scripts\Accounts\CalendarDashboard\calendarDashboard.js" />
+    <Content Include="Scripts\Accounts\CampaignDashboard\campaignCreation.js" />
+    <Content Include="Scripts\Accounts\CampaignDashboard\campaignDashboard.js" />
+    <Content Include="Scripts\Accounts\ClawbacksDashboard\clawbacksDashboard.js" />
+    <Content Include="Scripts\Accounts\EDFContracts\editEDFContract.js" />
+    <Content Include="Scripts\Accounts\EDFSMEContracts\editEDFSmeContract.js" />
+    <Content Include="Scripts\Accounts\InvoiceSupplierDashboard\contractSelectListing.js" />
+    <Content Include="Scripts\Accounts\InvoiceSupplierDashboard\editContractsInvoiceSupplier.js" />
+    <Content Include="Scripts\Accounts\MasterDashboard\accountMasterDashboard.js" />
+    <Content Include="Scripts\Accounts\ProblematicsDashboard\problematicsDashboard.js" />
+    <Content Include="Scripts\Accounts\ReconciliationsDashboard\reconciliationsDashboard.js" />
+    <Content Include="Scripts\Accounts\ResolveContractsDashboard\resolveContractsDashboard.js" />
+    <Content Include="Scripts\Accounts\ScottishPowerContracts\editScottishPowerContract.js" />
+    <Content Include="Scripts\Accounts\SSEContracts\editSSEContract.js" />
+    <Content Include="Scripts\Accounts\TotalGasAndPowerContracts\editTGPContract.js" />
+    <Content Include="Scripts\Common\filters.js" />
+    <Content Include="Scripts\Dropdown\dropdowns.js" />
+    <Content Include="Scripts\Dual\createDual.js" />
+    <Content Include="Scripts\Dual\editDual.js" />
+    <Content Include="Scripts\Electric\createElectric.js" />
+    <Content Include="Scripts\Electric\editElectric.js" />
+    <Content Include="Scripts\Gas\createGas.js" />
+    <Content Include="Scripts\Gas\editGas.js" />
+    <Content Include="Scripts\Accounts\InvoiceSupplierDashboard\invoiceSupplierDashboard.js" />
+    <None Include="Scripts\scriptsJquery\jquery-3.7.1-vsdoc.js" />
+    <Content Include="Scripts\scriptsJquery\jquery-3.7.1.js" />
+    <Content Include="Scripts\scriptsJquery\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\scriptsJquery\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\scriptsJquery\jquery-3.7.1.slim.min.js" />
+    <Content Include="Scripts\scriptsJquery\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\scriptsJquery\jquery-3.7.1.min.map" />
+    <None Include="Scripts\SignalR\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Scripts\PostSales\postSalesContract.js" />
+    <Content Include="Scripts\PostSales\statusDashboard.js" />
+    <Content Include="Scripts\SignalR\jquery-1.6.4.js" />
+    <Content Include="Scripts\SignalR\jquery-1.6.4.min.js" />
+    <Content Include="Scripts\SignalR\jquery.signalR-2.4.3.js" />
+    <Content Include="Scripts\SignalR\jquery.signalR-2.4.3.min.js" />
+    <Content Include="Scripts\PreSales\dashboard.js" />
+    <Content Include="Scripts\PreSales\PreSalesCalendar\preSalesCalendar.js" />
+    <Content Include="Scripts\PreSales\PreSalesMasterDashboard\preSalesMasterDashboard.js" />
+    <Content Include="Scripts\SignalR\signalr-notification.js" />
+    <Content Include="Scripts\Signup\userDashboard.js" />
+    <Content Include="Scripts\Signup\changePassword.js" />
+    <Content Include="Scripts\Signup\login.js" />
+    <Content Include="Scripts\Signup\userProfile.js" />
+    <Content Include="Scripts\Signup\userProfileDashboard.js" />
+    <Content Include="Scripts\Signup\userUpdate.js" />
+    <Content Include="Scripts\site.js" />
+    <Content Include="Scripts\Signup\userCreation.js" />
+    <Content Include="Scripts\Supplier\editSupplier.js" />
+    <Content Include="Scripts\Supplier\supplierCreation.js" />
+    <Content Include="Scripts\Supplier\supplierDashboard.js" />
+    <Content Include="Scripts\Sector\sectorDashboard.js" />
+    <Content Include="Scripts\Sector\sectorFormManager.js" />
+    <Content Include="Scripts\Sector\createSector.js" />
+    <Content Include="Scripts\Sector\editSector.js" />
+    <Content Include="Scripts\Brokerage\brokerageManager.js" />
+    <Content Include="Scripts\Common\duplicateAccountChecker.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="App_Data\Common\PaymentLogsHelper.cs" />
+    <Compile Include="App_Data\Common\SupportedSuppliers.cs" />
+    <Compile Include="Controllers\Accounts\AwaitingPaymentsDashboard\AwaitingPaymentsDashboardController.cs" />
+    <Compile Include="Controllers\Accounts\BGBContracts\BGBContractController.cs" />
+    <Compile Include="Controllers\Accounts\BGLiteContracts\BGLiteContractController.cs" />
+    <Compile Include="Controllers\Accounts\CalendarDashboard\CalendarDashboardController.cs" />
+    <Compile Include="Controllers\Accounts\CampaignDashboard\CampaignController.cs" />
+    <Compile Include="Controllers\Accounts\ClawbacksDashboard\ClawbacksDashboardController.cs" />
+    <Compile Include="Controllers\Accounts\CoronaContracts\CoronaContractController.cs" />
+    <Compile Include="Controllers\Accounts\CrownContracts\CrownContractController.cs" />
+    <Compile Include="Controllers\Accounts\EDFContracts\EDFContractController.cs" />
+    <Compile Include="Controllers\Accounts\EDFSMEContracts\EDFSMEContractController.cs" />
+    <Compile Include="Controllers\Accounts\InvoiceSupplierDashboard\InvoiceSupplierDashboardController.cs" />
+    <Compile Include="Controllers\Accounts\MasterDashboard\AccountMasterDashboardController.cs" />
+    <Compile Include="Controllers\Accounts\ProblematicsDashboard\ProblematicsDashboardController.cs" />
+    <Compile Include="Controllers\Accounts\ReconciliationsDashboard\ReconciliationsDashboardController.cs" />
+    <Compile Include="Controllers\Accounts\ResolveContractsDashboard\ResolveContractsDashboardController.cs" />
+    <Compile Include="Controllers\Accounts\ScottishPowerContracts\ScottishPowerContractController.cs" />
+    <Compile Include="Controllers\Accounts\SSEContracts\SSEContractController.cs" />
+    <Compile Include="Controllers\Accounts\TotalGasAndPowerContracts\TotalGasAndPowerContractController.cs" />
+    <Compile Include="Controllers\Base\BaseController.cs" />
+    <Compile Include="Controllers\Common\CommonController.cs" />
+    <Compile Include="Controllers\Error\ErrorController.cs" />
+    <Compile Include="Controllers\PostSales\StatusDashboard\StatusDashboardController.cs" />
+    <Compile Include="Controllers\PreSales\CheckDuplicateAccountController.cs" />
+    <Compile Include="Controllers\PreSales\DualController.cs" />
+    <Compile Include="Controllers\PreSales\PreSalesMasterDashboardController.cs" />
+    <Compile Include="App_Data\Filters\AutofacConfig.cs" />
+    <Compile Include="App_Data\Helpers\ParserHelper.cs" />
+    <Compile Include="Migrations\202506260826318_InitialMapping.cs" />
+    <Compile Include="Migrations\202506260826318_InitialMapping.Designer.cs">
+      <DependentUpon>202506260826318_InitialMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508061059005_Rao_InitialMapping.cs" />
+    <Compile Include="Migrations\202508061059005_Rao_InitialMapping.Designer.cs">
+      <DependentUpon>202508061059005_Rao_InitialMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508061207452_Campaign_86c4btzgh_InitialMapping.cs" />
+    <Compile Include="Migrations\202508061207452_Campaign_86c4btzgh_InitialMapping.Designer.cs">
+      <DependentUpon>202508061207452_Campaign_86c4btzgh_InitialMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508061414066_Usermodification_86c4u6hnr_InitialMapping.cs" />
+    <Compile Include="Migrations\202508061414066_Usermodification_86c4u6hnr_InitialMapping.Designer.cs">
+      <DependentUpon>202508061414066_Usermodification_86c4u6hnr_InitialMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508070857331_Userlisting_86c4u6dx0_InitialMapping.cs" />
+    <Compile Include="Migrations\202508070857331_Userlisting_86c4u6dx0_InitialMapping.Designer.cs">
+      <DependentUpon>202508070857331_Userlisting_86c4u6dx0_InitialMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508111402486_AddUserProfileFields.cs" />
+    <Compile Include="Migrations\202508111402486_AddUserProfileFields.Designer.cs">
+      <DependentUpon>202508111402486_AddUserProfileFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508151157394_Faryal_InitialSectorMapping.cs" />
+    <Compile Include="Migrations\202508151157394_Faryal_InitialSectorMapping.Designer.cs">
+      <DependentUpon>202508151157394_Faryal_InitialSectorMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508151620153_Faryal_SectorFK.cs" />
+    <Compile Include="Migrations\202508151620153_Faryal_SectorFK.Designer.cs">
+      <DependentUpon>202508151620153_Faryal_SectorFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508180943056_Faryal_PolymorphicRelations.cs" />
+    <Compile Include="Migrations\202508180943056_Faryal_PolymorphicRelations.Designer.cs">
+      <DependentUpon>202508180943056_Faryal_PolymorphicRelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508151011359_PaymentsNoteLogs-86c4utjkv-InitialMapping.cs" />
+    <Compile Include="Migrations\202508151011359_PaymentsNoteLogs-86c4utjkv-InitialMapping.Designer.cs">
+      <DependentUpon>202508151011359_PaymentsNoteLogs-86c4utjkv-InitialMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508260930054_Faryal_Testing.cs" />
+    <Compile Include="Migrations\202508260930054_Faryal_Testing.Designer.cs">
+      <DependentUpon>202508260930054_Faryal_Testing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202509031548518_EDFSME_86c59edwa.cs" />
+    <Compile Include="Migrations\202509031548518_EDFSME_86c59edwa.Designer.cs">
+      <DependentUpon>202509031548518_EDFSME_86c59edwa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508271656129_Faryal_ContractAdditions.cs" />
+    <Compile Include="Migrations\202508271656129_Faryal_ContractAdditions.Designer.cs">
+      <DependentUpon>202508271656129_Faryal_ContractAdditions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508290855118_Faryal_SectorSupplierMappings.cs" />
+    <Compile Include="Migrations\202508290855118_Faryal_SectorSupplierMappings.Designer.cs">
+      <DependentUpon>202508290855118_Faryal_SectorSupplierMappings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202509051053196_testing-Abdullah-InitialMapping.cs" />
+    <Compile Include="Migrations\202509051053196_testing-Abdullah-InitialMapping.Designer.cs">
+      <DependentUpon>202509051053196_testing-Abdullah-InitialMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202509101403173_Renaming-Column-86c5adwhx.cs" />
+    <Compile Include="Migrations\202509101403173_Renaming-Column-86c5adwhx.Designer.cs">
+      <DependentUpon>202509101403173_Renaming-Column-86c5adwhx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202509151115000_Faryal_PresalesFollowupDateAdded.cs" />
+    <Compile Include="Migrations\202509151115000_Faryal_PresalesFollowupDateAdded.Designer.cs">
+      <DependentUpon>202509151115000_Faryal_PresalesFollowupDateAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202509301343070_Status-Dashboard-86c5md48r.cs" />
+    <Compile Include="Migrations\202509301343070_Status-Dashboard-86c5md48r.Designer.cs">
+      <DependentUpon>202509301343070_Status-Dashboard-86c5md48r.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510030932353_Email-Template-86c5md48r.cs" />
+    <Compile Include="Migrations\202510030932353_Email-Template-86c5md48r.Designer.cs">
+      <DependentUpon>202510030932353_Email-Template-86c5md48r.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510071340314_PostSales-Logs-86c5md48r.cs" />
+    <Compile Include="Migrations\202510071340314_PostSales-Logs-86c5md48r.Designer.cs">
+      <DependentUpon>202510071340314_PostSales-Logs-86c5md48r.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510101201249_Alter-Tables-86c5md48r.cs" />
+    <Compile Include="Migrations\202510101201249_Alter-Tables-86c5md48r.Designer.cs">
+      <DependentUpon>202510101201249_Alter-Tables-86c5md48r.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510211216280_edit-statusdashboard-86c5md48r.cs" />
+    <Compile Include="Migrations\202510211216280_edit-statusdashboard-86c5md48r.Designer.cs">
+      <DependentUpon>202510211216280_edit-statusdashboard-86c5md48r.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510220910279_alter-postsalesObj-86c5md48r.cs" />
+    <Compile Include="Migrations\202510220910279_alter-postsalesObj-86c5md48r.Designer.cs">
+      <DependentUpon>202510220910279_alter-postsalesObj-86c5md48r.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510221731315_alter-postsalesLogs-86c5md48r.cs" />
+    <Compile Include="Migrations\202510221731315_alter-postsalesLogs-86c5md48r.Designer.cs">
+      <DependentUpon>202510221731315_alter-postsalesLogs-86c5md48r.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510221947590_alter-contractstatus-86c5md48r.cs" />
+    <Compile Include="Migrations\202510221947590_alter-contractstatus-86c5md48r.Designer.cs">
+      <DependentUpon>202510221947590_alter-contractstatus-86c5md48r.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202510271412016_adding-contractid-86c5md48r.cs" />
+    <Compile Include="Migrations\202510271412016_adding-contractid-86c5md48r.Designer.cs">
+      <DependentUpon>202510271412016_adding-contractid-86c5md48r.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Accounts\AwaitingPaymentsDashboard\AwaitingPaymentsDashboard.cs" />
+    <Compile Include="Models\Accounts\CalendarDashboard\CalendarDashboardViewModel.cs" />
+    <Compile Include="Models\Accounts\ClawbacksDashboard\ClawbacksDashboardViewModel.cs" />
+    <Compile Include="Models\Accounts\DBModel\CE_ContractStatus.cs" />
+    <Compile Include="Models\Accounts\InvoiceSupplierDashboard\ContractEditTableViewModel.cs" />
+    <Compile Include="Models\Accounts\InvoiceSupplierDashboard\ContractSelectRowViewModel.cs" />
+    <Compile Include="Models\Accounts\InvoiceSupplierDashboard\ContractStatusHelper.cs" />
+    <Compile Include="Models\Accounts\MainCampaign\CampaignDashboardViewModel.cs" />
+    <Compile Include="Models\Accounts\MainCampaign\CampaignNotificationViewModel.cs" />
+    <Compile Include="Models\Accounts\MainCampaign\CampaignViewModel.cs" />
+    <Compile Include="Models\Accounts\MainCampaign\DBModel\CE_Campaign.cs" />
+    <Compile Include="Models\Accounts\MainCampaign\DBModel\CE_CampaignNotification.cs" />
+    <Compile Include="Models\Accounts\MainCampaign\DBModel\CE_UserNotificationStatus.cs" />
+    <Compile Include="Models\Accounts\MainCampaign\UserNotificationStatusViewModel.cs" />
+    <Compile Include="Models\Accounts\MasterDashboard\AccountMasterDashboard\AccountMasterViewModel.cs" />
+    <Compile Include="Models\Accounts\MasterDashboard\AccountMasterDashboard\ContractQueryParams.cs" />
+    <Compile Include="Models\Accounts\ProblematicsDashboard\ProblematicsDashboardViewModel.cs" />
+    <Compile Include="Models\Accounts\ReconciliationsDashboard\ReconciliationsRowViewModel.cs" />
+    <Compile Include="Models\Accounts\ResolveContractsDashboard\ResolveContractsDashboardViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\BGB\BGBEacLogViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\BGB\EacDataViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\BGB\DBModel\CE_BGBCommissionAndReconciliation.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\BGB\DBModel\CE_BGBCommissionMetrics.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\BGB\DBModel\CE_BGBEacLog.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\BGB\DBModel\CE_PaymentAndNoteLog.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\BGB\EditBGBContractViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\BGB\UpdateContractViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\BGLite\BGLiteEacLogViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\BGLite\EditBGLiteContractViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\Corona\CoronaEacLogViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\Corona\EditCoronaContractViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\Crown\CrownEacLogViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\Crown\EditCrownContractViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\EDFSME\EDFSmeEacLogViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\EDFSME\EditEDFSmeContractViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\EDF\EDFEacLogViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\EDF\EditEDFContractViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\PaymentAndNotesLogsViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\ScottishPower\EditScottishPowerContractViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\ScottishPower\ScottishPowerEacLogViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\SSE\EditSSEContractViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\SSE\SSEEacLogViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\TotalGasAndPower\EditTotalGasAndPowerViewModel.cs" />
+    <Compile Include="Models\Accounts\SuppliersModels\TotalGasAndPower\TotalGasAndPowerEacLogViewModel.cs" />
+    <Compile Include="Models\Common\DataTable\DataTableQuery.cs" />
+    <Compile Include="Models\Dual\EditDual\DualContractEditViewModel.cs" />
+    <Compile Include="Models\Dual\LogsHelperClass\LogEntry.cs" />
+    <Compile Include="Models\Electric\EditElectric\ElectricContractEditViewModel.cs" />
+    <Compile Include="Controllers\PreSales\ElectricController.cs" />
+    <Compile Include="Controllers\PreSales\GasController.cs" />
+    <Compile Include="Controllers\PreSales\PreSalesController.cs" />
+    <Compile Include="Controllers\PreSales\PreSalesCalendarController.cs" />
+    <Compile Include="Controllers\PreSales\SupplierController.cs" />
+    <Compile Include="Controllers\Sector\SectorController.cs" />
+    <Compile Include="Controllers\Signup\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="App_Data\Filters\ValidateJsonAntiForgeryTokenAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\Helpers\UserHelper.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountsDBModel\CE_Accounts.cs" />
+    <Compile Include="Models\ApplicationDBContext.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Dual\DualContractViewModel.cs" />
+    <Compile Include="Models\EmailTemplateLookup\CE_EmailTemplateLookup.cs" />
+    <Compile Include="Models\PostSales\Entities\CE_PostSaleObjection.cs" />
+    <Compile Include="Models\PostSales\Entities\CE_PostSalesLogs.cs" />
+    <Compile Include="Models\PostSales\PostSalesContract\SupplierProductSnapshotViewModel.cs" />
+    <Compile Include="Models\PostSales\StatusDashboard\StatusQueryParams.cs" />
+    <Compile Include="Models\PostSales\StatusDashboard\StatusDashboardViewModel.cs" />
+    <Compile Include="Models\PreSales\PreSalesCalendarRowViewModel.cs" />
+    <Compile Include="Models\PreSales\EditContractNotesPopupViewModel.cs" />
+    <Compile Include="Models\PreSales\EditContractNotesOnlyViewModel.cs" />
+    <Compile Include="Models\PreSales\PreSalesMasterDashboardRowViewModel.cs" />
+    <Compile Include="Models\PreSales\PreSalesMasterDashboardViewModel.cs" />
+    <Compile Include="Models\Electric\ElectricContractCreateViewModel.cs" />
+    <Compile Include="Models\Electric\ElectricDBModels\CE_ElectricContractLogs.cs" />
+    <Compile Include="Models\Electric\ElectricDBModels\CE_ElectricContracts.cs" />
+    <Compile Include="Models\Accounts\InvoiceSupplierDashboard\DB Model\CE_InvoiceSupplierUploads.cs" />
+    <Compile Include="Models\Accounts\InvoiceSupplierDashboard\InvoiceSupplierUploadViewModel.cs" />
+    <Compile Include="Models\Signup\UserDashboardViewModel.cs" />
+    <Compile Include="Models\Signup\UserProfileDashboardViewModel.cs" />
+    <Compile Include="Models\Signup\UserProfileViewModel.cs" />
+    <Compile Include="Models\Signup\UserUpdateModel.cs" />
+    <Compile Include="Models\Signup\UserUpdateViewModel.cs" />
+    <Compile Include="Models\Sector\SectorDashboardViewModel.cs" />
+    <Compile Include="Models\Sector\CreateSectorViewModel.cs" />
+    <Compile Include="Models\Sector\EditSectorViewModel.cs" />
+    <!-- Common Sector View Models -->
+    <Compile Include="Models\Sector\Common\BankDetailsViewModel.cs" />
+    <Compile Include="Models\Sector\Common\CompanyTaxInfoViewModel.cs" />
+    <!-- Commission Sector View Models -->
+    <Compile Include="Models\Sector\Commissions\BrokerageCommissionAndPaymentViewModel.cs" />
+    <Compile Include="Models\Sector\Commissions\CloserCommissionAndPaymentViewModel.cs" />
+    <Compile Include="Models\Sector\Commissions\IntroducerCommissionAndPaymentViewModel.cs" />
+    <Compile Include="Models\Sector\Commissions\ReferralPartnerCommissionAndPaymentViewModel.cs" />
+    <Compile Include="Models\Sector\Commissions\LeadGeneratorCommissionAndPaymentViewModel.cs" />
+    <!-- Brokerage Sector View Models -->
+    <Compile Include="Models\Sector\Brokerage\BrokerageStaffViewModel.cs" />
+    <Compile Include="Models\Sector\Brokerage\SubBrokerageViewModel.cs" />
+    <Compile Include="Models\Sector\Brokerage\SubBrokerageCommissionAndPaymentViewModel.cs" />
+    <!-- Referral Partner Sector View Models -->
+    <Compile Include="Models\Sector\ReferralPartner\SubReferralViewModel.cs" />
+    <Compile Include="Models\Sector\ReferralPartner\SubReferralCommissionAndPaymentViewModel.cs" />
+    <!-- Introducer Sector View Models -->
+    <Compile Include="Models\Sector\Introducer\SubIntroducerViewModel.cs" />
+    <Compile Include="Models\Sector\Introducer\SubIntroducerCommissionAndPaymentViewModel.cs" />
+    <!-- Sector DBModels -->
+    <Compile Include="Models\Sector\SectorDBModels\CE_Sector.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_BankDetails.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_CompanyTaxInfo.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_BrokerageCommissionAndPayment.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_CloserCommissionAndPayment.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_IntroducerCommissionAndPayment.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_ReferralPartnerCommissionAndPayment.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_LeadGeneratorCommissionAndPayment.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_BrokerageStaff.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_SubBrokerage.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_SubBrokerageCommissionAndPayment.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_SubReferral.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_SubReferralCommissionAndPayment.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_SubIntroducer.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_SubIntroducerCommissionAndPayment.cs" />
+    <Compile Include="Models\Sector\SectorDBModels\CE_SectorSupplier.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\snapshot Electric\CE_ElectricSupplierContactSnapshots.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\snapshot Electric\CE_ElectricSupplierProductSnapshots.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\snapshot Electric\CE_ElectricSupplierSnapshots.cs" />
+    <Compile Include="Models\Gas\EditGas\GasContractEditViewModel.cs" />
+    <Compile Include="Models\Gas\GasContractCreateViewModel.cs" />
+    <Compile Include="Models\Gas\GasDBModels\CE_GasContractLogs.cs" />
+    <Compile Include="Models\Gas\GasDBModels\CE_GasContracts.cs" />
+    <Compile Include="Models\Signup\RegisterUserDto.cs" />
+    <Compile Include="Models\Supplier\Active Suppliers\SupplierContractStatViewModel.cs" />
+    <Compile Include="Models\Supplier\Edit Supplier\EditSupplierViewModel.cs" />
+    <Compile Include="Models\Supplier\Edit Supplier\SupplierUpliftViewModel.cs" />
+    <Compile Include="Models\Supplier\Supplier Dashboard\SupplierDashboardItemViewModel.cs" />
+    <Compile Include="Models\Supplier\SupplierContactViewModel.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\CE_Supplier.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\CE_SupplierContacts.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\CE_SupplierProducts.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\CE_SupplierUplifts.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\snapshot Electric\CE_ElectricSupplierUpliftSnapshots.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\snapshot Gas\CE_GasSupplierContactSnapshots.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\snapshot Gas\CE_GasSupplierProductSnapshots.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\snapshot Gas\CE_GasSupplierSnapshots.cs" />
+    <Compile Include="Models\Supplier\SupplierDBModels\snapshot Gas\CE_GasSupplierUpliftSnapshots.cs" />
+    <Compile Include="Models\Supplier\SupplierProductViewModel.cs" />
+    <Compile Include="Models\Supplier\SupplierSnapshots Electric\SnapshotViewModel.cs" />
+    <Compile Include="Models\Supplier\SupplierSnapshots Gas\SnapshotViewModelGas.cs" />
+    <Compile Include="Models\Supplier\SupplierViewModel.cs" />
+    <Compile Include="Models\Supplier\UpliftViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App_Data\Service\BackgroundServices\CampaignMonitorRunner.cs" />
+    <Compile Include="App_Data\Service\BackgroundServices\CampaignMonitorService.cs" />
+    <Compile Include="App_Data\Service\BackgroundServices\UserSessionMonitorRunner.cs" />
+    <Compile Include="App_Data\Service\BackgroundServices\UserSessionMonitorService.cs" />
+    <Compile Include="App_Data\Service\ExtensionService\DataTableExtensions.cs" />
+    <Compile Include="App_Data\Service\ExtensionService\StringExtensions.cs" />
+    <Compile Include="App_Data\Service\HelperUtilityService\HelperService.cs" />
+    <Compile Include="App_Data\Service\NotificationHub\NotificationHub.cs" />
+    <Compile Include="App_Data\Service\UserService\ConnectedUserStore.cs" />
+    <Compile Include="App_Data\Service\UserService\CustomUserIdProvider.cs" />
+    <Compile Include="App_Data\Service\DataTableHelperService.cs" />
+    <Compile Include="App_Data\Extensions\QueryableExtensions.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Popups\_DuplicateAccountModal.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\PreSales\Dashboard.cshtml" />
+    <Content Include="Views\PreSales\PreSalesCalendar.cshtml" />
+    <Content Include="Views\PreSales\PreSalesMasterDashboard.cshtml" />
+    <Content Include="Views\PreSales\EditContractNotesPopup.cshtml" />
+    <Content Include="Views\PreSales\EditContractNotesOnlyPopup.cshtml" />
+    <Content Include="Views\Supplier\SupplierCreation.cshtml" />
+    <Content Include="Views\Supplier\SupplierDashboard.cshtml" />
+    <Content Include="Views\Supplier\EditSupplier.cshtml" />
+    <Content Include="Views\Electric\CreateElectric.cshtml" />
+    <Content Include="Views\Gas\CreateGas.cshtml" />
+    <Content Include="Views\Dual\CreateDual.cshtml" />
+    <Content Include="Views\Electric\ElectricEdit.cshtml" />
+    <Content Include="Views\Gas\EditGas.cshtml" />
+    <Content Include="Views\Dual\EditDual.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Accounts\InvoiceSupplierDashboard\InvoiceSupplierPopup.cshtml" />
+    <Content Include="Views\Shared\_ModalError.cshtml" />
+    <Content Include="Views\Accounts\InvoiceSupplierDashboard\ContractSelectListing.cshtml" />
+    <Content Include="Views\Accounts\InvoiceSupplierDashboard\EditContractsInvoiceSupplier.cshtml" />
+    <Content Include="Views\Accounts\BGBContract\EditBGBContract.cshtml" />
+    <Content Include="Views\Accounts\AwaitingPaymentsDashboard\AwaitingPaymentsDashboard.cshtml" />
+    <Content Include="Views\Accounts\ReconciliationsDashboard\ReconciliationsDashboard.cshtml" />
+    <Content Include="Views\Accounts\ClawbacksDashboard\ClawbacksDashboard.cshtml" />
+    <Content Include="Views\Accounts\ResolveContractsDashboard\ResolveContractsDashboard.cshtml" />
+    <Content Include="Views\Accounts\ProblematicsDashboard\ProblematicsDashboard.cshtml" />
+    <Content Include="Views\Accounts\CalendarDashboard\CalendarDashboard.cshtml" />
+    <Content Include="Views\Accounts\CampaignDashboard\Create.cshtml" />
+    <Content Include="Views\Accounts\CampaignDashboard\CampaignDashboard.cshtml" />
+    <Content Include="Views\Account\UserDashboard.cshtml" />
+    <Content Include="Views\Account\UpdateUser.cshtml" />
+    <Content Include="Views\Account\UserProfileDashboard.cshtml" />
+    <Content Include="Views\Account\UserProfile.cshtml" />
+    <Content Include="Views\Sector\AllDashboard.cshtml" />
+    <Content Include="Views\Sector\Dashboard.cshtml" />
+    <Content Include="Views\Sector\Create.cshtml" />
+    <Content Include="Views\Sector\Edit.cshtml" />
+    <Content Include="Views\Accounts\BGLiteContract\EditBGLiteContract.cshtml" />
+    <Content Include="Views\Accounts\Common\EditCobanaInvoiceNotes.cshtml" />
+    <Content Include="Views\Accounts\CoronaContract\EditCoronaContract.cshtml" />
+    <Content Include="Views\Accounts\CrownContract\EditCrownContract.cshtml" />
+    <Content Include="Views\Accounts\SSEContract\EditSSEContract.cshtml" />
+    <Content Include="Views\Accounts\EDFContract\EditEDFContract.cshtml" />
+    <Content Include="Views\Accounts\TotalGasAndPowerContract\EditTotalGasandPowerContract.cshtml" />
+    <Content Include="Views\Accounts\EDFSMEContract\EditEDFSMEContract.cshtml" />
+    <Content Include="Views\Accounts\ScottishPowerContract\EditScottishPowerContract.cshtml" />
+    <Content Include="Views\Accounts\MasterDashboard\AccountMasterDashboard.cshtml" />
+    <Content Include="Views\Shared\_FiltersPartial.cshtml" />
+    <Content Include="Views\PostSales\StatusDashboard\StatusDashboard.cshtml" />
+    <Content Include="Views\PostSales\PostSalesContract\EditContractPostSales.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{adf09c11-485c-4bb1-9229-f6729b191613}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202506260826318_InitialMapping.resx">
+      <DependentUpon>202506260826318_InitialMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508061059005_Rao_InitialMapping.resx">
+      <DependentUpon>202508061059005_Rao_InitialMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508061207452_Campaign_86c4btzgh_InitialMapping.resx">
+      <DependentUpon>202508061207452_Campaign_86c4btzgh_InitialMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508061414066_Usermodification_86c4u6hnr_InitialMapping.resx">
+      <DependentUpon>202508061414066_Usermodification_86c4u6hnr_InitialMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508070857331_Userlisting_86c4u6dx0_InitialMapping.resx">
+      <DependentUpon>202508070857331_Userlisting_86c4u6dx0_InitialMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508111402486_AddUserProfileFields.resx">
+      <DependentUpon>202508111402486_AddUserProfileFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508151011359_PaymentsNoteLogs-86c4utjkv-InitialMapping.resx">
+      <DependentUpon>202508151011359_PaymentsNoteLogs-86c4utjkv-InitialMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508151157394_Faryal_InitialSectorMapping.resx">
+      <DependentUpon>202508151157394_Faryal_InitialSectorMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508151620153_Faryal_SectorFK.resx">
+      <DependentUpon>202508151620153_Faryal_SectorFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508180943056_Faryal_PolymorphicRelations.resx">
+      <DependentUpon>202508180943056_Faryal_PolymorphicRelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508260930054_Faryal_Testing.resx">
+      <DependentUpon>202508260930054_Faryal_Testing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508271656129_Faryal_ContractAdditions.resx">
+      <DependentUpon>202508271656129_Faryal_ContractAdditions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508290855118_Faryal_SectorSupplierMappings.resx">
+      <DependentUpon>202508290855118_Faryal_SectorSupplierMappings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509031548518_EDFSME_86c59edwa.resx">
+      <DependentUpon>202509031548518_EDFSME_86c59edwa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509051053196_testing-Abdullah-InitialMapping.resx">
+      <DependentUpon>202509051053196_testing-Abdullah-InitialMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509101403173_Renaming-Column-86c5adwhx.resx">
+      <DependentUpon>202509101403173_Renaming-Column-86c5adwhx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509151115000_Faryal_PresalesFollowupDateAdded.resx">
+      <DependentUpon>202509151115000_Faryal_PresalesFollowupDateAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509301343070_Status-Dashboard-86c5md48r.resx">
+      <DependentUpon>202509301343070_Status-Dashboard-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510030932353_Email-Template-86c5md48r.resx">
+      <DependentUpon>202510030932353_Email-Template-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510071340314_PostSales-Logs-86c5md48r.resx">
+      <DependentUpon>202510071340314_PostSales-Logs-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510101201249_Alter-Tables-86c5md48r.resx">
+      <DependentUpon>202510101201249_Alter-Tables-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510211216280_edit-statusdashboard-86c5md48r.resx">
+      <DependentUpon>202510211216280_edit-statusdashboard-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510220910279_alter-postsalesObj-86c5md48r.resx">
+      <DependentUpon>202510220910279_alter-postsalesObj-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510221731315_alter-postsalesLogs-86c5md48r.resx">
+      <DependentUpon>202510221731315_alter-postsalesLogs-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510221947590_alter-contractstatus-86c5md48r.resx">
+      <DependentUpon>202510221947590_alter-contractstatus-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202510271412016_adding-contractid-86c5md48r.resx">
+      <DependentUpon>202510271412016_adding-contractid-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64505</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44388/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('..\packages\SixLabors.ImageSharp.3.1.11\build\SixLabors.ImageSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SixLabors.ImageSharp.3.1.11\build\SixLabors.ImageSharp.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

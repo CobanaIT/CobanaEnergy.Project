@@ -1,0 +1,100 @@
+﻿@model CobanaEnergy.Project.Models.Accounts.InvoiceSupplierDashboard.ContractEditTableViewModel
+@using CobanaEnergy.Project.Common
+
+@{
+    ViewBag.Title = "Edit Contracts Invoice Supplier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="contract-dashboard">
+    <div class="dashboard-title">
+        Edit Contracts For Invoice's
+    </div>
+    <div class="table-container">
+        @if (Model.Contracts == null || !Model.Contracts.Any())
+        {
+            <div class="alert alert-info text-center">No contracts to edit.</div>
+        }
+        else
+        {
+            <table id="editContractsTable" class="table display table-bordered table-striped w-100">
+                <thead class="table-light">
+                    <tr>
+                        <th>Edit</th>
+                        <th>Business Name</th>
+                        <th>MPAN</th>
+                        <th>MPRN</th>
+                        <th>Input Date</th>
+                        <th>Start Date</th>
+                        <th>CED</th>
+                        <th>CED(COT)</th>
+                        <th>Duration</th>
+                        <th>Uplift</th>
+                        <th>Suppplier Comms Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var contract in Model.Contracts)
+                    {
+                        <tr>
+                            <td>
+
+                                @{
+
+                                    Tuple<string, string> route;
+                                    var hasSupplier = SupportedSuppliers.Map.TryGetValue(contract.SupplierName ?? "", out route);
+                                    var controller = hasSupplier ? route.Item1 : SupportedSuppliers.DefaultController;
+                                    var action = hasSupplier ? route.Item2 : SupportedSuppliers.DefaultAction;
+
+                                }
+
+
+                                @if (!string.IsNullOrEmpty(contract.MPAN))
+                                {
+        <a href="@Url.Action(action, controller, new { id = contract.EId, supplierId = contract.SupplierId, type = contract.MPAN })"
+           target="_blank" class="btn btn-sm btn-primary" title="Edit">
+            <i class="fas fa-bolt"></i>
+        </a>
+                                }
+
+                                @if (!string.IsNullOrEmpty(contract.MPRN))
+                                {
+        <a href="@Url.Action(action, controller, new { id = contract.EId, supplierId = contract.SupplierId, type = contract.MPRN })"
+           target="_blank" class="btn btn-sm btn-danger" title="Edit">
+            <i class="fas fa-fire"></i>
+        </a>
+                                }
+
+                                @if (string.IsNullOrEmpty(contract.MPAN) && string.IsNullOrEmpty(contract.MPRN))
+                                {
+        <a href="@Url.Action(SupportedSuppliers.DefaultAction, new { id = contract.EId, supplierId = contract.SupplierId })"
+           target="_blank" class="btn btn-sm" title="Edit">
+            <i class="fas fa-pencil-alt"></i>
+        </a>
+                                }
+
+                            </td>
+                            <td>@contract.BusinessName</td>
+                            <td>@contract.MPAN</td>
+                            <td>@contract.MPRN</td>
+                            <td>@(contract.InputDate)</td>
+                            <td>@(contract.StartDate)</td>
+                            <td>@contract.CED</td>
+                            <td>@contract.CED_COT</td>
+                            <td>@contract.Duration</td>
+                            <td>@contract.Uplift</td>
+                            <td>@contract.SupplierCommsType</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Content/Accounts/InvoiceSupplierDashboard/EditContractsInvoiceSupplier.css" rel="stylesheet" />
+}
+@section scripts {
+    <script src="~/Scripts/Accounts/InvoiceSupplierDashboard/editContractsInvoiceSupplier.js"></script>
+}

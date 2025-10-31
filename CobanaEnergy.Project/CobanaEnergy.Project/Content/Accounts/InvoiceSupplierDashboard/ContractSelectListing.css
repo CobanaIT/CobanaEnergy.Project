@@ -1,0 +1,112 @@
+﻿.contract-dashboard {
+    padding: 40px 20px 20px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Raleway', sans-serif;
+    min-height: 92vh;
+    width: 99vw;
+    margin-left: calc(-49vw + 49%);
+    max-width: none;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.table-container {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 28px 0 rgba(80,94,128,0.11);
+    padding: 24px 20px 20px 20px;
+}
+
+#contractsTable {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.94rem;
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-bottom: 0;
+}
+
+    #contractsTable th, #contractsTable td {
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+        padding: 12px 14px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 1rem;
+    }
+
+    #contractsTable thead th {
+        font-family: 'Raleway', sans-serif;
+        font-size: 1.03rem;
+        font-weight: 700;
+        background: #fafbfc;
+        color: #232949;
+        border-bottom: 2px solid #ececec;
+    }
+
+    #contractsTable tbody tr {
+        transition: background 0.15s;
+    }
+
+        #contractsTable tbody tr:hover {
+            background: #f4f6fc;
+        }
+
+.continue-btn-wrapper {
+    margin-top: 28px;
+    text-align: right;
+}
+
+.btn-primary {
+    min-width: 130px;
+    border-radius: 0.65rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+    background: #6aa1f9;
+    border: none;
+    transition: background 0.15s;
+}
+
+    .btn-primary:disabled {
+        background: #b9d1f6;
+        cursor: not-allowed;
+    }
+
+@media (max-width: 600px) {
+    .contract-dashboard {
+        padding: 16px 2px;
+    }
+
+    .table-container {
+        padding: 8px 2px 4px 2px;
+    }
+
+    .dashboard-title {
+        font-size: 1.22rem;
+        margin-bottom: 16px;
+    }
+
+    .continue-btn-wrapper {
+        text-align: center !important;
+        margin-top: 12px;
+    }
+
+    #contractsTable th,
+    #contractsTable td {
+        font-size: 0.94rem;
+    }
+}
+
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length {
+    margin-bottom: 20px !important;
+}

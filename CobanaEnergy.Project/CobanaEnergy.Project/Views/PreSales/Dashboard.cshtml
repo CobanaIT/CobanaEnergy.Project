@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Contract Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (User.Identity.IsAuthenticated && (User.IsInRole("Pre-sales") || User.IsInRole("Controls")))
+{
+    <div class="contract-dashboard">
+        <h2 class="dashboard-title">Contract Dashboard</h2>
+
+        <div class="dashboard-wrapper">
+            <!-- Left: Table -->
+            <div class="left-panel">
+                <div class="table-container">
+                    <table id="contractTable" class="table display table-bordered table-striped w-100">
+                        <thead>
+                            <tr>
+                                <th data-orderable="false">Edit</th>
+                                <th>Agent</th>
+                                <th>MPAN</th>
+                                <th>MPRN</th>
+                                <th>Business Name</th>
+                                <th>Customer Name</th>
+                                <th>Input Date</th>
+                                <th style="display:none">Sortable Date</th>
+                                <th>PreSales Status</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Right: Placeholder -->
+            <div class="right-panel info-panel">
+                <div class="supplier-stats">
+                    <div class="stats-header">
+                        <h5 class="title">Active Suppliers</h5>
+                        <div class="time-range">08:00 – 19:00</div>
+                    </div>
+                    <div id="supplier-stats-content" class="text-center text-secondary w-100">Loading supplier stats...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section styles {
+        <link href="~/Content/PreSales/Dashboard.css" rel="stylesheet" />
+    }
+
+    @section scripts {
+        <script src="~/Scripts/PreSales/dashboard.js"></script>
+    }
+
+}
+else
+{
+    <div class="alert alert-danger text-center mt-5">
+        <h4>Access Denied</h4>
+        <p>You are not authorized to view this page.</p>
+    </div>
+}

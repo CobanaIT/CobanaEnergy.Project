@@ -1,0 +1,58 @@
+﻿@model CobanaEnergy.Project.Models.InvoiceSupplierDashboard.InvoiceSupplierUploadViewModel
+@{
+    Layout = null;
+}
+
+
+<div class="modal fade invoice-supplier-modal" id="invoiceUploadModal" tabindex="-1" aria-labelledby="invoiceUploadModalLabel" aria-hidden="true">
+   
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content shadow-lg border-0 rounded-4 elegant-popup-bg">
+            <div class="modal-header border-0 pb-0">
+                <h4 class="modal-title fw-bold d-flex align-items-center gap-2" id="invoiceUploadModalLabel" style="font-family: Raleway, sans-serif;">
+                    <i class="fas fa-file-invoice-dollar text-primary"></i> Upload Invoice File
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-0">
+                @using (Html.BeginForm("UploadInvoiceFile", "InvoiceSupplierDashboard", FormMethod.Post, new { enctype = "multipart/form-data", id = "invoiceUploadForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="mb-4">
+                        <label for="SupplierId" class="form-label fw-semibold" style="font-family: Raleway, sans-serif;">Select Supplier</label>
+                        @Html.DropDownListFor(m => m.SupplierId, Model.Suppliers, "Select Supplier", new { @class = "", required = "required", style = "width:100%;" })
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold" style="font-family: Raleway, sans-serif;">Upload File (.xlsx, .csv)</label>
+                        <div class="file-upload-card p-3 rounded-3 border d-flex align-items-center gap-3 flex-wrap">
+                            <input type="file" name="InvoiceFile" id="InvoiceFile" accept=".xlsx,.csv" style="display:none" required />
+                            <button type="button" class="btn btn-outline-primary d-flex align-items-center gap-2" id="browseFileBtn">
+                                <i class="fas fa-upload"></i> Click to Browse
+                            </button>
+                            <div id="fileStatus" class="ms-3 d-none">
+                                <span>
+                                    <i class="fas fa-file-alt text-primary"></i>
+                                    <strong id="selectedFileName" class="roboto-mono"></strong>
+                                    <small id="selectedFileSize" class="text-muted"></small>
+                                </span>
+                                <button type="button" id="removeSelectedFile" class="btn btn-sm btn-link text-danger ms-2">Remove</button>
+                            </div>
+                        </div>
+                        <div class="form-text text-muted mt-2 ms-1" style="font-size:0.98em;">
+                            Max file size: <b>10 MB</b>
+                        </div>
+                    </div>
+                    <div class="text-end pt-2">
+                        <button type="submit" class="btn btn-primary px-4" id="uploadBtn" disabled>
+                            <i class="fas fa-cloud-upload-alt me-1"></i> Upload
+                        </button>
+                        <button type="button" class="btn btn-secondary ms-2 px-4" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-1"></i> Cancel
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,583 @@
+﻿@model CobanaEnergy.Project.Models.PostSales.PostSalesContract.PostSalesEditViewModel
+
+
+@{
+    ViewBag.Title = "Edit Contract - Post Sales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    var commaSepEmails = string.Join(",", Model.EmailList);
+}
+
+
+<div class="container-fluid px-4 pb-5">
+    <div class="text-center my-4">
+        <h2 class="fw-bold">Edit @Model.ContractType Contract</h2>
+    </div>
+
+    <form id="editGasForm" method="post" novalidate>
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="eid" name="eid" value="@Model.EId" />
+        <input type="hidden" id="id" name="eid" value="@Model.Id" />
+        <input type="hidden" id="contractType" name="contractType" value="@Model.ContractType" />
+        <input type="hidden" id="supplierName" name="supplierName" value="@Model.SupplierSnapshot.SupplierName" />
+        <input type="hidden" id="emailBody" name="emailBody" value="@Model.EmailBody" />
+        <input type="hidden" id="emailSubject" name="emailSubject" value="@Model.EmailSubject" />
+        <input type="hidden" id="emailList" name="emailList" value="@commaSepEmails" />
+
+        <!-- Brokerage Details -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light fw-semibold">Brokerage Details</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="brokerage" class="form-label required">Brokerage</label>
+                        <select id="brokerage" name="brokerage" class="form-select" data-current="@Model.BrokerageId" disabled>
+                            <option value="">Select Brokerage</option>
+                        </select>
+                        <div class="invalid-feedback">Please select a brokerage.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="ofgemId" class="form-label">Ofgem ID</label>
+                        <input type="text" class="form-control" id="ofgemId" name="ofgemId" value="@Model.OfgemId" readonly />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="department" class="form-label required">Department</label>
+                        <select id="department" class="form-select dropdown-arrow" required title="Please Select Department!" data-current="@Model.Department" readonly></select>
+                    </div>
+
+                    <!-- In House Department Fields -->
+                    <div class="col-md-4" id="inHouseFields" style="display: none;">
+                        <label for="closer" class="form-label">Agent</label>
+                        <select id="closer" class="form-select dropdown-arrow" title="Please Select Closer!" data-current="@Model.CloserId" disabled>
+                            <option value="">Select Closer</option>
+                        </select>
+                    </div>
+
+                    <!-- Brokers Department Fields -->
+                    <div class="col-md-4" id="brokersFields" style="display: none;">
+                        <label for="brokerageStaff" class="form-label">Brokerage Staff</label>
+                        <select id="brokerageStaff" class="form-select dropdown-arrow" title="Please Select Brokerage Staff!" data-current="@Model.BrokerageStaffId" disabled>
+                            <option value="">Select Brokerage Staff</option>
+                        </select>
+                    </div>
+
+                    <!-- Introducers Department Fields -->
+                    <div class="col-md-4" id="introducersFields" style="display: none;">
+                        <label for="introducer" class="form-label">Introducer</label>
+                        <select id="introducer" class="form-select dropdown-arrow" title="Please Select Introducer!" data-current="@Model.IntroducerId" disabled>
+                            <option value="">Select Introducer</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="source" class="form-label required">Source</label>
+                        <select id="source" class="form-select dropdown-arrow" required title="Please Select Source!" data-current="@Model.Source" disabled></select>
+                    </div>
+
+                    <!-- Data Source Fields -->
+                    <div class="col-md-4" id="dataSourceFields" style="display: none;">
+                        <label for="collaboration" class="form-label">Collaboration</label>
+                        <select id="collaboration" class="form-select dropdown-arrow" title="Please Select Collaboration!" data-current="@Model.Collaboration" disabled>
+                            <option value="">Select Collaboration</option>
+                            <option value="Lead Generator">Lead Generator</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4" id="leadGeneratorField" style="display: none;">
+                        <label for="leadGenerator" class="form-label">Lead Generator</label>
+                        <select id="leadGenerator" class="form-select dropdown-arrow" title="Please Select Lead Generator!" data-current="@Model.LeadGeneratorId" disabled>
+                            <option value="">Select Lead Generator</option>
+                        </select>
+                    </div>
+
+                    <!-- Referral Partners Source Fields -->
+                    <div class="col-md-4" id="referralPartnerField" style="display: none;">
+                        <label for="referralPartner" class="form-label">Referral Partner</label>
+                        <select id="referralPartner" class="form-select dropdown-arrow" title="Please Select Referral Partner!" data-current="@Model.ReferralPartnerId" disabled>
+                            <option value="">Select Referral Partner</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4" id="subReferralPartnerField" style="display: none;">
+                        <label for="subReferralPartner" class="form-label">Sub Referral Partner</label>
+                        <select id="subReferralPartner" class="form-select dropdown-arrow" title="Please Select Sub Referral Partner!" data-current="@Model.SubReferralPartnerId" disabled>
+                            <option value="">Select Sub Referral Partner</option>
+                        </select>
+                    </div>
+
+                    <!-- Sub Broker Source Fields -->
+                    <div class="col-md-4" id="subBrokerageField" style="display: none;">
+                        <label for="subBrokerage" class="form-label">Sub Brokerage</label>
+                        <select id="subBrokerage" class="form-select dropdown-arrow" title="Please Select Sub Brokerage!" data-current="@Model.SubBrokerageId" disabled>
+                            <option value="">Select Sub Brokerage</option>
+                        </select>
+                    </div>
+
+                    <!-- Sub Introducer Source Fields -->
+                    <div class="col-md-4" id="subIntroducerField" style="display: none;">
+                        <label for="subIntroducer" class="form-label">Sub Introducer</label>
+                        <select id="subIntroducer" class="form-select dropdown-arrow" title="Please Select Sub Introducer!" data-current="@Model.SubIntroducerId" disabled>
+                            <option value="">Select Sub Introducer</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Location -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light fw-semibold">Business Location</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="businessName" class="form-label required">Business Name</label>
+                        <input type="text" class="form-control" id="businessName" name="businessName" value="@Model.BusinessName" required />
+                        <div class="invalid-feedback">Business name is required.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="customerName" class="form-label required">Customer Name</label>
+                        <input type="text" class="form-control" id="customerName" name="customerName" value="@Model.CustomerName" disabled />
+                        <div class="invalid-feedback">Customer name is required.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="businessDoorNumber" class="form-label required">Business Door Number</label>
+                        <input type="text" class="form-control" id="businessDoorNumber" name="businessDoorNumber" value="@Model.BusinessDoorNumber" disabled />
+                        <div class="invalid-feedback">Door number is required.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="businessHouseName" class="form-label">Business House Name</label>
+                        <input type="text" class="form-control" id="businessHouseName" name="businessHouseName" value="@Model.BusinessHouseName" disabled />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="businessStreet" class="form-label required">Business Street/Road</label>
+                        <input type="text" class="form-control" id="businessStreet" name="businessStreet" value="@Model.BusinessStreet" disabled />
+                        <div class="invalid-feedback">Street/Road is required.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="businessTown" class="form-label required">Business Town</label>
+                        <input type="text" class="form-control" id="businessTown" name="businessTown" value="@Model.BusinessTown" disabled />
+                        <div class="invalid-feedback">Town is required.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="businessCounty" class="form-label">Business County</label>
+                        <input type="text" class="form-control" id="businessCounty" name="businessCounty" value="@Model.BusinessCounty" disabled />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="postCode" class="form-label required">Post Code</label>
+                        <input type="text" class="form-control" id="postCode" name="postCode" value="@Model.PostCode" required />
+                        <div class="invalid-feedback">Post code is required.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light fw-semibold">Contact Information</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="phoneNumber1" class="form-label required">Phone Number</label>
+                        <input type="text" class="form-control" id="phoneNumber1" name="phoneNumber1" value="@Model.PhoneNumber1" />
+                        <div class="invalid-feedback">Primary phone is required.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="phoneNumber2" class="form-label">Secondary Phone</label>
+                        <input type="text" class="form-control" id="phoneNumber2" name="phoneNumber2" value="@Model.PhoneNumber2" disabled />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="emailAddress" class="form-label required">Email Address</label>
+                        <input type="email" class="form-control" id="emailAddress" name="emailAddress" value="@Model.EmailAddress" required />
+                        <div class="invalid-feedback">Valid email is required.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Site Details -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light fw-semibold">Site Details</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    @{
+                        if (Model.SupplierSnapshot.SupplierName.Equals("smartest energy", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <div class="col-md-3">
+                                <label for="topLine" class="form-label">Contract Id</label>
+                                <input type="text" id="contractId" name="contractId" class="form-control" value="@Model.ContractId" disabled />
+                            </div>
+                        }
+
+                    }
+
+
+                    <div class="col-md-3">
+                        <label for="salesType" class="form-label required">Cobana Sales Type</label>
+                        <select id="salesType" name="salesType" class="form-select" data-current="@Model.SalesType" required></select>
+                        <div class="invalid-feedback">Sales type is required.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="salesTypeStatus" class="form-label required">Sales Type Status</label>
+                        <select id="salesTypeStatus" name="salesTypeStatus" class="form-select" data-current="@Model.SalesTypeStatus" required></select>
+                        <div class="invalid-feedback">Sales type status is required.</div>
+                    </div>
+
+                    @{
+                        if (Model.ContractType == CobanaEnergy.Project.Models.PostSales.PostSalesContract.FuelType.Electric)
+                        {
+                            <div class="col-md-3">
+                                <label for="topLine" class="form-label">Top Line</label>
+                                <input type="text" id="topLine" name="topLine" class="form-control" value="@Model.TopLine" disabled />
+                            </div>
+                        }
+                    }
+
+                    <div class="col-md-3">
+                        <label id="supplyNumberLabel" for="supplyNumber" class="form-label required">@Model.SupplyNumberLabel</label>
+                        <div class="position-relative">
+                            <input type="text"
+                                   id="supplyNumber"
+                                   name="supplyNumber"
+                                   class="form-control"
+                                   value="@Model.SupplyNumber"
+                                   required
+                                   title="@Model.SupplyNumberTitle"
+                                   pattern="@Model.SupplyNumberPattern"
+                                   autocomplete="off"
+                                   aria-describedby="supplyNumberHelp" disabled />
+                            <div id="supplyLoader" class="spinner-border text-primary small-loader" role="status" aria-live="polite" aria-label="Loading" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <div id="supplyNumberHelp" class="form-text">@Model.SupplyNumberTitle</div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="w-100 position-relative">
+                            <label for="supplierSelect" class="form-label required">Supplier</label>
+                            <a href="@Model.Link" target="_blank" class="btn-supplier-link ms-2">
+                                <i class="bi bi-link-45deg"></i>
+                            </a>
+                            <select id="supplierSelect" name="supplierSelect" class="form-select" disabled>
+                                <option value="@Model.SupplierSnapshot.SupplierId" selected>@Model.SupplierSnapshot.SupplierName</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="productSelect" class="form-label required">Product</label>
+                        <select id="productSelect" name="productSelect" class="form-select dropdown-arrow" required title="Please Select the Product" disabled>
+                            <option value="">Select Product</option>
+                            @foreach (var product in Model.SupplierSnapshot.Products)
+                            {
+                                var selected = product.Id == Model.ProductId ? "selected" : "";
+                                <option value="@product.Id" data-comms="@product.SupplierCommsType" @selected>
+                                    @product.ProductName
+                                </option>
+                            }
+                        </select>
+                        <div class="invalid-feedback">Please select a product.</div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="supplierCommsType" class="form-label required">Supplier Comms Type</label>
+                        <select id="supplierCommsType" name="supplierCommsType" class="form-select dropdown-arrow" required title="Please Select the Supplier Type" data-current="@Model.SupplierCommsType" disabled></select>
+                        <div class="invalid-feedback">Supplier comms type is required.</div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.CampaignName))
+                    {
+                        <div class="col-md-3">
+                            <label for="topLine" class="form-label">Campaign</label>
+                            <input type="text" id="campaignName" name="campaignName" class="form-control" value="@Model.CampaignName" disabled />
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Contract Managing -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light fw-semibold">Contract Managing</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="duration" class="form-label">Duration</label>
+                        <input type="text" id="duration" name="duration" class="form-control" value="@Model.Duration" disabled />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="uplift" class="form-label">Uplift</label>
+                        <input type="text" id="uplift" name="uplift" class="form-control" value="@Model.Uplift" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputEAC" class="form-label">Input EAC</label>
+                        <input type="text" id="inputEAC" name="inputEAC" class="form-control" value="@Model.InputEAC" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputDate" class="form-label">Input Date</label>
+                        <input type="date" id="inputDate" name="inputDate" class="form-control" value="@Model.InputDate" disabled />
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-2">
+                    <div class="col-md-3">
+                        <label for="initialStartDate" class="form-label required">Start Date</label>
+                        <input type="date" id="initialStartDate" name="initialStartDate" class="form-control" value="@Model.InitialStartDate" required />
+                        <div class="invalid-feedback">Start date is required.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="ced" class="form-label">CED</label>
+                        <input type="date" id="ced" name="ced" class="form-control" value="@Model.CED" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="cedCot" class="form-label">CED (COT)</label>
+                        <input type="date" id="cedCot" name="cedCot" class="form-control" value="@Model.CEDCOT" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="objectionDate" class="form-label">Objection Date</label>
+                        <input type="date" id="objectionDate" name="objectionDate" class="form-control" value="@Model.ObjectionDate" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="reappliedDate" class="form-label">Reapply Date</label>
+                        <input type="date" id="reappliedDate" name="reappliedDate" class="form-control" value="@Model.ReappliedDate" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="objectionCount" class="form-label">Objection Count</label>
+                        <input type="text" id="objectionCount" name="objectionCount" class="form-control" value="@Model.ObjectionCount" disabled />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="reappliedCount" class="form-label">Reapplied Count</label>
+                        <input type="text" id="reappliedCount" name="reappliedCount" class="form-control" value="@Model.ReappliedCount" disabled />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contract Status -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light fw-semibold">Contract Status & Communication</div>
+            <div class="card-body">
+                <div class="row g-3 align-items-center">
+                    <!-- Contract Status -->
+                    <div class="col-md-4">
+                        <label for="contractStatus" class="form-label fw-semibold text-secondary">Contract Status</label>
+                        <select id="contractStatus" name="contractStatus"
+                                class="form-select dropdown-arrow"
+                                data-current="@Model.ContractStatus"></select>
+                    </div>
+
+                    <!-- Query Type -->
+                    <div class="col-md-4">
+                        <label for="queryType" class="form-label fw-semibold text-secondary">Query Type</label>
+                        <select id="queryType" name="queryType"
+                                class="form-select query-type-dropdown"
+                                data-current="@Model.QueryType"></select>
+                    </div>
+
+                    <!-- Follow-up Date -->
+                    <div class="col-md-4">
+                        <label for="followUpDate" class="form-label fw-semibold text-secondary">Follow-up Date</label>
+                        <input type="date" id="followUpDate" name="followUpDate"
+                               class="form-control" value="@Model.FollowUpDate" />
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="contractNotes" class="form-label fw-semibold text-secondary">Contract Notes</label>
+                        <textarea id="contractNotes" name="contractNotes" class="form-control" rows="4">@Model.ContractNotes</textarea>
+                    </div>
+                </div>
+
+                <!-- Email Buttons -->
+                <div class="col-12 mt-4">
+                    <div class="email-action-container d-flex flex-wrap gap-3">
+                        <button type="button"
+                                class="btn btn-gradient-primary send-email"
+                                data-eid="@Model.EId"
+                                data-emails="@Model.EmailList"
+                                data-type="Supplier"
+                                data-subject="@Model.EmailSubject"
+                                data-body="@Model.EmailBody">
+                            <i class="bi bi-envelope-paper fs-5 me-2"></i>
+                            Supplier Email
+                        </button>
+
+                        <button type="button"
+                                class="btn btn-gradient-secondary send-email"
+                                data-eid="@Model.EId"
+                                data-emails="@Model.AgentEmail"
+                                data-type="Agent"
+                                data-subject="@Model.EmailSubject"
+                                data-body="@Model.EmailBody">
+                            <i class="bi bi-person-lines-fill fs-5 me-2"></i>
+                            Agent Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workflow & System Fields -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light fw-semibold">Workflow & System Fields</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="user" class="form-label required">User</label>
+                        <input type="text" id="user" name="user" class="form-control" value="@Model.EMProcessor" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="prospectedSaleCED" class="form-label">Prospected Sale CED</label>
+                        <input type="date" id="prospectedSaleCED" name="prospectedSaleCED" class="form-control" value="@Model.ProspectedSaleDate" />
+                    </div>
+                    <div class="col-12">
+                        <label for="prospectedSaleNotes" class="form-label">Prospected Sale Notes</label>
+                        <textarea id="prospectedSaleNotes" name="prospectedSaleNotes" class="form-control" rows="4">@Model.ProspectedSaleNotes</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mb-4">
+            <button type="submit" class="btn btn-primary px-5">Update Contract</button>
+        </div>
+    </form>
+
+    <!-- Post Sales Logs (Collapsible) -->
+    <div class="row gx-4 mb-4">
+        <div class="col-lg-12">
+            <div class="form-section">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#paymentLogsBody" aria-expanded="false" role="button" aria-controls="paymentLogsBody">
+                        <h4 class="section-header mb-0">Post Sales Logs</h4>
+                        <i class="toggle-icon bi bi-chevron-down ms-auto" aria-hidden="true"></i>
+                    </div>
+                    <div class="collapse" id="paymentLogsBody">
+                        <div class="logs-panel mt-3">
+                            <div id="postSalesContractLogs" class="mt-2">
+                                <span class="text-muted">Loading logs...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section styles {
+    <link href="~/Content/PostSales/postSalesContract.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="~/Scripts/Dropdown/dropdowns.js"></script>
+    <script src="~/Scripts/PostSales/postSalesContract.js"></script>
+    <script src="~/Scripts/Brokerage/brokerageManager.js"></script>
+    <script>
+        $(document).ready(function () {
+            var emProcessor = '@(User.Identity?.IsAuthenticated == true ? User.Identity.Name : "Presales Team")';
+            $('#emProcessor').val(emProcessor).attr('data-default', emProcessor);
+        });
+    </script>
+}
+
+
+<!-- Duplicate MPRN Modal -->
+<div class="modal fade" id="duplicateMprnModalEdit" tabindex="-1" aria-labelledby="duplicateMprnModalEditLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="duplicateMprnModalEditLabel">⚠ Duplicate MPRN Found</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-danger">This MPRN already exists in our system. Below are the details of existing record(s):</p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Agent</th>
+                            <th>Business Name</th>
+                            <th>Customer Name</th>
+                            <th>Input Date</th>
+                            <th>PreSales Status</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="duplicateMprnResultsEdit">
+                        <!-- Filled dynamically -->
+                    </tbody>
+                </table>
+                <div class="text-end fw-bold"><span id="mprnDuplicateCountEdit"></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Duplicate MPAN Modal -->
+<div class="modal fade" id="duplicateMpanModalEdit" tabindex="-1" aria-labelledby="duplicateMpanModalEditLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="duplicateMpanModalEditLabel">⚠ Duplicate MPAN Found</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-danger">This MPAN already exists in our system. Below are the details of existing record(s):</p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Agent</th>
+                            <th>Business Name</th>
+                            <th>Customer Name</th>
+                            <th>Input Date</th>
+                            <th>PreSales Status</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="duplicateMpanResultsEdit">
+                        <!-- Filled dynamically -->
+                    </tbody>
+                </table>
+                <div class="text-end fw-bold"><span id="mpanDuplicateCountEdit"></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Duplicate Email Modal -->
+<div class="modal fade" id="emailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-3 shadow">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Recipient Emails</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-striped w-100">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 70%">Email</th>
+                            <th class="text-center" style="width: 30%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="emailListContainer"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button class="btn btn-outline-secondary" id="copyAllBtn">
+                    <i class="bi bi-clipboard"></i> Copy All
+                </button>
+                <div>
+                    <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-success" id="sendEmailBtn">
+                        <i class="bi bi-envelope-fill"></i> Send via Outlook
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

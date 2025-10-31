@@ -1,0 +1,251 @@
+/* ================================
+   SECTOR DASHBOARD CSS - MATCHING PRESALES STYLE
+   ================================ */
+
+.sector-dashboard {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Raleway', sans-serif;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.filters {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filters .form-label {
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.filters .form-select {
+    min-width: 200px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.filters .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 28px 0 rgba(80,94,128,0.11);
+    padding: 24px 20px 20px 20px;
+    box-sizing: border-box;
+}
+
+#sectorTable {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    width: 100%;
+    border-collapse: collapse;
+    word-break: break-word;
+    table-layout: auto;
+}
+
+#sectorTable th,
+#sectorTable td {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 10px 12px;
+}
+/* Edit column (first column) - only for Sector Dashboard (not AllSector) */
+.sector-dashboard:not(.all-sector-dashboard) #sectorTable th:nth-child(1),
+.sector-dashboard:not(.all-sector-dashboard) #sectorTable td:nth-child(1) {
+    width: 48px !important;
+    min-width: 48px !important;
+    max-width: 48px !important;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* DataTables UI spacing */
+.dataTables_filter,
+.dataTables_length {
+    margin-bottom: 10px;
+}
+
+/* Ensure DataTables doesn't cause horizontal scroll */
+.dataTables_wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.dataTables_scrollBody {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+/* Ensure DataTables controls span full width */
+.dataTables_filter,
+.dataTables_length,
+.dataTables_info,
+.dataTables_paginate {
+    width: 100%;
+    text-align: left;
+}
+
+.dataTables_filter {
+    text-align: right;
+}
+
+.dataTables_length {
+    text-align: left;
+}
+
+/* DataTables Styling - Matching ReconciliationsDashboard default appearance */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 20px !important;
+}
+
+/* DataTables Info Styling */
+.dataTables_info {
+    margin-top: 16px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.01rem;
+    color: #454545;
+}
+
+/* DataTables Pagination Container */
+.dataTables_paginate {
+    margin-top: 16px;
+    text-align: center;
+}
+
+
+
+/* Responsive table sizing */
+@media (max-width: 992px) {
+    #sectorTable {
+        font-size: 0.82rem;
+    }
+}
+
+.edit-btn {
+    background-color: #6b737a;
+    color: white;
+    border: none;
+    padding: 6px 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+    min-width: 32px;
+    height: 32px;
+}
+
+.edit-btn i {
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.edit-btn:hover {
+    background-color: #545b61;
+    color: #fff;
+}
+
+/* Status Badge Styling */
+.badge.bg-success {
+    background-color: #28a745 !important;
+    color: white !important;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+.badge.bg-danger {
+    background-color: #dc3545 !important;
+    color: white !important;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+/* Supplier Column Width Fix - Force pills to wrap to new lines */
+#sectorTable th:nth-child(6), /* Supplier column header */
+#sectorTable td:nth-child(6) { /* Supplier column data */
+    width: 200px;
+    max-width: 200px;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+/* For AllDashboard view (without Action column) - Supplier is 5th column */
+#sectorTable th:nth-child(5), /* Supplier column header */
+#sectorTable td:nth-child(5) { /* Supplier column data */
+    width: 200px;
+    max-width: 200px;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+/* Supplier Pills Styling */
+.badge.rounded-pill.bg-primary {
+    display: inline-block;
+    margin-bottom: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 4px 10px;
+}
+
+/* Ensure supplier column content doesn't overflow */
+#sectorTable td:nth-child(6),
+#sectorTable td:nth-child(5) {
+    vertical-align: top;
+    text-align: left;
+    padding: 8px 12px;
+}
+
+/* Mobile Column Centering - Dashboard view (with Action column) */
+#sectorTable td:nth-child(5) { /* Mobile column */
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Mobile Column Centering - AllDashboard view (without Action column) */
+#sectorTable td:nth-child(4) { /* Mobile column */
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+
+

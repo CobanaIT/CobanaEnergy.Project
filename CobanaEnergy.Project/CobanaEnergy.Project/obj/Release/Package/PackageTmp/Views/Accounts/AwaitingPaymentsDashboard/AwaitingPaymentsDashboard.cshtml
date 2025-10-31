@@ -1,0 +1,148 @@
+﻿@model CobanaEnergy.Project.Models.Accounts.AwaitingPaymentsDashboard.AwaitingPaymentsDashboardViewModel
+@{
+    ViewBag.Title = "Awaiting Payments Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="awaiting-payments-dashboard">
+    <div class="dashboard-title">
+        Awaiting Payments Dashboard
+    </div>
+    <div class="filters d-flex flex-wrap gap-4 mb-4 align-items-end">
+        <div>
+            <label for="supplierFilter" class="form-label fw-semibold">Supplier</label>
+            @Html.DropDownListFor(m => m.SupplierId, Model.Suppliers, "All Suppliers", new { @class = "form-select", id = "supplierFilter" })
+        </div>
+        <div>
+            <label for="startDateFilter" class="form-label fw-semibold">Input Date From</label>
+            <input type="date" id="startDateFilter" class="form-control" />
+        </div>
+        <div>
+            <label for="endDateFilter" class="form-label fw-semibold">Input Date To</label>
+            <input type="date" id="endDateFilter" class="form-control" />
+        </div>
+        <div class="ms-auto">
+            <button type="button" class="btn btn-success" id="exportExcelBtn">
+                <i class="fas fa-file-excel me-2"></i> Export to Excel
+            </button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <form id="awaitingPaymentsForm" autocomplete="off">
+            @Html.AntiForgeryToken()
+
+            <table id="awaitingPaymentsTable" class="table display table-bordered table-striped w-100">
+                <thead class="table-light">
+                    <tr>
+                        <th data-orderable="false">Edit</th>
+                        <th class="no-sort" data-orderable="false"><input type="checkbox" id="checkAll" /></th>
+                        <th>Business Name</th>
+                        <th>MPAN</th>
+                        <th>MPRN</th>
+                        <th>Input EAC</th>
+                        <th>Input Date</th>
+                        <th>Start Date</th>
+                        <th>Duration</th>
+                        <th>Payment Status</th>
+                        <th>Supplier Cobana Invoice Notes</th>
+                        <th>Initial Commission (Forecast) (£)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically via AJAX -->
+                </tbody>
+            </table>
+
+            <div class="form-section mt-4">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#contractStatusBody" aria-expanded="false" role="button">
+                        <h4 class="section-header mb-0">Contract Counter</h4>
+                        <i class="toggle-icon bi bi-chevron-down ms-auto"></i>
+                    </div>
+                    <div class="collapse" id="contractStatusBody">
+                        <div class="row gx-3 gy-3 mt-3">
+                            <div class="col-12">
+                                <table class="table display table-striped table-sm table-bordered payment-logs-table w-100">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Payment Status</th>
+                                            <th>Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="awaitingInvoiceContainer">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!---MONTHLY COUNTER-->
+            <div class="form-section mt-4">
+                <div class="collapsible-section">
+                    <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#monthlyContractStatusBody" aria-expanded="false" role="button">
+                        <h4 class="section-header mb-0">Monthly Contract Counter</h4>
+                        <i class="toggle-icon bi bi-chevron-down ms-auto"></i>
+                    </div>
+                    <div class="collapse" id="monthlyContractStatusBody">
+                        <div class="row gx-3 gy-3 mt-3">
+                            <div class="col-12">
+                                <table class="table display table-striped table-sm table-bordered payment-logs-table w-100">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Payment Status</th>
+                                            <th>Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="awaitingInvoiceMonthlyContainer">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-section mt-4">
+    <div class="collapsible-section">
+        <div class="collapsible-header" data-bs-toggle="collapse" data-bs-target="#quarterlyContractStatusBody" aria-expanded="false" role="button">
+            <h4 class="section-header mb-0">Quarterly Contract Counter</h4>
+            <i class="toggle-icon bi bi-chevron-down ms-auto"></i>
+        </div>
+        <div class="collapse" id="quarterlyContractStatusBody">
+            <div class="row gx-3 gy-3 mt-3">
+                <div class="col-12">
+                    <table class="table display table-striped table-sm table-bordered payment-logs-table w-100">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Payment Status</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody id="awaitingInvoiceQuarterlyContainer">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <div class="save-btn-wrapper text-end mt-3">
+                <button type="button" class="btn btn-primary px-4" id="saveBtn" disabled>
+                    Save <i class="fas fa-save ms-2"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Content/Accounts/AwaitingPaymentsDashboard/AwaitingPaymentsDashboard.css" rel="stylesheet" />
+}
+@section scripts {
+    <script src="~/Scripts/Accounts/AwaitingPaymentsDashboard/awaitingPaymentsDashboard.js"></script>
+}

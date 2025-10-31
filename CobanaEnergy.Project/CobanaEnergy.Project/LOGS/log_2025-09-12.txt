@@ -1,0 +1,180 @@
+----- LOG ENTRY -----
+Time: 12:24:19
+Message: Successfully parsed id '7' to int: 7
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:24:19
+Message: Found sector: Abdul Rauf Bannian (ID: 7)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:24:20
+Message: Successfully built EditSectorViewModel for sector 7
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:30:37
+Message: Successfully parsed id '7' to int: 7
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:30:37
+Message: Found sector: Abdul Rauf Bannian (ID: 7)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:30:37
+Message: Successfully built EditSectorViewModel for sector 7
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:30:40
+Message: Successfully parsed id '23' to int: 23
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:30:40
+Message: Found sector: Adam Kern (ID: 23)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:30:40
+Message: Successfully built EditSectorViewModel for sector 23
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:30:49
+Message: Successfully parsed id '5' to int: 5
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:30:49
+Message: Found sector: Anuk Ferdinando (ID: 5)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:30:50
+Message: Successfully built EditSectorViewModel for sector 5
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:30:59
+Message: Successfully parsed id '27' to int: 27
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:30:59
+Message: Found sector: Masum Ahmed (ID: 27)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:30:59
+Message: Successfully built EditSectorViewModel for sector 27
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:32:06
+Message: Successfully parsed id '33' to int: 33
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:32:06
+Message: Found sector: Ricky Shavila (ID: 33)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:32:07
+Message: Successfully built EditSectorViewModel for sector 33
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:32:40
+Message: Successfully parsed id '28' to int: 28
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:32:41
+Message: Found sector: Izam Ali (ID: 28)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:32:41
+Message: Successfully built EditSectorViewModel for sector 28
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:32:49
+Message: Successfully parsed id '8' to int: 8
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:32:49
+Message: Found sector: Amanah Energy Savings Ltd (ID: 8)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:32:50
+Message: Successfully built EditSectorViewModel for sector 8
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:32:57
+Message: Successfully parsed id '7' to int: 7
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:32:57
+Message: Found sector: Abdul Rauf Bannian (ID: 7)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:32:57
+Message: Successfully built EditSectorViewModel for sector 7
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:33:01
+Message: Successfully parsed id '32' to int: 32
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:33:01
+Message: Found sector: C2C SALES LIMITED (ID: 32)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:33:02
+Message: Successfully built EditSectorViewModel for sector 32
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:33:05
+Message: Successfully parsed id '9' to int: 9
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:33:05
+Message: Found sector: AVA Multisolutions LTD (ID: 9)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:33:05
+Message: Successfully built EditSectorViewModel for sector 9
+Location: SectorController.cs -> Edit() [Line 946]
+
+----- LOG ENTRY -----
+Time: 12:33:14
+Message: Successfully parsed id '11' to int: 11
+Location: SectorController.cs -> Edit() [Line 890]
+
+----- LOG ENTRY -----
+Time: 12:33:14
+Message: Found sector: Enroute Management Consulting Limited (ID: 11)
+Location: SectorController.cs -> Edit() [Line 908]
+
+----- LOG ENTRY -----
+Time: 12:33:14
+Message: Successfully built EditSectorViewModel for sector 11
+Location: SectorController.cs -> Edit() [Line 946]
+

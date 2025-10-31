@@ -1,0 +1,157 @@
+﻿
+.modal.invoice-supplier-modal .elegant-popup-bg {
+    background: #fff;
+    border-radius: 1.25rem;
+    box-shadow: 0 6px 32px 0 rgba(80, 94, 128, 0.10);
+    padding: 2rem 2.5rem;
+}
+
+.invoice-supplier-modal .roboto-mono {
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 1.10rem;
+}
+
+.invoice-supplier-modal .form-label,
+.invoice-supplier-modal .fw-semibold {
+    font-family: 'Raleway', sans-serif;
+}
+
+.invoice-supplier-modal .select2-selection__rendered,
+.invoice-supplier-modal .select2-results__option {
+    font-family: 'Roboto Mono', monospace !important;
+}
+
+.invoice-supplier-modal .file-upload-card {
+    background: #fafbfc;
+    border: 1.5px solid #e3e5ea;
+    border-radius: 0.75rem;
+    min-height: 60px;
+    align-items: center;
+}
+
+.invoice-supplier-modal #fileStatus {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+}
+
+.invoice-supplier-modal .btn-primary,
+.invoice-supplier-modal .btn-secondary {
+    min-width: 110px;
+    border-radius: 0.6rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.07rem;
+}
+
+.invoice-supplier-modal .select2-container--default .select2-selection--single {
+    background: #f9fafe;
+    border: 1.5px solid #e3e5ea;
+    border-radius: 0.75rem !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center;
+    padding-left: 14px;
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 1.10rem !important;
+    box-shadow: none;
+    transition: border-color 0.2s;
+}
+
+    .invoice-supplier-modal .select2-container--default .select2-selection--single:focus,
+    .invoice-supplier-modal .select2-container--default .select2-selection--single.select2-selection--focus {
+        border-color: #80bdff;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.10);
+    }
+
+.invoice-supplier-modal .select2-selection__rendered {
+    line-height: 48px !important;
+    color: #232949;
+    font-family: 'Roboto Mono', monospace !important;
+}
+
+.invoice-supplier-modal .select2-selection__placeholder {
+    color: #b4b9c4 !important;
+    font-style: italic !important;
+}
+
+.invoice-supplier-modal .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 48px !important;
+    right: 10px !important;
+}
+
+.invoice-supplier-modal .select2-dropdown {
+    border-radius: 0.75rem;
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 1.08rem !important;
+    box-shadow: 0 4px 24px rgba(40,60,110,0.07);
+}
+
+.invoice-supplier-modal .select2-results__option {
+    padding: 10px 18px;
+    border-radius: 0.4rem;
+    transition: background 0.18s;
+}
+
+.invoice-supplier-modal .select2-results__option--highlighted {
+    background: #f2f4f7 !important;
+    color: #1366d6 !important;
+}
+
+@media (max-width: 600px) {
+    .modal.invoice-supplier-modal .elegant-popup-bg {
+        padding: 1rem 0.5rem;
+    }
+
+    .invoice-supplier-modal .modal-dialog {
+        max-width: 98vw !important;
+    }
+
+    .invoice-supplier-modal .text-end {
+        text-align: center !important;
+    }
+
+    .invoice-supplier-modal .btn {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+}
+
+.invoice-supplier-modal #invoiceUploadModal {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.invoice-supplier-modal.modal.fade .modal-dialog {
+    transform: translateY(-12px);
+    opacity: 0;
+    transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+}
+
+.invoice-supplier-modal.modal.fade.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.invoice-supplier-modal .modal-body {
+    opacity: 1 !important;
+    transition: none !important;
+}
+.invoice-supplier-modal .modal-dialog {
+    will-change: transform, opacity;
+}
+
+.invoice-supplier-modal .modal-content {
+    animation: fadeInUp 0.2s ease-out both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

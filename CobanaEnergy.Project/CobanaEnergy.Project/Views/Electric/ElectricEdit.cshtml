@@ -1,0 +1,396 @@
+﻿@model CobanaEnergy.Project.Controllers.PreSales.ElectricContractEditViewModel
+@{
+    ViewBag.Title = "Edit Electric Contract";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (User.Identity.IsAuthenticated && (User.IsInRole("Pre-sales") || User.IsInRole("Controls")))
+{
+    <div class="container-fluid px-4">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Edit Electric Contract</h2>
+        </div>
+
+        <div class="edit-electric-container">
+            <!-- Form Starts -->
+            <div class="form-wrapper">
+                <form id="editElectricForm" method="post" novalidate>
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="eid" name="eid" value="@Model.EId" />
+
+                    <!-- Brokerage Details -->
+                    <div class="form-section mb-4">
+                        <h4>Brokerage Details</h4>
+                        <div class="row gx-4 gy-3 align-items-end">
+                            <div class="col-md-4">
+                                <label for="brokerage" class="form-label required">Brokerage</label>
+                                <select id="brokerage" class="form-select dropdown-arrow" required title="Please Select Brokerage!" data-current="@Model.BrokerageId">
+                                    <option value="">Select Brokerage</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="ofgemId" class="form-label">Ofgem ID</label>
+                                <input type="text" id="ofgemId" class="form-control" readonly value="@Model.OfgemId" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Site Details -->
+                    <div class="form-section mb-4">
+                        <h4>Site Details</h4>
+                        <div class="row gx-4 gy-3 align-items-end">
+                            <div class="col-md-4">
+                                <label for="department" class="form-label required">Department</label>
+                                <select id="department" class="form-select dropdown-arrow" required title="Please Select Department!" data-current="@Model.Department" readonly></select>
+                            </div>
+
+                            <!-- In House Department Fields -->
+                            <div class="col-md-4" id="inHouseFields" style="display: none;">
+                                <label for="closer" class="form-label">Closer</label>
+                                <select id="closer" class="form-select dropdown-arrow" title="Please Select Closer!" data-current="@Model.CloserId">
+                                    <option value="">Select Closer</option>
+                                </select>
+                            </div>
+
+                            <!-- Brokers Department Fields -->
+                            <div class="col-md-4" id="brokersFields" style="display: none;">
+                                <label for="brokerageStaff" class="form-label">Brokerage Staff</label>
+                                <select id="brokerageStaff" class="form-select dropdown-arrow" title="Please Select Brokerage Staff!" data-current="@Model.BrokerageStaffId">
+                                    <option value="">Select Brokerage Staff</option>
+                                </select>
+                            </div>
+
+                            <!-- Introducers Department Fields -->
+                            <div class="col-md-4" id="introducersFields" style="display: none;">
+                                <label for="introducer" class="form-label">Introducer</label>
+                                <select id="introducer" class="form-select dropdown-arrow" title="Please Select Introducer!" data-current="@Model.IntroducerId">
+                                    <option value="">Select Introducer</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="source" class="form-label required">Source</label>
+                                <select id="source" class="form-select dropdown-arrow" required title="Please Select Source!" data-current="@Model.Source"></select>
+                            </div>
+
+                            <!-- Data Source Fields -->
+                            <div class="col-md-4" id="dataSourceFields" style="display: none;">
+                                <label for="collaboration" class="form-label">Collaboration</label>
+                                <select id="collaboration" class="form-select dropdown-arrow" title="Please Select Collaboration!" data-current="@Model.Collaboration">
+                                    <option value="">Select Collaboration</option>
+                                    <option value="Lead Generator">Lead Generator</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4" id="leadGeneratorField" style="display: none;">
+                                <label for="leadGenerator" class="form-label">Lead Generator</label>
+                                <select id="leadGenerator" class="form-select dropdown-arrow" title="Please Select Lead Generator!" disabled data-current="@Model.LeadGeneratorId">
+                                    <option value="">Select Lead Generator</option>
+                                </select>
+                            </div>
+
+                            <!-- Referral Partners Source Fields -->
+                            <div class="col-md-4" id="referralPartnerField" style="display: none;">
+                                <label for="referralPartner" class="form-label">Referral Partner</label>
+                                <select id="referralPartner" class="form-select dropdown-arrow" title="Please Select Referral Partner!" data-current="@Model.ReferralPartnerId">
+                                    <option value="">Select Referral Partner</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4" id="subReferralPartnerField" style="display: none;">
+                                <label for="subReferralPartner" class="form-label">Sub Referral Partner</label>
+                                <select id="subReferralPartner" class="form-select dropdown-arrow" title="Please Select Sub Referral Partner!" data-current="@Model.SubReferralPartnerId">
+                                    <option value="">Select Sub Referral Partner</option>
+                                </select>
+                            </div>
+
+                            <!-- Sub Broker Source Fields -->
+                            <div class="col-md-4" id="subBrokerageField" style="display: none;">
+                                <label for="subBrokerage" class="form-label">Sub Brokerage</label>
+                                <select id="subBrokerage" class="form-select dropdown-arrow" title="Please Select Sub Brokerage!" data-current="@Model.SubBrokerageId">
+                                    <option value="">Select Sub Brokerage</option>
+                                </select>
+                            </div>
+
+                            <!-- Sub Introducer Source Fields -->
+                            <div class="col-md-4" id="subIntroducerField" style="display: none;">
+                                <label for="subIntroducer" class="form-label">Sub Introducer</label>
+                                <select id="subIntroducer" class="form-select dropdown-arrow" title="Please Select Sub Introducer!" data-current="@Model.SubIntroducerId">
+                                    <option value="">Select Sub Introducer</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="salesType" class="form-label required">Cobana Sales Type</label>
+                                <select id="salesType" class="form-select dropdown-arrow" required title="Please Select Sales Type!" data-current="@Model.SalesType"></select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="salesTypeStatus" class="form-label required">Cobana Sales Type Status</label>
+                                <select id="salesTypeStatus" class="form-select dropdown-arrow" required title="Please Select Sales Type Status! or N/A" data-current="@Model.SalesTypeStatus"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Supply & Product Info -->
+                    <div class="form-section mb-4">
+                        <h4>Supply & Product Information</h4>
+                        <div class="row gx-4 gy-3">
+                            <div class="col-md-4">
+                                <label for="topLine" class="form-label required">Top Line</label>
+
+                                <input type="text" id="topLine" class="form-control" required
+                                       title="Top Line must be between 8 and 9 characters."
+                                       pattern="^[a-zA-Z0-9]{8,9}$"
+                                       minlength="8" maxlength="9" value="@Model.TopLine"
+                                       autocomplete="off" />
+
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label required" for="mpan">MPAN</label>
+                                <div class="position-relative">
+                                    <input type="text" id="mpan" class="form-control" required
+                                           title="Please enter 13-digit MPAN or N/A"
+                                           pattern="(^\d{13}$)|(^N\/A$)" maxlength="13" autocomplete="off" value="@Model.MPAN" />
+                                    <div id="mpanLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="currentSupplier" class="form-label required">Current Supplier</label>
+                                <input type="text" id="currentSupplier" class="form-control" required title="Please Insert Current Supplier" autocomplete="off" value="@Model.CurrentSupplier" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="supplierSelect" class="form-label required">Supplier</label>
+                                @*<select id="supplierSelect" class="form-select dropdown-arrow" required title="Please Select the Supplier" data-current="@Model.SupplierId"></select>*@
+                                <select id="supplierSelect" class="form-select dropdown-arrow" required title="Please Select the Supplier" disabled>
+                                    <option value="@Model.SupplierSnapshot.SupplierId" selected>@Model.SupplierSnapshot.SupplierName</option>
+                                </select>
+                                <input type="hidden" name="SupplierId" value="@Model.SupplierSnapshot.SupplierId" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="productSelect" class="form-label required">Product</label>
+                                @*<select id="productSelect" class="form-select dropdown-arrow" required title="Please Select the Product" data-current="@Model.ProductId"></select>*@
+                                <select id="productSelect" class="form-select dropdown-arrow" required title="Please Select the Product">
+                                    <option value="">Select Product</option>
+                                    @foreach (var product in Model.SupplierSnapshot.Products)
+                                    {
+                                        var selected = product.Id == Model.ProductId ? "selected" : "";
+                                        <option value="@product.Id" data-comms="@product.SupplierCommsType" @selected>
+                                            @product.ProductName
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="supplierCommsType" class="form-label required">Supplier Comms Type</label>
+                                <select id="supplierCommsType" class="form-select dropdown-arrow" required title="Please Select the Supplier Type" data-current="@Model.SupplierCommsType" disabled></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Business Location -->
+                    <div class="form-section mb-4">
+                        <h4>Business Location</h4>
+                        <div class="row gx-4 gy-3">
+                            <div class="col-md-4"><label for="businessName" class="form-label required">Business Name</label><input type="text" id="businessName" class="form-control" required title="Please Insert Business Name" autocomplete="off" value="@Model.BusinessName" /></div>
+                            <div class="col-md-4"><label for="customerName" class="form-label required">Customer Name</label><input type="text" id="customerName" class="form-control" required title="Please Insert Customer Name" autocomplete="off" value="@Model.CustomerName" /></div>
+                            <div class="col-md-4"><label for="businessDoorNumber" class="form-label required">Business Door Number</label><input type="text" id="businessDoorNumber" class="form-control" required title="Please Insert Business Door Name" autocomplete="off" value="@Model.BusinessDoorNumber" /></div>
+                            <div class="col-md-4"><label for="businessHouseName" class="form-label">Business House Name</label><input type="text" id="businessHouseName" class="form-control" title="Please Insert Business House Name" autocomplete="off" value="@Model.BusinessHouseName" /></div>
+                            <div class="col-md-4"><label for="businessStreet" class="form-label required">Business Street/Road</label><input type="text" id="businessStreet" class="form-control" required title="Please Insert Business street/Road" autocomplete="off" value="@Model.BusinessStreet" /></div>
+                            <div class="col-md-4"><label for="businessTown" class="form-label required">Business Town</label><input type="text" id="businessTown" class="form-control" required title="Please Insert Business Town" autocomplete="off" value="@Model.BusinessTown" /></div>
+                            <div class="col-md-4"><label for="businessCounty" class="form-label">Business County</label><input type="text" id="businessCounty" class="form-control" title="Please Insert Business County" autocomplete="off" value="@Model.BusinessCounty" /></div>
+                            <div class="col-md-4"><label for="postCode" class="form-label required">Post Code</label><input type="text" id="postCode" class="form-control" required title="Please Insert Post Code" autocomplete="off" value="@Model.PostCode" /></div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="form-section mb-4">
+                        <h4>Contact Information</h4>
+                        <div class="row gx-4 gy-3">
+                            <div class="col-md-4"><label for="phoneNumber1" class="form-label required">Phone Number</label><input type="text" id="phoneNumber1" class="form-control" required pattern="^\d{11}$" maxlength="11" title="Phone number must be exactly 11 digits" autocomplete="off" value="@Model.PhoneNumber1" /></div>
+                            <div class="col-md-4"><label for="phoneNumber2" class="form-label">Secondary Phone Number</label><input type="text" id="phoneNumber2" class="form-control" pattern="^(\d{11}|N\/A)$" maxlength="11" title="Enter exactly 11 digits or 'N/A'" autocomplete="off" value="@Model.PhoneNumber2" /></div>
+                            <div class="col-md-4"><label for="emailAddress" class="form-label required">Email Address</label><input type="email" id="emailAddress" class="form-control" required title="Please Insert Valid Email Address" autocomplete="off" value="@Model.EmailAddress" /></div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="form-section mb-4">
+                        <h4>Contract Timeline</h4>
+                        <div class="row gx-4 gy-3">
+                            <div class="col-md-4"><label for="inputDate" class="form-label">Input Date</label><input type="text" id="inputDate" class="form-control" readonly value="@Model.InputDate" /></div>
+                            <div class="col-md-4"><label for="initialStartDate" class="form-label required">Initial Start Date</label><input type="date" id="initialStartDate" class="form-control" required title="Please Select Initial Start Date" autocomplete="off" value="@Model.InitialStartDate" /></div>
+                            <div class="col-md-4"><label for="duration" class="form-label required">Duration (Years)</label><input type="text" id="duration" class="form-control" required min="1" max="10" maxlength="2" title="Duration must be a number between 1 and 10" autocomplete="off" value="@Model.Duration" /></div>
+                        </div>
+                    </div>
+
+                    <!-- Pricing -->
+                    <div class="form-section mb-4">
+                        <h4>Pricing & Usage</h4>
+                        <div class="row gx-4 gy-3">
+                            <div class="col-md-4"><label for="uplift" class="form-label required">Uplift</label><input type="text" id="uplift" class="form-control" required title="Please Insert Uplift" autocomplete="off" value="@Model.Uplift" /></div>
+                            <div class="col-md-4"><label for="inputEAC" class="form-label required">Input EAC</label><input type="text" id="inputEAC" class="form-control" required title="Please Insert Input EAC" autocomplete="off" value="@Model.InputEAC" /></div>
+                            <div class="col-md-4"><label for="dayRate" class="form-label required">Day Rate</label><input type="text" id="dayRate" class="form-control" required title="Please Insert Day Rate" autocomplete="off" value="@Model.DayRate" /></div>
+                            <div class="col-md-4"><label for="nightRate" class="form-label required">Night Rate</label><input type="text" id="nightRate" class="form-control" required title="Please Insert Night Rate" autocomplete="off" value="@Model.NightRate" /></div>
+                            <div class="col-md-4"><label for="eveWeekendRate" class="form-label required">Evening/Weekend Rate</label><input type="text" id="eveWeekendRate" class="form-control" required title="Please Insert Evening/Weekend Rate" autocomplete="off" value="@Model.EveWeekendRate" /></div>
+                            <div class="col-md-4"><label for="otherRate" class="form-label required">Other Rate</label><input type="text" id="otherRate" class="form-control" required title="Please Insert Other Rate" autocomplete="off" value="@Model.OtherRate" /></div>
+                            <div class="col-md-4"><label for="standingCharge" class="form-label required">Standing Charge</label><input type="text" id="standingCharge" class="form-control" required title="Please Insert Standing Charge" autocomplete="off" value="@Model.StandingCharge" /></div>
+                        </div>
+                    </div>
+
+                    <!-- Banking -->
+                    <div class="form-section mb-4">
+                        <h4>Banking Details</h4>
+                        <div class="row gx-4 gy-3">
+                            <div class="col-md-4"><label for="sortCode" class="form-label required">Sort Code</label><input type="text" id="sortCode" class="form-control" required title="Sort Code must be exactly 6 digits" pattern="^\d{6}$" maxlength="6" inputmode="numeric" autocomplete="off" value="@Model.SortCode" /></div>
+                            <div class="col-md-4">
+                                <label class="form-label required" for="accountNumber">Account Number</label>
+                                <div class="position-relative">
+                                    <input type="text"
+                                           id="accountNumber"
+                                           class="form-control"
+                                           required
+                                           title="Please enter an 8-digit account number"
+                                           pattern="^\d{8}$"
+                                           maxlength="8"
+                                           autocomplete="off"
+                                           value="@Model.AccountNumber" />
+                                    <div id="accountLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Workflow -->
+                    <div class="form-section mb-5">
+                        <h4>Workflow & System Fields</h4>
+                        <div class="row gx-4 gy-3">
+                            <div class="col-md-4"><label for="preSalesStatus" class="form-label required">PreSales Status</label><select id="preSalesStatus" class="form-select dropdown-arrow" required title="Please Select PreSales Status" data-current="@Model.PreSalesStatus"></select></div>
+                            <div class="col-md-4"><label for="preSalesFollowUpDate" class="form-label">PreSales Follow-up Date</label><input type="date" id="preSalesFollowUpDate" class="form-control" title="Select PreSales follow-up date" value="@Model.PreSalesFollowUpDate" autocomplete="off" /></div>
+                            <div class="col-md-4"><label for="emProcessor" class="form-label">EM Processor</label><input type="text" id="emProcessor" class="form-control" readonly /></div>
+                            <div class="w-100 mt-3"></div>
+                            <div class="row gx-4 gy-3 mt-1 mb-2">
+                                <div class="col-md-4">
+                                    <div class="form-check"><input type="checkbox" class="form-check-input" id="contractChecked" @(Model.ContractChecked ? "checked" : "") /><label class="form-check-label" for="contractChecked">Contract Checked</label></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check"><input type="checkbox" class="form-check-input" id="contractAudited" @(Model.ContractAudited ? "checked" : "") /><label class="form-check-label" for="contractAudited">Contract Audited</label></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check"><input type="checkbox" class="form-check-input" id="terminated" @(Model.Terminated ? "checked" : "") /><label class="form-check-label" for="terminated">Terminate</label></div>
+                                </div>
+                            </div>
+                            <div class="w-100 mt-3"></div>
+                            <div class="col-12"><label for="contractNotes" class="form-label">Contract Notes</label><textarea id="contractNotes" class="form-control" rows="5" title="Please insert any contract notes (optional)" autocomplete="off">@Model.ContractNotes</textarea></div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mb-5">
+                        <button type="submit" class="btn btn-primary px-5">Update Contract</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Logs Panel -->
+            <div class="logs-wrapper">
+                <div class="logs-panel" id="electricLogsPanel">
+                    <h5 class="text-center border-bottom pb-2">Contract Logs</h5>
+                    <div id="electricLogsContainer">
+                        <span class="text-muted">Loading logs...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section styles {
+        <link href="~/Content/Electric/EditElectric.css" rel="stylesheet" />
+    }
+
+    @section scripts {
+        <script src="~/Scripts/Dropdown/dropdowns.js"></script>
+        <script src="~/Scripts/Electric/editElectric.js"></script>
+        <script src="~/Scripts/Brokerage/brokerageManager.js"></script>
+
+        <script>
+    $(document).ready(function () {
+        var emProcessor = '@(User.Identity?.IsAuthenticated == true ? User.Identity.Name : "Presales Team")';
+        $('#emProcessor').val(emProcessor).attr('data-default', emProcessor);
+    });
+        </script>
+    }
+
+
+    <!-- Duplicate MPAN Modal -->
+    <div class="modal fade" id="duplicateMpanModalEdit" tabindex="-1" aria-labelledby="duplicateMpanModalEditLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="duplicateMpanModalEditLabel">⚠ Duplicate MPAN Found</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">This MPAN already exists in our system. Below are the details of existing record(s):</p>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>Business Name</th>
+                                <th>Customer Name</th>
+                                <th>Input Date</th>
+                                <th>PreSales Status</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody id="duplicateMpanResultsEdit">
+                            <!-- Filled dynamically -->
+                        </tbody>
+                    </table>
+                    <div class="text-end fw-bold"><span id="mpanDuplicateCountEdit"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Duplicate Account Modal -->
+    <div class="modal fade" id="duplicateAccountModalEdit" tabindex="-1" aria-labelledby="duplicateAccountModalEditLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="duplicateAccountModalEditLabel">⚠ Duplicate Account Number Found</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">This account number is already linked to another contract. Please review below:</p>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>Business Name</th>
+                                <th>Customer Name</th>
+                                <th>Input Date</th>
+                                <th>PreSales Status</th>
+                                <th>Duration</th>
+                                <th>Sort Code</th>
+                                <th>Account Number</th>
+                            </tr>
+                        </thead>
+                        <tbody id="duplicateAccountResultsEdit">
+                            <!-- Filled dynamically -->
+                        </tbody>
+                    </table>
+                    <div class="text-end fw-bold"><span id="accountDuplicateCountEdit"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="alert alert-danger text-center mt-5">
+        <h4>Access Denied</h4>
+        <p>You are not authorized to view this page.</p>
+    </div>
+}

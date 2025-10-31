@@ -1,0 +1,513 @@
+﻿@{
+    ViewBag.Title = "Create Dual Contract";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (User.Identity.IsAuthenticated && (User.IsInRole("Pre-sales") || User.IsInRole("Controls")))
+{
+    <div class="dual-create-container">
+        <h2 class="page-heading">Create Dual Contract</h2>
+
+        <form id="createDualForm" method="post" novalidate>
+            @Html.AntiForgeryToken()
+
+            <!-- Brokerage Details -->
+            <div class="form-section">
+                <h4>Brokerage Details</h4>
+                <div class="row gx-4 gy-3 align-items-end">
+                    <div class="col-md-4">
+                        <label for="brokerage" class="form-label required">Brokerage</label>
+                        <select id="brokerage" class="form-select dropdown-arrow" required title="Please Select Brokerage!">
+                            <option value="">Select Brokerage</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="ofgemId" class="form-label">Ofgem ID</label>
+                        <input type="text" id="ofgemId" class="form-control" readonly />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Site Details -->
+            <div class="form-section">
+                <h4>Site Details</h4>
+                <div class="row gx-4 gy-3 align-items-end">
+                    <div class="col-md-4">
+                        <label class="form-label required" for="department">Department</label>
+                        <select id="department" class="form-select dropdown-arrow" required title="Please select Department" readonly></select>
+                    </div>
+
+                    <!-- In House Department Fields -->
+                    <div class="col-md-4" id="inHouseFields" style="display: none;">
+                        <label for="closer" class="form-label">Closer</label>
+                        <select id="closer" class="form-select dropdown-arrow" title="Please Select Closer!">
+                            <option value="">Select Closer</option>
+                        </select>
+                    </div>
+
+                    <!-- Brokers Department Fields -->
+                    <div class="col-md-4" id="brokersFields" style="display: none;">
+                        <label for="brokerageStaff" class="form-label">Brokerage Staff</label>
+                        <select id="brokerageStaff" class="form-select dropdown-arrow" title="Please Select Brokerage Staff!">
+                            <option value="">Select Brokerage Staff</option>
+                        </select>
+                    </div>
+
+                    <!-- Introducers Department Fields -->
+                    <div class="col-md-4" id="introducersFields" style="display: none;">
+                        <label for="introducer" class="form-label">Introducer</label>
+                        <select id="introducer" class="form-select dropdown-arrow" title="Please Select Introducer!">
+                            <option value="">Select Introducer</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label required" for="source">Source</label>
+                        <select id="source" class="form-select dropdown-arrow" required title="Please select Source"></select>
+                    </div>
+
+                    <!-- Data Source Fields -->
+                    <div class="col-md-4" id="dataSourceFields" style="display: none;">
+                        <label for="collaboration" class="form-label">Collaboration</label>
+                        <select id="collaboration" class="form-select dropdown-arrow" title="Please Select Collaboration!">
+                            <option value="">Select Collaboration</option>
+                            <option value="Lead Generator">Lead Generator</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4" id="leadGeneratorField" style="display: none;">
+                        <label for="leadGenerator" class="form-label">Lead Generator</label>
+                        <select id="leadGenerator" class="form-select dropdown-arrow" title="Please Select Lead Generator!" disabled>
+                            <option value="">Select Lead Generator</option>
+                        </select>
+                    </div>
+
+                    <!-- Referral Partners Source Fields -->
+                    <div class="col-md-4" id="referralPartnerField" style="display: none;">
+                        <label for="referralPartner" class="form-label">Referral Partner</label>
+                        <select id="referralPartner" class="form-select dropdown-arrow" title="Please Select Referral Partner!">
+                            <option value="">Select Referral Partner</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4" id="subReferralPartnerField" style="display: none;">
+                        <label for="subReferralPartner" class="form-label">Sub Referral Partner</label>
+                        <select id="subReferralPartner" class="form-select dropdown-arrow" title="Please Select Sub Referral Partner!">
+                            <option value="">Select Sub Referral Partner</option>
+                        </select>
+                    </div>
+
+                    <!-- Sub Broker Source Fields -->
+                    <div class="col-md-4" id="subBrokerageField" style="display: none;">
+                        <label for="subBrokerage" class="form-label">Sub Brokerage</label>
+                        <select id="subBrokerage" class="form-select dropdown-arrow" title="Please Select Sub Brokerage!">
+                            <option value="">Select Sub Brokerage</option>
+                        </select>
+                    </div>
+
+                    <!-- Sub Introducer Source Fields -->
+                    <div class="col-md-4" id="subIntroducerField" style="display: none;">
+                        <label for="subIntroducer" class="form-label">Sub Introducer</label>
+                        <select id="subIntroducer" class="form-select dropdown-arrow" title="Please Select Sub Introducer!">
+                            <option value="">Select Sub Introducer</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section electric-section">
+                <h4 class="section-header">⚡ Electric Section</h4>
+
+                <!-- Site Details -->
+                <div class="subsection-box">
+                    <h6 class="subsection-title">📌 Contract Details</h6>
+                    <div class="row gx-4 gy-3">
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricSalesType">Cobana Electric Sales Type</label>
+                            <select id="electricSalesType" class="form-select dropdown-arrow" required title="Please select Electric Sales Type"></select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricSalesStatus">Cobana Electric Sales Type Status</label>
+                            <select id="electricSalesStatus" class="form-select dropdown-arrow" required title="Please select Electric Sales Status"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supply & Product Information -->
+                <div class="subsection-box">
+                    <h6 class="subsection-title">📦 Supply & Product Information</h6>
+                    <div class="row gx-4 gy-3">
+                        <div class="col-md-4">
+                            <label class="form-label required" for="topLine">Electric Top Line</label>
+                            <input type="text" id="topLine" class="form-control" required
+                                   title="Top Line must be between 8 and 9 characters."
+                                   pattern="^[a-zA-Z0-9]{8,9}$"
+                                   minlength="8" maxlength="9"
+                                   autocomplete="off" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="mpan">MPAN</label>
+                            <div class="position-relative">
+                                <input type="text" id="mpan" class="form-control" required title="Please enter 13-digit MPAN or N/A" pattern="(^\d{13}$)|(^N\/A$)" maxlength="13" autocomplete="off" />
+                                <div id="mpanLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricCurrentSupplier">Electric Current Supplier</label>
+                            <input type="text" id="electricCurrentSupplier" class="form-control" required title="Please enter current electric supplier" autocomplete="off" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricSupplier">Electric Supplier</label>
+                            <select id="electricSupplier" class="form-select dropdown-arrow" required title="Select Electric Supplier"></select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricProduct">Electric Product</label>
+                            <select id="electricProduct" class="form-select dropdown-arrow" required title="Select Electric Product">
+                                <option value="">Select Product</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricCommsType">Electric Comms Type</label>
+                            <select id="electricCommsType" class="form-select dropdown-arrow" required title="Select Electric Comms Type"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contract Timeline -->
+                <div class="subsection-box">
+                    <h6 class="subsection-title">🗓️ Contract Timeline</h6>
+                    <div class="row gx-4 gy-3">
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricInitialStartDate">Electric Initial Start Date</label>
+                            <input type="date" id="electricInitialStartDate" class="form-control" required title="Select Electric Start Date" autocomplete="off" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricDuration">Electric Duration</label>
+                            <input type="text" id="electricDuration" class="form-control" required maxlength="2" title="1–10 years only" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing & Usage -->
+                <div class="subsection-box">
+                    <h6 class="subsection-title">💷 Pricing & Usage</h6>
+                    <div class="row gx-4 gy-3">
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricUplift">Electric Uplift</label>
+                            <input type="text" id="electricUplift" class="form-control" required title="Insert Electric Uplift" autocomplete="off" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricInputEAC">Electric Input EAC</label>
+                            <input type="text" id="electricInputEAC" class="form-control" required title="Insert Electric Input EAC" autocomplete="off" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricOtherRate">Electric Other Rate</label>
+                            <input type="text" id="electricOtherRate" class="form-control" required title="Insert Electric Other Rate" autocomplete="off" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricStandingCharge">Electric Standing Charge</label>
+                            <input type="text" id="electricStandingCharge" class="form-control" required title="Insert Electric Standing Charge" autocomplete="off" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="dayRate">Day Rate</label>
+                            <input type="text" id="dayRate" class="form-control" required title="Insert Day Rate" autocomplete="off" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="nightRate">Night Rate</label>
+                            <input type="text" id="nightRate" class="form-control" required title="Insert Night Rate" autocomplete="off" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="eveWeekendRate">Evening/Weekend Rate</label>
+                            <input type="text" id="eveWeekendRate" class="form-control" required title="Insert Evening/Weekend Rate" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workflow & System Fields -->
+                <div class="subsection-box">
+                    <h6 class="subsection-title">🛠 Sales Status</h6>
+                    <div class="row gx-4 gy-3">
+                        <div class="col-md-4">
+                            <label class="form-label required" for="electricPreSalesStatus">Electric PreSales Status</label>
+                            <select id="electricPreSalesStatus" class="form-select dropdown-arrow" required title="Select Electric PreSales Status"></select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="electricPreSalesFollowUpDate">Electric PreSales Follow-up Date</label>
+                            <input type="date" id="electricPreSalesFollowUpDate" class="form-control" title="Select Electric PreSales follow-up date" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section gas-section">
+                <h4 class="section-header">🔥 Gas Section</h4>
+
+                <!-- Site Details -->
+                <div class="subsection-box">
+                    <h6 class="subsection-title">📌 Contract Details</h6>
+                    <div class="row gx-4 gy-3">
+                        <div class="col-md-4"><label class="form-label required" for="gasSalesType">Cobana Gas Sales Type</label><select id="gasSalesType" class="form-select dropdown-arrow" required title="Please select Gas Sales Type"></select></div>
+                        <div class="col-md-4"><label class="form-label required" for="gasSalesStatus">Cobana Gas Sales Type Status</label><select id="gasSalesStatus" class="form-select dropdown-arrow" required title="Please select Gas Sales Status"></select></div>
+                    </div>
+                </div>
+
+                <!-- Supply & Product Information -->
+                <div class="subsection-box">
+                    <h6 class="subsection-title">📦 Supply & Product Information</h6>
+                    <div class="row gx-4 gy-3">
+                        <div class="col-md-4">
+                            <label class="form-label required" for="mprn">MPRN</label>
+                            <div class="position-relative">
+                                <input type="text" id="mprn" class="form-control" required
+                                       title="Please enter 6–10 digit MPRN or N/A"
+                                       pattern="(^\d{6,10}$)|(^N\/A$)" maxlength="10" autocomplete="off" />
+                                <div id="mprnLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4"><label class="form-label required" for="gasCurrentSupplier">Gas Current Supplier</label><input type="text" id="gasCurrentSupplier" class="form-control" required title="Please enter current gas supplier" autocomplete="off" /></div>
+                        <div class="col-md-4"><label class="form-label required" for="gasSupplier">Gas Supplier</label><select id="gasSupplier" class="form-select dropdown-arrow" required title="Select Gas Supplier"></select></div>
+                        <div class="col-md-4">
+                            <label class="form-label required" for="gasProduct">Gas Product</label>
+                            <select id="gasProduct" class="form-select dropdown-arrow" required title="Select Gas Product">
+                                <option value="">Select Product</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4"><label class="form-label required" for="gasCommsType">Gas Comms Type</label><select id="gasCommsType" class="form-select dropdown-arrow" required title="Select Gas Comms Type"></select></div>
+                    </div>
+                </div>
+
+                <!-- Contract Timeline -->
+                <div class="subsection-box">
+                    <h6 class="subsection-title">🗓️ Contract Timeline</h6>
+                    <div class="row gx-4 gy-3">
+                        <div class="col-md-4"><label class="form-label required" for="gasInitialStartDate">Gas Initial Start Date</label><input type="date" id="gasInitialStartDate" class="form-control" required title="Select Gas Start Date" autocomplete="off" /></div>
+                        <div class="col-md-4"><label class="form-label required" for="gasDuration">Gas Duration</label><input type="text" id="gasDuration" class="form-control" required maxlength="2" title="1–10 years only" autocomplete="off" /></div>
+                    </div>
+                </div>
+
+                <!-- Pricing & Usage -->
+                <div class="subsection-box">
+                    <h6 class="subsection-title">💷 Pricing & Usage</h6>
+                    <div class="row gx-4 gy-3">
+                        <div class="col-md-4"><label class="form-label required" for="gasUplift">Gas Uplift</label><input type="text" id="gasUplift" class="form-control" required title="Insert Gas Uplift" autocomplete="off" /></div>
+                        <div class="col-md-4"><label class="form-label required" for="gasInputEAC">Gas Input EAC</label><input type="text" id="gasInputEAC" class="form-control" required title="Insert Gas Input EAC" autocomplete="off" /></div>
+                        <div class="col-md-4"><label class="form-label required" for="gasUnitRate">Gas Unit Rate</label><input type="text" id="gasUnitRate" class="form-control" required title="Insert Gas Unit Rate" autocomplete="off" /></div>
+                        <div class="col-md-4"><label class="form-label required" for="gasOtherRate">Gas Other Rate</label><input type="text" id="gasOtherRate" class="form-control" required title="Insert Gas Other Rate" autocomplete="off" /></div>
+                        <div class="col-md-4"><label class="form-label required" for="gasStandingCharge">Gas Standing Charge</label><input type="text" id="gasStandingCharge" class="form-control" required title="Insert Gas Standing Charge" autocomplete="off" /></div>
+                    </div>
+                </div>
+
+                <!-- Workflow & System Fields -->
+                <div class="subsection-box">
+                    <h6 class="subsection-title">🛠 Sales Status</h6>
+                    <div class="row gx-4 gy-3">
+                        <div class="col-md-4"><label class="form-label required" for="gasPreSalesStatus">Gas PreSales Status</label><select id="gasPreSalesStatus" class="form-select dropdown-arrow" required title="Select Gas PreSales Status"></select></div>
+                        <div class="col-md-4"><label class="form-label" for="gasPreSalesFollowUpDate">Gas PreSales Follow-up Date</label><input type="date" id="gasPreSalesFollowUpDate" class="form-control" title="Select Gas PreSales follow-up date" autocomplete="off" /></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Location -->
+            <div class="form-section">
+                <h4>Business Location</h4>
+                <div class="row gx-4 gy-3">
+                    <div class="col-md-4"><label for="businessName" class="form-label required">Business Name</label><input type="text" id="businessName" class="form-control" required title="Insert Business Name" autocomplete="off" /></div>
+                    <div class="col-md-4"><label for="customerName" class="form-label required">Customer Name</label><input type="text" id="customerName" class="form-control" required title="Insert Customer Name" autocomplete="off" /></div>
+                    <div class="col-md-4"><label for="businessDoorNumber" class="form-label required">Business Door Number</label><input type="text" id="businessDoorNumber" class="form-control" required title="Insert Business Door Number" autocomplete="off" /></div>
+                    <div class="col-md-4"><label for="businessHouseName" class="form-label">Business House Name</label><input type="text" id="businessHouseName" class="form-control" title="Insert Business House Name" autocomplete="off" /></div>
+                    <div class="col-md-4"><label for="businessStreet" class="form-label required">Business Street/Road</label><input type="text" id="businessStreet" class="form-control" required title="Insert Business Street/Road" autocomplete="off" /></div>
+                    <div class="col-md-4"><label for="businessTown" class="form-label required">Business Town</label><input type="text" id="businessTown" class="form-control" required title="Insert Business Town" autocomplete="off" /></div>
+                    <div class="col-md-4"><label for="businessCounty" class="form-label">Business County</label><input type="text" id="businessCounty" class="form-control" title="Insert Business County" autocomplete="off" /></div>
+                    <div class="col-md-4"><label for="postCode" class="form-label required">Post Code</label><input type="text" id="postCode" class="form-control" required title="Insert Business Postcode" autocomplete="off" /></div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-section">
+                <h4>Contact Information</h4>
+                <div class="row gx-4 gy-3">
+                    <div class="col-md-4"><label class="form-label required" for="phoneNumber1">Phone Number</label><input type="text" id="phoneNumber1" class="form-control" required pattern="^\d{11}$" maxlength="11" title="11 digit number required" autocomplete="off" /></div>
+                    <div class="col-md-4"><label class="form-label" for="phoneNumber2">Secondary Phone Number</label><input type="text" id="phoneNumber2" class="form-control" pattern="^(\d{11}|N\/A)$" maxlength="11" title="Enter 11 digit or N/A" autocomplete="off" /></div>
+                    <div class="col-md-4"><label class="form-label required" for="emailAddress">Email Address</label><input type="email" id="emailAddress" class="form-control" required title="Insert valid email address" autocomplete="off" /></div>
+                </div>
+            </div>
+
+            <!-- Banking -->
+            <div class="form-section">
+                <h4>Banking Details</h4>
+                <div class="row gx-4 gy-3">
+                    <div class="col-md-4"><label class="form-label required" for="sortCode">Sort Code</label><input type="text" id="sortCode" class="form-control" required pattern="^\d{6}$" inputmode="numeric" maxlength="6" title="6-digit sort code" autocomplete="off" /></div>
+                    <div class="col-md-4">
+                        <label class="form-label required" for="accountNumber">Account Number</label>
+                        <div class="position-relative">
+                            <input type="text"
+                                   id="accountNumber"
+                                   class="form-control"
+                                   required
+                                   title="Please enter an 8-digit account number"
+                                   pattern="^\d{8}$"
+                                   maxlength="8"
+                                   autocomplete="off" />
+                            <div id="accountLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow -->
+            <div class="form-section">
+                <h4>Workflow & System Fields</h4>
+                <div class="row gx-4 gy-3">
+                    <div class="col-md-4"><label class="form-label" for="inputDate">Input Date</label><input type="text" id="inputDate" class="form-control" readonly /></div>
+                    <div class="col-md-4"><label class="form-label" for="emProcessor">EM Processor</label><input type="text" id="emProcessor" class="form-control" readonly /></div>
+                </div>
+
+                <div class="col-md-4 mt-3 mb-2"></div>
+                <div class="w-100 mt-3"></div>
+
+                <div class="row gx-4 gy-3  mt-1 mt-2">
+                    <div class="col-md-4"><div class="form-check"><input type="checkbox" id="contractChecked" class="form-check-input" /><label class="form-check-label" for="contractChecked">Contract Checked</label></div></div>
+                    <div class="col-md-4"><div class="form-check"><input type="checkbox" id="contractAudited" class="form-check-input" /><label class="form-check-label" for="contractAudited">Contract Audited</label></div></div>
+                    <div class="col-md-4"><div class="form-check"><input type="checkbox" id="terminated" class="form-check-input" /><label class="form-check-label" for="terminated">Terminate</label></div></div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <label class="form-label" for="contractNotes">Contract Notes</label>
+                    <textarea id="contractNotes" class="form-control" rows="3" title="Optional notes for the contract" autocomplete="off"></textarea>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Create Dual Contract</button>
+            </div>
+        </form>
+    </div>
+
+
+    @section styles {
+        <link href="~/Content/Dual/CreateDual.css" rel="stylesheet" />
+    }
+
+    @section scripts {
+        <script src="~/Scripts/Dropdown/dropdowns.js"></script>
+        <script src="~/Scripts/Dual/createDual.js"></script>
+        <script src="~/Scripts/Brokerage/brokerageManager.js"></script>
+        <script>
+            $(document).ready(function () {
+                const emProcessor = '@(User.Identity?.IsAuthenticated == true ? User.Identity.Name : "Presales Team")';
+                $('#emProcessor').val(emProcessor).attr('data-default', emProcessor);
+            });
+        </script>
+
+    }
+
+    <!-- Duplicate MPAN Modal -->
+    <div class="modal fade" id="duplicateDualMpanModal" tabindex="-1" aria-labelledby="duplicateDualMpanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="duplicateDualMpanModalLabel">⚠ Duplicate MPAN Found</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">This MPAN already exists in our system. Below are the details of existing record(s):</p>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>Business Name</th>
+                                <th>Customer Name</th>
+                                <th>Input Date</th>
+                                <th>PreSales Status</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody id="duplicateMpanResultsEdit">
+                            <!-- Filled dynamically -->
+                        </tbody>
+                    </table>
+                    <div class="text-end fw-bold"><span id="mpanDuplicateCountEdit"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Duplicate MPRN Modal -->
+    <div class="modal fade" id="duplicateDualMprnModal" tabindex="-1" aria-labelledby="duplicateDualMprnModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="duplicateDualMprnModalLabel">⚠ Duplicate MPRN Found</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">This MPRN already exists in our system. Below are the details of existing record(s):</p>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>Business Name</th>
+                                <th>Customer Name</th>
+                                <th>Input Date</th>
+                                <th>PreSales Status</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody id="duplicateMprnResultsEdit">
+                            <!-- Filled dynamically -->
+                        </tbody>
+                    </table>
+                    <div class="text-end fw-bold"><span id="mprnDuplicateCountEdit"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Duplicate Account Modal -->
+    <div class="modal fade" id="duplicateAccountModalDual" tabindex="-1" aria-labelledby="duplicateAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="duplicateAccountModalLabel">⚠ Duplicate Account Number Found</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">This account number is already linked to another contract. Please review below:</p>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>Business Name</th>
+                                <th>Customer Name</th>
+                                <th>Input Date</th>
+                                <th>PreSales Status</th>
+                                <th>Duration</th>
+                                <th>Sort Code</th>
+                                <th>Account Number</th>
+                            </tr>
+                        </thead>
+                        <tbody id="duplicateAccountResultsEdit">
+                            <!-- Filled dynamically -->
+                        </tbody>
+                    </table>
+                    <div class="text-end fw-bold"><span id="accountDuplicateCountEdit"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="alert alert-danger text-center mt-5">
+        <h4>Access Denied</h4>
+        <p>You are not authorized to view this page.</p>
+    </div>
+}

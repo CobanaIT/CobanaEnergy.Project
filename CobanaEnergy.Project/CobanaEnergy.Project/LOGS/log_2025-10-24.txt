@@ -1,0 +1,10 @@
+----- LOG ENTRY -----
+Time: 10:06:17
+Message: Failed to Load Contract : Object reference not set to an instance of an object.
+Location: StatusDashboardController.cs -> EditContractPostSales() [Line 379]
+
+----- LOG ENTRY -----
+Time: 10:11:36
+Message: Failed to Load Contract : Object reference not set to an instance of an object.
+Location: StatusDashboardController.cs -> EditContractPostSales() [Line 379]
+

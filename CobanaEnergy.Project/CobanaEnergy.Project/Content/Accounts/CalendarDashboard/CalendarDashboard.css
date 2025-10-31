@@ -1,0 +1,209 @@
+﻿.calendar-dashboard {
+    padding: 40px 20px 20px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Raleway', sans-serif;
+    min-height: 92vh;
+    width: 99vw;
+    margin-left: calc(-49vw + 49%);
+    max-width: none;
+}
+
+    .calendar-dashboard .dashboard-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        text-align: center;
+        letter-spacing: 0.5px;
+    }
+
+    .calendar-dashboard .table-container {
+        overflow-x: auto;
+        max-width: 100%;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 28px rgba(80, 94, 128, 0.11);
+        padding: 24px 20px 20px 20px;
+    }
+
+#calendarTable {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.94rem;
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-bottom: 0;
+}
+
+    #calendarTable th,
+    #calendarTable td {
+        text-align: center;
+        vertical-align: middle;
+        white-space: normal;
+        padding: 12px 14px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 1rem;
+    }
+
+    #calendarTable thead th {
+        font-family: 'Raleway', sans-serif;
+        font-size: 1.03rem;
+        font-weight: 700;
+        background: #fafbfc;
+        color: #232949;
+        border-bottom: 2px solid #ececec;
+    }
+
+    #calendarTable tbody tr {
+        transition: background 0.15s;
+    }
+
+        #calendarTable tbody tr:hover {
+            background: #f4f6fc;
+        }
+
+.calendar-dashboard .dataTables_wrapper .dataTables_length,
+.calendar-dashboard .dataTables_wrapper .dataTables_filter {
+    margin-bottom: 20px !important;
+}
+
+.dataTables_scroll {
+    position: relative;
+}
+
+.dataTables_processing {
+    position: absolute !important;
+    top: 50% !important;
+    left: 55% !important;
+    transform: translate(-50%, -50%) !important;
+    width: max-content;
+    height: auto;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #6aa1f9;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050 !important;
+}
+
+.calendar-dashboard {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Raleway', sans-serif;
+    min-height: 92vh;
+}
+
+.calendar-header {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+}
+
+.calendar-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.calendar-inline-picker {
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+    padding: 20px;
+    width: 320px;
+    font-family: 'Raleway', sans-serif;
+    flex-shrink: 0;
+}
+
+.has-followup {
+    background-color: #FFD700 !important;
+    color: #000 !important;
+    font-weight: bold;
+    border-radius: 50% !important;
+    border: 2px solid #000;
+}
+
+.table-container {
+    width: 100%;
+    max-width: 1280px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 28px rgba(80, 94, 128, 0.1);
+    padding: 24px;
+    overflow-x: auto;
+    flex: 1;
+    max-width: calc(100% - 380px);
+}
+
+#calendarTable {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.94rem;
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+    #calendarTable th,
+    #calendarTable td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 12px 14px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 1rem;
+    }
+
+    #calendarTable thead th {
+        font-family: 'Raleway', sans-serif;
+        font-size: 1.03rem;
+        font-weight: 700;
+        background: #fafbfc;
+        color: #232949;
+        border-bottom: 2px solid #ececec;
+    }
+
+    #calendarTable tbody tr:hover {
+        background: #f4f6fc;
+    }
+
+.flatpickr-input {
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+}
+
+
+.has-followup {
+    background-color: #ffe066 !important;
+}
+
+@media (max-width: 768px) {
+    .calendar-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .table-container {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,84 @@
+@model CobanaEnergy.Project.Models.PreSales.PreSalesMasterDashboardViewModel
+@{
+    ViewBag.Title = "PreSales Master Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.AntiForgeryToken()
+
+<div class="pre-sales-master-dashboard">
+    <div class="dashboard-title">
+        PreSales Master Dashboard
+    </div>
+    
+    <div class="filters d-flex flex-wrap gap-4 mb-4 align-items-end">
+        <div>
+            <label for="supplierFilter" class="form-label fw-semibold">Supplier</label>
+            @Html.DropDownListFor(m => m.Suppliers, Model.Suppliers, "All Suppliers", new { @class = "form-select", id = "supplierFilter" })
+        </div>
+        <div>
+            <label for="inputDateFrom" class="form-label fw-semibold">Input Date From</label>
+            <input type="date" id="inputDateFrom" class="form-control" />
+        </div>
+        <div>
+            <label for="inputDateTo" class="form-label fw-semibold">Input Date To</label>
+            <input type="date" id="inputDateTo" class="form-control" />
+        </div>
+        <div class="ms-auto">
+            <button type="button" id="applyFilters" class="btn btn-success me-2">
+                <i class="fas fa-search me-1"></i>Apply Filters
+            </button>
+            <button type="button" id="clearFilters" class="btn btn-outline-secondary">
+                <i class="fas fa-times me-1"></i>Clear
+            </button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table id="preSalesMasterTable" class="table display table-bordered table-striped w-100">
+            <thead class="table-light">
+                <tr>
+                    <th data-orderable="false">Edit</th>
+                    <th>Agent</th>
+                    <th>Business Name</th>
+                    <th>Customer Name</th>
+                    <th>Post Code</th>
+                    <th>Input Date</th>
+                    <th>Duration</th>
+                    <th>Uplift</th>
+                    <th>Input EAC</th>
+                    <th>Email</th>
+                    <th>Supplier</th>
+                    <th>Contract Notes</th>
+                    <th style="display:none">Sortable Date</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <!-- Contract Status Counts -->
+        <div class="contract-status-summary d-flex flex-wrap gap-4 mt-3">
+            <div class="status-count-box">
+                <span class="status-label">Submitted:</span>
+                <span id="submittedCount" class="status-count">@Model.SubmittedCount</span>
+            </div>
+            <div class="status-count-box">
+                <span class="status-label">Rejected:</span>
+                <span id="rejectedCount" class="status-count">@Model.RejectedCount</span>
+            </div>
+            <div class="status-count-box">
+                <span class="status-label">Pending:</span>
+                <span id="pendingCount" class="status-count">@Model.PendingCount</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Contract Notes Popup -->
+@Html.Partial("~/Views/PreSales/EditContractNotesOnlyPopup.cshtml", new CobanaEnergy.Project.Models.PreSales.EditContractNotesOnlyViewModel())
+
+@section styles {
+    <link href="~/Content/PreSales/PreSalesMasterDashboard/PreSalesMasterDashboard.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="~/Scripts/PreSales/PreSalesMasterDashboard/preSalesMasterDashboard.js"></script>
+}

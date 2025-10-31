@@ -1,0 +1,40 @@
+@model CobanaEnergy.Project.Models.PreSales.EditContractNotesPopupViewModel
+
+<div id="editContractNotesModal" class="modal fade invoice-supplier-modal" tabindex="-1" aria-labelledby="editContractNotesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content shadow-lg border-0 rounded-4 elegant-popup-bg">
+            <div class="modal-header border-0 pb-2">
+                <h4 class="modal-title fw-bold d-flex align-items-center gap-2" id="editContractNotesLabel" style="font-family: Raleway, sans-serif;">
+                    <i class="fas fa-comments text-primary"></i> Edit Contract Notes & Follow-up Date
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-0">
+                <form id="editContractNotesForm" method="post" novalidate>
+                    @Html.AntiForgeryToken()
+                    <div class="row gx-3 gy-3">
+                        <input type="hidden" id="eid" name="EId" value="@Model.EId" />
+                        <input type="hidden" id="contractType" name="ContractType" value="@Model.ContractType" />
+                        
+                        <div class="col-12">
+                            <label class="form-label" for="contractNotes">Contract Notes</label>
+                            <span class="badge bg-info ms-2 dual-contract-message d-none">
+                                Notes will be shared between electric and gas for dual contract types.
+                            </span>
+                            <textarea id="contractNotes" name="ContractNotes" class="form-control" rows="3">@Model.ContractNotes</textarea>
+                        </div>
+                        
+                        <div class="col-12">
+                            <label class="form-label" for="preSalesFollowUpDate">Follow Up Date</label>
+                            <input type="date" id="preSalesFollowUpDate" name="PreSalesFollowUpDate" class="form-control" value="@Model.PreSalesFollowUpDate" />
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-success px-4">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,363 @@
+﻿/* ================================
+   FINAL CONTRACT DASHBOARD CSS
+   ================================ */
+
+.contract-dashboard {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Raleway', sans-serif;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    max-width: none;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.table-container {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+#contractTable {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    width: 100%;
+    border-collapse: collapse;
+    word-break: break-word;
+}
+
+    #contractTable th,
+    #contractTable td {
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+        padding: 10px 12px;
+    }
+
+        /* Edit column (first column) */
+        #contractTable th:nth-child(1),
+        #contractTable td:nth-child(1) {
+            width: 48px !important;
+            min-width: 48px !important;
+            max-width: 48px !important;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+        
+        /* Prevent edit button column from expanding on hover */
+        #contractTable td:nth-child(1):hover {
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: none;
+        }
+
+        /* Wrap Notes Column only */
+        #contractTable td:nth-child(9),
+        #contractTable th:nth-child(9) {
+            white-space: normal;
+            word-break: break-word;
+            max-width: 220px;
+        }
+
+/* DataTables UI spacing */
+.dataTables_filter,
+.dataTables_length {
+    margin-bottom: 10px;
+}
+
+/* Right-side panel */
+.info-panel {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Large screens */
+@media (min-width: 993px) {
+    .dashboard-wrapper {
+        display: flex;
+        gap: 20px;
+    }
+
+    .left-panel {
+        width: calc(100% - 300px);
+    }
+
+    .right-panel {
+        width: 280px;
+        min-width: 280px;
+    }
+}
+
+/* Tablets & mobile */
+@media (max-width: 992px) {
+    .dashboard-wrapper {
+        display: block;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100%;
+    }
+
+    .right-panel {
+        margin-top: 20px;
+    }
+
+    #contractTable {
+        font-size: 0.82rem;
+    }
+}
+
+.truncate-cell {
+    display: inline-block;
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+    .truncate-cell:hover {
+        white-space: normal;
+        word-break: break-word;
+        background-color: #f1f1f1;
+        padding: 2px 4px;
+        z-index: 99;
+        position: relative;
+    }
+
+.edit-btn {
+    background-color: #6b737a;
+    color: white;
+    border: none;
+    padding: 6px 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+    min-width: 32px;
+    height: 32px;
+}
+
+    .edit-btn i {
+        font-size: 0.85rem;
+        margin: 0;
+    }
+
+    .edit-btn:hover {
+        background-color: #545b61;
+        color: #fff;
+    }
+
+
+.highlight-red {
+    background-color: #dc3545; /* Bootstrap red */
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 0.85rem;
+}
+
+.right-panel {
+    height: 100%;
+    min-height: 560px;
+    max-height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: stretch; 
+}
+
+@media (max-width: 992px) {
+    .dashboard-wrapper {
+        display: block;
+    }
+
+    .right-panel {
+        margin-top: 20px;
+        width: 100%;
+        min-height: 300px;
+    }
+}
+
+/* ============================================
+   Supplier Stats Panel – Final Enhanced Design
+   ============================================ */
+
+.right-panel {
+    display: block;
+    height: 100%;
+    min-height: 560px;
+    max-height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.supplier-stats {
+    width: 100%;
+    max-height: calc(100vh - 160px); 
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    scroll-behavior: smooth;
+}
+
+    .supplier-stats::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .supplier-stats::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+    }
+
+.stats-header {
+    margin-bottom: 18px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+    .stats-header .title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 2px;
+        color: #222;
+    }
+
+    .stats-header .time-range {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 0.85rem;
+        color: #666;
+    }
+
+/* Each Supplier Section */
+.supplier-block {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 12px 10px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.supplier-name {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #212529;
+    border-left: 3px solid #0d6efd;
+    padding-left: 6px;
+    word-break: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    line-height: 1.3;
+    text-align: left;
+    display: block;
+}
+
+/* Row: Status + Count Badges */
+.status-line {
+    display: block;
+    padding: 4px 6px;
+    margin-top: 10px;
+}
+
+    /* Status text */
+    .status-line strong {
+        display: block;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 6px;
+        white-space: normal;
+    }
+
+    /* Badge container */
+    .status-line .badge-group {
+        display: flex;
+        gap: 6px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    /* Badges */
+    .status-line .badge {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 6px;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        display: inline-block;
+        max-width: 100%;
+    }
+
+
+.supplier-status {
+    text-align: left !important;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Make badge display on next line */
+.supplier-status .badge {
+    display: block;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    margin-top: 4px;
+    padding: 4px 8px;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-family: 'Roboto Mono', monospace;
+    box-sizing: border-box;
+    text-align: left;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.supplier-status .badge.bg-warning {
+    background-color: #ffe08a !important;
+    color: #7a5a00;
+    line-height: 1.4;
+}

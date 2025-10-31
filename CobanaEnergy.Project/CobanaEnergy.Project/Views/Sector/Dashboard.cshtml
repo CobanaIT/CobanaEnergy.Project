@@ -1,0 +1,87 @@
+@model CobanaEnergy.Project.Models.Sector.SectorDashboardViewModel
+@{
+    ViewBag.Title = "Sector Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Controls"))
+{
+    <div class="sector-dashboard">
+        <h2 class="dashboard-title">Sector Dashboard</h2>
+
+        <div class="filters d-flex flex-wrap gap-4 mb-4 align-items-end">
+            <div>
+                <label for="sectorTypeFilter" class="form-label fw-semibold">Sector Type</label>
+                <select id="sectorTypeFilter" class="form-select">
+                    @foreach (var option in Model.SectorTypeOptions)
+                    {
+                        <option value="@option.Value">@option.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="sectorTable" class="table display table-bordered table-striped w-100">
+                <thead>
+                    <tr>
+                        <th data-orderable="false">Edit</th>
+                        <th>Name</th>
+                        <th>Active</th>
+                        <th>Created Date</th>
+                        <th>Mobile</th>
+                        <th>Supplier</th>
+                        <th style="display: none;">Sector Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sector in Model.Sectors)
+                    {
+                        <tr>
+                            <td>
+                                <!-- Debug info -->
+                                <!-- SectorId: @sector.SectorId, Type: @sector.SectorId.GetType().Name -->
+                                <button class="btn btn-sm edit-btn" title="Edit Sector" data-sector-id="@sector.SectorId">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </td>
+                            <td>@sector.Name</td>
+                            <td>
+                                <span class="badge @(sector.Active ? "bg-success" : "bg-danger")">
+                                    @(sector.Active ? "Active" : "Inactive")
+                                </span>
+                            </td>
+                            <td>@(string.IsNullOrEmpty(sector.CreatedDate) ? "-" : sector.CreatedDate)</td>
+                            <td>@(string.IsNullOrEmpty(sector.Mobile) ? "-" : sector.Mobile)</td>
+                            <td>
+                                @if (sector.Suppliers != null && sector.Suppliers.Any())
+                                {
+                                    foreach (var supplier in sector.Suppliers)
+                                    {
+                                        <span class="badge rounded-pill bg-primary me-2">@supplier</span>
+                                    }
+                                }
+                            </td>
+                            <td style="display: none;">@sector.SectorType</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @section styles {
+        <link href="~/Content/Sector/SectorDashboard.css" rel="stylesheet" />
+    }
+
+    @section scripts {
+        <script src="~/Scripts/Sector/sectorDashboard.js"></script>
+    }
+}
+else
+{
+    <div class="alert alert-danger text-center mt-5">
+        <h4>Access Denied</h4>
+        <p>You are not authorized to view this page.</p>
+    </div>
+}

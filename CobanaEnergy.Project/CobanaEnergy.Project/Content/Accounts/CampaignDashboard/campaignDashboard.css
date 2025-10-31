@@ -1,0 +1,113 @@
+﻿.campaign-dashboard {
+    padding: 40px 20px 20px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Raleway', sans-serif;
+    min-height: 92vh;
+    width: 99vw;
+    margin-left: calc(-49vw + 49%);
+    max-width: none;
+}
+
+    .campaign-dashboard .dashboard-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        text-align: center;
+        letter-spacing: 0.5px;
+        font-family: 'Raleway', sans-serif;
+    }
+
+    .campaign-dashboard .filters {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 28px rgba(80, 94, 128, 0.11);
+        padding: 16px 20px;
+        margin-bottom: 24px;
+    }
+
+        .campaign-dashboard .filters .form-label {
+            font-size: 1rem;
+            font-family: 'Raleway', sans-serif;
+            margin-bottom: 6px;
+        }
+
+    .campaign-dashboard .table-container {
+        overflow-x: auto;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 28px 0 rgba(80,94,128,0.11);
+        padding: 24px 20px 20px 20px;
+    }
+
+.save-btn-wrapper {
+    margin-top: 28px;
+    text-align: right;
+}
+
+.btn-primary {
+    min-width: 130px;
+    border-radius: 0.65rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+    background: #6aa1f9;
+    border: none;
+    transition: background 0.15s;
+}
+
+    .btn-primary:disabled {
+        background: #b9d1f6;
+        cursor: not-allowed;
+    }
+
+@media (max-width: 600px) {
+    .campaign-dashboard {
+        padding: 16px 2px;
+    }
+
+    .table-container {
+        padding: 8px 2px 4px 2px;
+    }
+
+    .dashboard-title {
+        font-size: 1.22rem;
+        margin-bottom: 16px;
+    }
+
+    .save-btn-wrapper {
+        text-align: center !important;
+        margin-top: 12px;
+    }
+
+    #awaitingPaymentsTable th,
+    #awaitingPaymentsTable td {
+        font-size: 0.94rem;
+    }
+}
+
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length {
+    margin-bottom: 20px !important;
+}
+
+.table-actions .btn-success {
+    min-width: 150px;
+    border-radius: 0.65rem;
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+.campaign-summary-box {
+    display: inline-block;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #212529;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

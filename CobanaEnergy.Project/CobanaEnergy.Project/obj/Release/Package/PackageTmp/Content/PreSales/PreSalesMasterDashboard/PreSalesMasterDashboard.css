@@ -1,0 +1,282 @@
+.pre-sales-master-dashboard {
+    padding: 40px 20px 20px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Raleway', sans-serif;
+    min-height: 92vh;
+    width: 99vw;
+    margin-left: calc(-49vw + 49%);
+    max-width: none;
+}
+
+.pre-sales-master-dashboard .dashboard-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.pre-sales-master-dashboard .filters {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 28px rgba(80, 94, 128, 0.11);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+}
+
+.pre-sales-master-dashboard .filters .form-label {
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 6px;
+}
+
+.pre-sales-master-dashboard .table-container {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 28px 0 rgba(80,94,128,0.11);
+    padding: 24px 20px 20px 20px;
+}
+
+#preSalesMasterTable {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.94rem;
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-bottom: 0;
+}
+
+#preSalesMasterTable th,
+#preSalesMasterTable td {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 12px 14px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+}
+
+/* Contract Notes Column - Header only no wrap, data cells can wrap */
+#preSalesMasterTable th:nth-child(12) {
+    white-space: nowrap;
+}
+
+#preSalesMasterTable td:nth-child(12) {
+    white-space: normal;
+    word-break: break-word;
+    max-width: 220px;
+}
+
+#preSalesMasterTable thead th {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.03rem;
+    font-weight: 700;
+    background: #fafbfc;
+    color: #232949;
+    border-bottom: 2px solid #ececec;
+}
+
+#preSalesMasterTable tbody tr {
+    transition: background 0.15s;
+}
+
+#preSalesMasterTable tbody tr:hover {
+    background: #f4f6fc;
+}
+
+/* Edit column (first column) */
+#preSalesMasterTable th:nth-child(1),
+#preSalesMasterTable td:nth-child(1) {
+    width: 48px !important;
+    min-width: 48px !important;
+    max-width: 48px !important;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.edit-btn {
+    background-color: #6b737a;
+    color: white;
+    border: none;
+    padding: 6px 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+    min-width: 32px;
+    height: 32px;
+}
+
+.edit-btn i {
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.edit-btn:hover {
+    background-color: #545b61;
+    color: #fff;
+}
+
+/* DataTable customizations */
+.dataTables_wrapper {
+    padding: 20px;
+}
+
+.dataTables_length,
+.dataTables_filter {
+    margin-bottom: 15px;
+}
+
+.dataTables_length select,
+.dataTables_filter input {
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+.dataTables_info {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+
+/* Loading spinner */
+.loading-spinner {
+    display: none;
+    text-align: center;
+    padding: 40px;
+}
+
+.loading-spinner .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    color: #667eea;
+}
+
+/* DataTable customizations */
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length {
+    margin-bottom: 20px !important;
+}
+
+
+.table-actions .btn-success {
+    min-width: 150px;
+    border-radius: 0.65rem;
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .pre-sales-master-dashboard {
+        padding: 16px 2px;
+    }
+
+    .table-container {
+        padding: 8px 2px 4px 2px;
+    }
+
+    .dashboard-title {
+        font-size: 1.22rem;
+        margin-bottom: 16px;
+    }
+
+    #preSalesMasterTable th,
+    #preSalesMasterTable td {
+        font-size: 0.94rem;
+    }
+}
+
+/* Custom scrollbar for table */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Contract Status Summary */
+.contract-status-summary {
+    padding: 15px 20px;
+    margin-top: 20px;
+    width: 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ensure contract status summary spans full table width when table has horizontal scroll */
+.table-container .contract-status-summary {
+    width: max-content;
+    min-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.status-count-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    min-width: fit-content;
+}
+
+.status-label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.status-count {
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Roboto Mono', monospace;
+    background-color: #e9ecef;
+    padding: 4px 8px;
+    border-radius: 4px;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* Truncate cell for contract notes */
+.truncate-cell {
+    display: inline-block;
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.truncate-cell:hover {
+    white-space: normal;
+    word-break: break-word;
+    background-color: #f1f1f1;
+    padding: 2px 4px;
+    z-index: 99;
+    position: relative;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

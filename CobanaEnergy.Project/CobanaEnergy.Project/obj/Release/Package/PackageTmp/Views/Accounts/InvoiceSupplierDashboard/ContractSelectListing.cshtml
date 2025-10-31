@@ -1,0 +1,64 @@
+﻿@model CobanaEnergy.Project.Models.Accounts.InvoiceSupplierDashboard.ContractSelectListingViewModel
+@{
+    ViewBag.Title = "Select Contracts for Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="contract-dashboard">
+    <div class="dashboard-title">
+        Select <span style="color:#1366d6;font-weight:700;">"@Model.SupplierName"</span> Contracts to Invoice
+    </div>
+    <div class="table-container">
+        <form id="contractSelectionForm" autocomplete="off">
+            @Html.AntiForgeryToken()
+            <table id="contractsTable" class="table display table-bordered table-striped w-100">
+                <thead class="table-light">
+                    <tr>
+                        <th class="no-sort"><input type="checkbox" id="checkAll" /></th>
+                        @*<th>Supplier Name</th>*@
+                        <th>MPAN</th>
+                        <th>MPRN</th>
+                        <th>Input Date</th>
+                        <th>Business Name</th>
+                        <th>Input EAC</th>
+                        <th>Duration</th>
+                        <th>Contract Status</th>
+                        <th>Payment Status</th>
+                        <th>CED</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var contract in Model.Contracts)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="selectedContracts" value="@contract.EId" />
+                            </td>
+                            @*<td>@contract.SupplierName</td>*@
+                            <td>@contract.MPAN</td>
+                            <td>@contract.MPRN</td>
+                            <td>@(contract.InputDate?.ToString("dd-MM-yy") ?? "")</td>
+                            <td>@contract.BusinessName</td>
+                            <td>@contract.InputEAC</td>
+                            <td>@contract.Duration</td>
+                            <td>@contract.ContractStatus</td>
+                            <td>@contract.PaymentStatus</td>
+                            <td>@contract.CED</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="continue-btn-wrapper text-end">
+                <button type="submit" class="btn btn-primary px-4" id="continueBtn" disabled>
+                    Continue <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Content/Accounts/InvoiceSupplierDashboard/ContractSelectListing.css" rel="stylesheet" />
+}
+@section scripts {
+    <script src="~/Scripts/Accounts/InvoiceSupplierDashboard/contractSelectListing.js"></script>
+}

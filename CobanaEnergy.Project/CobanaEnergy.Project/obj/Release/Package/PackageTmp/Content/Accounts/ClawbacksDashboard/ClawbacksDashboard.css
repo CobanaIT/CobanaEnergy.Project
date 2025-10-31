@@ -1,0 +1,102 @@
+﻿.clawbacks-dashboard {
+    padding: 40px 20px 20px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Raleway', sans-serif;
+    min-height: 92vh;
+    width: 99vw;
+    margin-left: calc(-49vw + 49%);
+    max-width: none;
+}
+
+    .clawbacks-dashboard .dashboard-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        text-align: center;
+        letter-spacing: 0.5px;
+    }
+
+    .clawbacks-dashboard .filters {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 28px rgba(80, 94, 128, 0.11);
+        padding: 16px 20px;
+        margin-bottom: 24px;
+    }
+
+        .clawbacks-dashboard .filters .form-label {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+    .clawbacks-dashboard .table-container {
+        overflow-x: auto;
+        max-width: 100%;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 28px 0 rgba(80,94,128,0.11);
+        padding: 24px 20px 20px 20px;
+    }
+
+#clawbacksTable {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.94rem;
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-bottom: 0;
+    word-wrap: break-word; /* Allow breaking long text */
+}
+
+    #clawbacksTable th,
+    #clawbacksTable td {
+        text-align: center;
+        vertical-align: middle;
+        white-space: normal; /* Wrap text */
+        padding: 12px 14px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 1rem;
+    }
+
+    #clawbacksTable thead th {
+        font-family: 'Raleway', sans-serif;
+        font-size: 1.03rem;
+        font-weight: 700;
+        background: #fafbfc;
+        color: #232949;
+        border-bottom: 2px solid #ececec;
+    }
+
+    #clawbacksTable tbody tr {
+        transition: background 0.15s;
+    }
+
+        #clawbacksTable tbody tr:hover {
+            background: #f4f6fc;
+        }
+
+@media (max-width: 600px) {
+    .clawbacks-dashboard {
+        padding: 16px 2px;
+    }
+
+        .clawbacks-dashboard .table-container {
+            padding: 8px 2px 4px 2px;
+        }
+
+        .clawbacks-dashboard .dashboard-title {
+            font-size: 1.22rem;
+            margin-bottom: 16px;
+        }
+
+    #clawbacksTable th,
+    #clawbacksTable td {
+        font-size: 0.94rem;
+    }
+}
+
+/* Fix margin between length dropdown and search box */
+.clawbacks-dashboard .dataTables_wrapper .dataTables_length,
+.clawbacks-dashboard .dataTables_wrapper .dataTables_filter {
+    margin-bottom: 20px !important;
+}

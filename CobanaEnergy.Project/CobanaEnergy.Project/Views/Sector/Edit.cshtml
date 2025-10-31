@@ -1,0 +1,207 @@
+@model CobanaEnergy.Project.Models.Sector.EditSectorViewModel
+@{
+    ViewBag.Title = "Edit Sector";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Controls"))
+{
+    <div class="sector-page-container">
+        <h2 class="page-heading">Edit Sector</h2>
+
+        @using (Html.BeginForm("Edit", "Sector", FormMethod.Post, new { id = "editSectorForm", @class = "sector-form", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("SectorId", Model.SectorId)
+
+                <!-- Sector Type Selection -->
+            <div class="form-section sector-type-section">
+                    <h4>Sector Type</h4>
+                <div class="row gx-4 gy-3 align-items-center">
+                                <select name="SectorType" id="sectorType" class="form-select" required disabled>
+                                    <option value="">Select Sector Type</option>
+                                    <option value="Brokerage" @(Model.SectorType == "Brokerage" ? "selected" : "")>Brokerage</option>
+                                    <option value="Closer" @(Model.SectorType == "Closer" ? "selected" : "")>Closer</option>
+                                    <option value="Leads Generator" @(Model.SectorType == "Leads Generator" ? "selected" : "")>Leads Generator</option>
+                                    <option value="Referral Partner" @(Model.SectorType == "Referral Partner" ? "selected" : "")>Referral Partner</option>
+                                    <option value="Introducer" @(Model.SectorType == "Introducer" ? "selected" : "")>Introducer</option>
+                                </select>
+                                @Html.Hidden("SectorType", Model.SectorType)
+                    </div>
+                </div>
+
+                <!-- Sector Details -->
+            <div class="form-section sector-meta-section">
+                    <h4>Sector Details</h4>
+                <div class="row gx-4 gy-3">
+                        <div class="col-md-6">
+                                <input type="text" name="Name" value="@Model.Name" class="form-control" placeholder="Sector Name *" required />
+                        </div>
+                        <div class="col-md-6">
+                        <select name="Active" class="form-select" required>
+                            <option value="">Select Status *</option>
+                            <option value="true" @(Model.Active ? "selected" : "")>YES</option>
+                            <option value="false" @(!Model.Active ? "selected" : "")>NO</option>
+                        </select>
+                            </div>
+                        </div>
+                <div class="row gx-4 gy-3 mt-3">
+                        <div class="col-md-6">
+                            <label class="form-label small text-muted">Start Date</label>
+                            <input type="date" name="StartDate" value="@Model.StartDate" class="form-control date-start" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-muted">End Date</label>
+                            <input type="date" name="EndDate" value="@Model.EndDate" class="form-control date-end" data-start-target="#startDate" />
+                        </div>
+                    </div>
+                <div class="row gx-4 gy-3 mt-3">
+                    <div class="col-md-6">
+                        <input type="email" name="Email" value="@Model.Email" class="form-control" placeholder="Email Address *" required />
+                    </div>
+                        <div class="col-md-6">
+                        <input type="tel" name="Landline" value="@Model.Landline" class="form-control" placeholder="Landline Number (11 digits) *" maxlength="11" required />
+                            </div>
+                        </div>
+                <div class="row gx-4 gy-3 mt-3">
+                        <div class="col-md-6">
+                        <input type="tel" name="Mobile" value="@Model.Mobile" class="form-control" placeholder="Mobile Number (11 digits) *" maxlength="11" required />
+                        </div>
+                    </div>
+                    
+                    <!-- Conditional Fields - Only show for Introducer or Brokerage -->
+                <div id="additionalFieldsSection" style="display: none;">
+                    <div class="row gx-4 gy-3 mt-3">
+                        <div class="col-md-6">
+                                <input type="text" name="OfgemID" value="@Model.OfgemID" class="form-control" placeholder="Ofgem ID" />
+                        </div>
+                        <div class="col-md-6">
+                            <select name="Department" id="department" class="form-select" required>
+                                <option value="">Select Department *</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gx-4 gy-3 mt-3">
+                        <div class="col-md-6">
+                            @Html.DropDownList("SectorSuppliers", new SelectList(new List<SelectListItem>(), "Value", "Text"), new
+                            {
+                                @class = "form-control",
+                                multiple = "multiple",
+                                title = "Select suppliers",
+                                id = "sectorSuppliers"
+                            })
+                        </div>
+                    </div>
+                </div>
+
+                                 <!-- Bank Details -->
+            <div class="form-section bank-details-section" id="bankDetailsSection">
+                     <h4>Bank Details</h4>
+                <div class="row gx-4 gy-3">
+                         <div class="col-md-6">
+                                 <input type="text" name="BankDetails.BankName" value="@Model.BankDetails.BankName" class="form-control" placeholder="Bank Name" />
+                             </div>
+                    <div class="col-md-6">
+                        <input type="text" name="BankDetails.AccountName" value="@Model.BankDetails.AccountName" class="form-control" placeholder="Account Name" />
+                    </div>
+                </div>
+                <div class="row gx-4 gy-3 mt-3">
+                    <div class="col-md-6">
+                        <input type="text" name="BankDetails.AccountSortCode" value="@Model.BankDetails.AccountSortCode" class="form-control" placeholder="Account Sort Code (6 digits)" maxlength="6" pattern="[0-9]{6}" title="Please enter exactly 6 digits" />
+                         </div>
+                         <div class="col-md-6">
+                        <input type="text" id="accountNumber" name="BankDetails.AccountNumber" value="@Model.BankDetails.AccountNumber" class="form-control" placeholder="Account Number (8 digits)" maxlength="8" pattern="[0-9]{8}" title="Please enter exactly 8 digits" />
+                             </div>
+                         </div>
+                <div class="row gx-4 gy-3 mt-3">
+                    <div class="col-md-6">
+                        <input type="text" name="BankDetails.IBAN" value="@Model.BankDetails.IBAN" class="form-control" placeholder="IBAN" />
+                     </div>
+                         <div class="col-md-6">
+                        <input type="text" name="BankDetails.SwiftCode" value="@Model.BankDetails.SwiftCode" class="form-control" placeholder="Swift Code" />
+                             </div>
+                         </div>
+                <div class="row gx-4 gy-3 mt-3">
+                         <div class="col-md-6">
+                        <input type="text" name="BankDetails.BankBranchAddress" value="@Model.BankDetails.BankBranchAddress" class="form-control" placeholder="Bank Branch Address" />
+                             </div>
+                    <div class="col-md-6">
+                        <input type="text" name="BankDetails.ReceiversAddress" value="@Model.BankDetails.ReceiversAddress" class="form-control" placeholder="Receivers Address" />
+                         </div>
+                     </div>
+                 </div>
+
+                                 <!-- Company Tax Information -->
+            <div class="form-section company-tax-section" id="companyTaxSection">
+                     <h4>Company Tax Information</h4>
+                <div class="row gx-4 gy-3">
+                         <div class="col-md-6">
+                                 <input type="text" name="CompanyTaxInfo.CompanyRegistration" value="@Model.CompanyTaxInfo.CompanyRegistration" class="form-control" placeholder="Company Registration" />
+                         </div>
+                         <div class="col-md-6">
+                                 <input type="text" name="CompanyTaxInfo.VATNumber" value="@Model.CompanyTaxInfo.VATNumber" class="form-control" placeholder="VAT Number" />
+                             </div>
+                         </div>
+                <div class="row gx-4 gy-3 mt-3">
+                    <div class="col-md-12">
+                        <textarea name="CompanyTaxInfo.Notes" class="form-control" placeholder="Additional Notes" rows="3">@Model.CompanyTaxInfo.Notes</textarea>
+                         </div>
+                     </div>
+                 </div>
+
+                <!-- Dynamic Sections Container -->
+                <div id="dynamicSectionsContainer">
+                    <!-- Dynamic content will be loaded here based on sector type -->
+                </div>
+
+            <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Update Sector</button>
+                </div>
+            }
+    </div>
+
+    <!-- Duplicate Account Modal -->
+    @Html.Partial("../Shared/Popups/_DuplicateAccountModal")
+
+    @section scripts {
+        @if (TempData["ToastMessage"] != null)
+        {
+            <script>
+                $(function () {
+                    const message = "@TempData["ToastMessage"]";
+                    const type = "@TempData["ToastType"]";
+
+                    if (type === "success") {
+                        showToastSuccess(message);
+                    } else if (type === "error") {
+                        showToastError(message);
+                    }
+                });
+            </script>
+        }
+
+        <script src="~/Scripts/Common/duplicateAccountChecker.js"></script>
+        <script src="~/Scripts/Dropdown/dropdowns.js"></script>
+        <script src="~/Scripts/Sector/sectorFormManager.js"></script>
+        <script src="~/Scripts/Sector/editSector.js"></script>
+        <script>
+            // Initialize the form manager with model data for edit mode
+            $(document).ready(function() {
+                var modelData = @Html.Raw(Json.Encode(Model));
+                initializeEditSector(modelData);
+            });
+        </script>
+    }
+
+    @section styles {
+        <link href="~/Content/Sector/CreateSector.css" rel="stylesheet" />
+    }
+}
+else
+{
+    <div class="alert alert-danger text-center mt-5">
+        <h4>Access Denied</h4>
+        <p>You are not authorized to view this page.</p>
+    </div>
+}
