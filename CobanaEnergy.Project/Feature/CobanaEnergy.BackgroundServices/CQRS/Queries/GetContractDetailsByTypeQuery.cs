@@ -20,6 +20,7 @@ namespace CobanaEnergy.BackgroundServices.CQRS.Queries
         public string InitialStartDate { get; set; }
         public string BusinessName { get; set; }
         public string MPAN_MPRN { get; set; }  // MPAN for Electric, MPRN for Gas
+        public long SupplierId { get; set; }
         public bool Found { get; set; }
     }
 }

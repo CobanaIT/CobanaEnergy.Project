@@ -155,30 +155,42 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HealthController.cs" />
+    <Compile Include="Controllers\ObjectionCountController.cs" />
+    <Compile Include="Controllers\ObjectionDateController.cs" />
     <Compile Include="Controllers\OverduePresentContractsController.cs" />
     <Compile Include="Controllers\ProcessingPresentContractsController.cs" />
     <Compile Include="CQRS\Commands\ICommand.cs" />
     <Compile Include="CQRS\Commands\ProcessFutureContractsCommand.cs" />
+    <Compile Include="CQRS\Commands\ProcessObjectionCountCommand.cs" />
+    <Compile Include="CQRS\Commands\ProcessObjectionDateCommand.cs" />
     <Compile Include="CQRS\Commands\ProcessOverdueContractsCommand.cs" />
     <Compile Include="CQRS\Handlers\Commands\ICommandHandler.cs" />
     <Compile Include="CQRS\Handlers\Commands\ProcessFutureContractsCommandHandler.cs" />
+    <Compile Include="CQRS\Handlers\Commands\ProcessObjectionCountCommandHandler.cs" />
+    <Compile Include="CQRS\Handlers\Commands\ProcessObjectionDateCommandHandler.cs" />
     <Compile Include="CQRS\Handlers\Commands\ProcessOverdueContractsCommandHandler.cs" />
     <Compile Include="CQRS\Handlers\Queries\GetCommissionRecordByEIdQueryHandler.cs" />
     <Compile Include="CQRS\Handlers\Queries\GetContractDetailsByTypeQueryHandler.cs" />
     <Compile Include="CQRS\Handlers\Queries\GetContractsByStatusQueryHandler.cs" />
+    <Compile Include="CQRS\Handlers\Queries\GetPostSaleObjectionByEIdQueryHandler.cs" />
     <Compile Include="CQRS\Handlers\Queries\IQueryHandler.cs" />
     <Compile Include="CQRS\Queries\GetCommissionRecordByEIdQuery.cs" />
     <Compile Include="CQRS\Queries\GetContractDetailsByTypeQuery.cs" />
     <Compile Include="CQRS\Queries\GetContractsByStatusQuery.cs" />
+    <Compile Include="CQRS\Queries\GetPostSaleObjectionByEIdQuery.cs" />
     <Compile Include="CQRS\Queries\IQuery.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Helpers\ResponseHelper.cs" />
+    <Compile Include="Helpers\SupplierHelper.cs" />
     <Compile Include="Services\ILoggerService.cs" />
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Models\ApiResponse.cs" />
     <Compile Include="Models\ProcessContractsResult.cs" />
+    <Compile Include="Models\ProcessObjectionCountResult.cs" />
+    <Compile Include="Models\ProcessObjectionDateResult.cs" />
     <Compile Include="Models\ProcessOverdueContractsResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

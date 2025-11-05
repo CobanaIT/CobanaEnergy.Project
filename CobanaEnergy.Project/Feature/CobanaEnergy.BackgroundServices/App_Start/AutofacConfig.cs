@@ -56,6 +56,10 @@ namespace CobanaEnergy.BackgroundServices.App_Start
                 .As<IQueryHandler<GetContractDetailsByTypeQuery, ContractDetailsDto>>()
                 .InstancePerRequest();
 
+            builder.RegisterType<GetPostSaleObjectionByEIdQueryHandler>()
+                .As<IQueryHandler<GetPostSaleObjectionByEIdQuery, PostSaleObjectionDto>>()
+                .InstancePerRequest();
+
             // ===================================================================
             // CQRS - Command Handlers (Write Operations)
             // ===================================================================
@@ -66,6 +70,14 @@ namespace CobanaEnergy.BackgroundServices.App_Start
 
             builder.RegisterType<ProcessOverdueContractsCommandHandler>()
                 .As<ICommandHandler<ProcessOverdueContractsCommand, ProcessOverdueContractsResult>>()
+                .InstancePerRequest();
+
+            builder.RegisterType<ProcessObjectionDateCommandHandler>()
+                .As<ICommandHandler<ProcessObjectionDateCommand, ProcessObjectionDateResult>>()
+                .InstancePerRequest();
+
+            builder.RegisterType<ProcessObjectionCountCommandHandler>()
+                .As<ICommandHandler<ProcessObjectionCountCommand, ProcessObjectionCountResult>>()
                 .InstancePerRequest();
 
 
