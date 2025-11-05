@@ -505,10 +505,15 @@
     <Compile Include="Migrations\202510271412016_adding-contractid-86c5md48r.Designer.cs">
       <DependentUpon>202510271412016_adding-contractid-86c5md48r.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202511031440390_Faryal_OverDueContractsAdded_InitialMapping.cs" />
+    <Compile Include="Migrations\202511031440390_Faryal_OverDueContractsAdded_InitialMapping.Designer.cs">
+      <DependentUpon>202511031440390_Faryal_OverDueContractsAdded_InitialMapping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Accounts\AwaitingPaymentsDashboard\AwaitingPaymentsDashboard.cs" />
     <Compile Include="Models\Accounts\CalendarDashboard\CalendarDashboardViewModel.cs" />
     <Compile Include="Models\Accounts\ClawbacksDashboard\ClawbacksDashboardViewModel.cs" />
     <Compile Include="Models\Accounts\DBModel\CE_ContractStatus.cs" />
+    <Compile Include="Models\Accounts\DBModel\CE_OverDueContracts.cs" />
     <Compile Include="Models\Accounts\InvoiceSupplierDashboard\ContractEditTableViewModel.cs" />
     <Compile Include="Models\Accounts\InvoiceSupplierDashboard\ContractSelectRowViewModel.cs" />
     <Compile Include="Models\Accounts\InvoiceSupplierDashboard\ContractStatusHelper.cs" />
@@ -827,6 +832,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202510271412016_adding-contractid-86c5md48r.resx">
       <DependentUpon>202510271412016_adding-contractid-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202511031440390_Faryal_OverDueContractsAdded_InitialMapping.resx">
+      <DependentUpon>202511031440390_Faryal_OverDueContractsAdded_InitialMapping.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

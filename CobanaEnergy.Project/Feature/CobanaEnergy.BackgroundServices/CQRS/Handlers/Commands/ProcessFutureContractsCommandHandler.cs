@@ -4,6 +4,7 @@ using CobanaEnergy.BackgroundServices.CQRS.Queries;
 using CobanaEnergy.BackgroundServices.CQRS.Handlers.Queries;
 using CobanaEnergy.BackgroundServices.Models;
 using CobanaEnergy.BackgroundServices.Services;
+using CobanaEnergy.BackgroundServices.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -171,7 +172,7 @@ namespace CobanaEnergy.BackgroundServices.CQRS.Handlers.Commands
 
             if (commissionRecord.Found && !string.IsNullOrEmpty(commissionRecord.StartDate))
             {
-                if (TryParseStartDate(commissionRecord.StartDate, out DateTime startDate))
+                if (Helper.TryParseStartDate(commissionRecord.StartDate, out DateTime startDate))
                 {
                     return startDate.Month == currentMonth && startDate.Year == currentYear;
                 }
@@ -206,7 +207,7 @@ namespace CobanaEnergy.BackgroundServices.CQRS.Handlers.Commands
 
             if (contractDetails.Found && !string.IsNullOrEmpty(contractDetails.InitialStartDate))
             {
-                if (TryParseStartDate(contractDetails.InitialStartDate, out DateTime initialStartDate))
+                if (Helper.TryParseStartDate(contractDetails.InitialStartDate, out DateTime initialStartDate))
                 {
                     return initialStartDate.Month == currentMonth && initialStartDate.Year == currentYear;
                 }
@@ -247,28 +248,6 @@ namespace CobanaEnergy.BackgroundServices.CQRS.Handlers.Commands
             _logger.LogToFile($"📋 Database save completed: {result.UpdatedCount} rows affected");
         }
 
-        /// <summary>
-        /// Helper method to safely parse date strings (handles various formats)
-        /// </summary>
-        private bool TryParseStartDate(string dateString, out DateTime result)
-        {
-            // Try multiple common date formats
-            string[] formats = {
-                "yyyy-MM-dd",
-                "dd/MM/yyyy",
-                "MM/dd/yyyy",
-                "dd-MM-yyyy",
-                "MM-dd-yyyy",
-                "yyyy/MM/dd"
-            };
-
-            return DateTime.TryParseExact(
-                dateString,
-                formats,
-                System.Globalization.CultureInfo.InvariantCulture,
-                System.Globalization.DateTimeStyles.None,
-                out result) || DateTime.TryParse(dateString, out result);
-        }
     }
 }
 

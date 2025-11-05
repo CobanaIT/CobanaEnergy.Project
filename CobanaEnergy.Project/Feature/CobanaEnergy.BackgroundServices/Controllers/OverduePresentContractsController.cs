@@ -38,8 +38,14 @@ namespace CobanaEnergy.BackgroundServices.Controllers
         [Route("process")]
         public async Task<IHttpActionResult> Process()
         {
+            var startTime = DateTime.Now;
+            
             try
             {
+                _logger.LogToFile("=== Processing Overdue Contracts - Process Started ===");
+                _logger.LogToFile($"📋 Source Status: Processing_Present Month");
+                _logger.LogToFile($"📋 Current Date: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+                
                 var command = new ProcessOverdueContractsCommand
                 {
                     CurrentDate = DateTime.Now,
@@ -48,11 +54,15 @@ namespace CobanaEnergy.BackgroundServices.Controllers
 
                 var result = await _commandHandler.HandleAsync(command);
 
+                var executionTime = DateTime.Now - startTime;
+                _logger.LogSummary(result.InsertedCount, result.TotalPresentMonthContracts, executionTime);
+
                 return Ok(ResponseHelper.Success(result,
                     $"Successfully identified {result.OverdueCount} overdue contracts. Inserted {result.InsertedCount} new records."));
             }
             catch (Exception ex)
             {
+                _logger.LogError("Process failed", ex);
                 return HandleException(ex, "Error processing overdue contracts");
             }
         }
@@ -66,8 +76,14 @@ namespace CobanaEnergy.BackgroundServices.Controllers
         [Route("process/{processDate:datetime}")]
         public async Task<IHttpActionResult> ProcessWithDate(DateTime processDate)
         {
+            var startTime = DateTime.Now;
+            
             try
             {
+                _logger.LogToFile("=== Processing Overdue Contracts - Process Started (Custom Date) ===");
+                _logger.LogToFile($"📋 Source Status: Processing_Present Month");
+                _logger.LogToFile($"📋 Process Date: {processDate:yyyy-MM-dd HH:mm:ss}");
+                
                 var command = new ProcessOverdueContractsCommand
                 {
                     CurrentDate = processDate,
@@ -76,12 +92,16 @@ namespace CobanaEnergy.BackgroundServices.Controllers
 
                 var result = await _commandHandler.HandleAsync(command);
 
+                var executionTime = DateTime.Now - startTime;
+                _logger.LogSummary(result.InsertedCount, result.TotalPresentMonthContracts, executionTime);
+
                 return Ok(ResponseHelper.Success(result,
                     $"Successfully processed contracts for {processDate:yyyy-MM-dd}. " +
                     $"Identified {result.OverdueCount} overdue contracts, inserted {result.InsertedCount} new records."));
             }
             catch (Exception ex)
             {
+                _logger.LogError("Process failed", ex);
                 return HandleException(ex, $"Error processing overdue contracts for date {processDate:yyyy-MM-dd}");
             }
         }
