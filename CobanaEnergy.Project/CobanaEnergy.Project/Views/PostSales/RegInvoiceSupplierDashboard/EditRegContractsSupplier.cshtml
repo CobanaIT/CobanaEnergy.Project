@@ -1,0 +1,47 @@
+﻿@model CobanaEnergy.Project.Models.PostSales.RegInvoiceSupplierDashboard.RegContractEditTableViewModel
+@using CobanaEnergy.Project.Common
+
+@{
+    ViewBag.Title = "Edit Reg Contracts Supplier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="edit-reg-Supplier">
+    <div class="edit-reg-Supplier-header">
+        Edit Reg Contracts Supplier
+    </div>
+
+    <div class="table-container">
+        <table id="editRegSupplierContractTable" class="table display table-hover table-bordered table-striped w-100">
+            <thead class="table-light">
+                <tr>
+                    <th>Edit</th>
+                    <th>Save</th>
+                    <th>Business Name</th>
+                    <th>Postcode</th>
+                    <th>MPAN</th>
+                    <th>MPRN</th>
+                    <th>Input Date</th>
+                    <th>Start Date</th> <!-- editable -->
+                    <th>CED</th> <!-- editable -->
+                    <th>CED (COT)</th> <!-- editable -->
+                    <th>Duration</th> <!-- editable -->
+                    <th>Contract Status</th> <!-- editable -->
+                    <th>Contract Notes</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Content/PostSales/RegInvoiceSupplierDashboard/EditRegContractsSupplier.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css" />
+}
+@section scripts {
+    <script src="~/Scripts/Dropdown/dropdowns.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
+    <script src="~/Scripts/PostSales/RegInvoiceSupplierDashboard/editRegContractsSupplier.js"></script>
+}

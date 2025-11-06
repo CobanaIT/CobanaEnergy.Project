@@ -468,6 +468,7 @@ namespace CobanaEnergy.Project.Controllers.PostSales.StatusDashboard
                         contract.SalesTypeStatus = model.SalesTypeStatus;
                         contract.Uplift = model.Uplift;
                         contract.InputEAC = model.InputEAC;
+                        contract.ContractNotes = model.ContractNotes;
 
                     }
                 }
@@ -486,6 +487,7 @@ namespace CobanaEnergy.Project.Controllers.PostSales.StatusDashboard
                         contract.SalesTypeStatus = model.SalesTypeStatus;
                         contract.Uplift = model.Uplift;
                         contract.InputEAC = model.InputEAC;
+                        contract.ContractNotes = model.ContractNotes;
 
                     }
                 }

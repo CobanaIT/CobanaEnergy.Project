@@ -36,6 +36,9 @@ namespace CobanaEnergy.Project.Helpers
             if (DateTime.TryParseExact(dateString, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
                 return result.ToString("dd-MM-yy");
 
+            if (DateTime.TryParseExact(dateString, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+                return result.ToString("dd-MM-yy");
+
             return dateString; // Return original if parsing fails
         }
 

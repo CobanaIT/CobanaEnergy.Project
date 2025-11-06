@@ -277,6 +277,9 @@
     <Content Include="Content\Accounts\TotalGasAndPower\totalGasAndPowerContract.css" />
     <Content Include="Content\Common\filter.css" />
     <Content Include="Content\PostSales\postSalesContract.css" />
+    <Content Include="Content\PostSales\RegInvoiceSupplierDashboard\EditRegContractsSupplier.css" />
+    <Content Include="Content\PostSales\RegInvoiceSupplierDashboard\RegContractSelectListing.css" />
+    <Content Include="Content\PostSales\RegInvoiceSupplierDashboard\RegInvoiceSupplierDashboard.css" />
     <Content Include="Content\PostSales\statusDashboard.css" />
     <Content Include="Content\Signup\userDashboard.css" />
     <Content Include="Content\Dual\CreateDual.css" />
@@ -332,7 +335,11 @@
     <Content Include="Scripts\Gas\createGas.js" />
     <Content Include="Scripts\Gas\editGas.js" />
     <Content Include="Scripts\Accounts\InvoiceSupplierDashboard\invoiceSupplierDashboard.js" />
+    <Content Include="Docs\SupplierColumnMappingGuide.md" />
+    <Content Include="Controllers\PostSales\RegInvoiceSupplierDashboard\RegInvoiceSupplier" />
     <None Include="Scripts\scriptsJquery\jquery-3.7.1-vsdoc.js" />
+    <Content Include="Scripts\PostSales\RegInvoiceSupplierDashboard\contractSelectListing.js" />
+    <Content Include="Scripts\PostSales\RegInvoiceSupplierDashboard\editRegContractsSupplier.js" />
     <Content Include="Scripts\scriptsJquery\jquery-3.7.1.js" />
     <Content Include="Scripts\scriptsJquery\jquery-3.7.1.min.js" />
     <Content Include="Scripts\scriptsJquery\jquery-3.7.1.slim.js" />
@@ -374,6 +381,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Data\Common\PaymentLogsHelper.cs" />
     <Compile Include="App_Data\Common\SupportedSuppliers.cs" />
+    <Compile Include="Mapping\RegInvoiceSupplierDashboard\SupplierColumnMappings.cs" />
     <Compile Include="Controllers\Accounts\AwaitingPaymentsDashboard\AwaitingPaymentsDashboardController.cs" />
     <Compile Include="Controllers\Accounts\BGBContracts\BGBContractController.cs" />
     <Compile Include="Controllers\Accounts\BGLiteContracts\BGLiteContractController.cs" />
@@ -395,6 +403,7 @@
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\Common\CommonController.cs" />
     <Compile Include="Controllers\Error\ErrorController.cs" />
+    <Compile Include="Controllers\PostSales\RegInvoiceSupplierDashboard\RegInvoiceSupplierDashboardController.cs" />
     <Compile Include="Controllers\PostSales\StatusDashboard\StatusDashboardController.cs" />
     <Compile Include="Controllers\PreSales\CheckDuplicateAccountController.cs" />
     <Compile Include="Controllers\PreSales\DualController.cs" />
@@ -505,6 +514,10 @@
     <Compile Include="Migrations\202510271412016_adding-contractid-86c5md48r.Designer.cs">
       <DependentUpon>202510271412016_adding-contractid-86c5md48r.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202511061427106_Badar-RegSupplierFileUploads.cs" />
+    <Compile Include="Migrations\202511061427106_Badar-RegSupplierFileUploads.Designer.cs">
+      <DependentUpon>202511061427106_Badar-RegSupplierFileUploads.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Accounts\AwaitingPaymentsDashboard\AwaitingPaymentsDashboard.cs" />
     <Compile Include="Models\Accounts\CalendarDashboard\CalendarDashboardViewModel.cs" />
     <Compile Include="Models\Accounts\ClawbacksDashboard\ClawbacksDashboardViewModel.cs" />
@@ -575,6 +588,11 @@
     <Compile Include="Models\PostSales\Entities\CE_PostSaleObjection.cs" />
     <Compile Include="Models\PostSales\Entities\CE_PostSalesLogs.cs" />
     <Compile Include="Models\PostSales\PostSalesContract\SupplierProductSnapshotViewModel.cs" />
+    <Compile Include="Models\PostSales\RegInvoiceSupplierDashboard\DB Model\CE_RegSupplierFileUploads.cs" />
+    <Compile Include="Models\PostSales\RegInvoiceSupplierDashboard\Dto\RegFileUploadDto.cs" />
+    <Compile Include="Models\PostSales\RegInvoiceSupplierDashboard\RegContractEditTableViewModel.cs" />
+    <Compile Include="Models\PostSales\RegInvoiceSupplierDashboard\RegContractSelectRowViewModel.cs" />
+    <Compile Include="Models\PostSales\RegInvoiceSupplierDashboard\RegInvoiceSupplierUploadViewModel.cs" />
     <Compile Include="Models\PostSales\StatusDashboard\StatusQueryParams.cs" />
     <Compile Include="Models\PostSales\StatusDashboard\StatusDashboardViewModel.cs" />
     <Compile Include="Models\PreSales\PreSalesCalendarRowViewModel.cs" />
@@ -735,6 +753,9 @@
     <Content Include="Views\Shared\_FiltersPartial.cshtml" />
     <Content Include="Views\PostSales\StatusDashboard\StatusDashboard.cshtml" />
     <Content Include="Views\PostSales\PostSalesContract\EditContractPostSales.cshtml" />
+    <Content Include="Views\PostSales\RegInvoiceSupplierDashboard\RegInvoiceSupplierPopup.cshtml" />
+    <Content Include="Views\PostSales\RegInvoiceSupplierDashboard\RegContractSelectListing.cshtml" />
+    <Content Include="Views\PostSales\RegInvoiceSupplierDashboard\EditRegContractsSupplier.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -827,6 +848,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202510271412016_adding-contractid-86c5md48r.resx">
       <DependentUpon>202510271412016_adding-contractid-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202511061427106_Badar-RegSupplierFileUploads.resx">
+      <DependentUpon>202511061427106_Badar-RegSupplierFileUploads.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

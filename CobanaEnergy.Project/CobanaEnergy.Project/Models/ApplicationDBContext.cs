@@ -4,20 +4,21 @@ using CobanaEnergy.Project.Models.Accounts.SuppliersModels.BGB.DBModel;
 using CobanaEnergy.Project.Models.AccountsDBModel;
 using CobanaEnergy.Project.Models.Electric.ElectricDBModels;
 using CobanaEnergy.Project.Models.Electric.ElectricDBModels.snapshot;
+using CobanaEnergy.Project.Models.EmailTemplateLookup;
 using CobanaEnergy.Project.Models.Gas.GasDBModels;
 using CobanaEnergy.Project.Models.InvoiceSupplierDashboard;
+using CobanaEnergy.Project.Models.PostSales.Entities;
+using CobanaEnergy.Project.Models.PostSales.RegInvoiceSupplierDashboard.DB_Model;
+using CobanaEnergy.Project.Models.Sector.SectorDBModels;
 using CobanaEnergy.Project.Models.Supplier.SupplierDBModels;
 using CobanaEnergy.Project.Models.Supplier.SupplierDBModels.snapshot;
 using CobanaEnergy.Project.Models.Supplier.SupplierDBModels.snapshot_Gas;
-using CobanaEnergy.Project.Models.Sector.SectorDBModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using CobanaEnergy.Project.Models.PostSales.Entities;
-using CobanaEnergy.Project.Models.EmailTemplateLookup;
 
 namespace CobanaEnergy.Project.Models
 {
@@ -50,6 +51,7 @@ namespace CobanaEnergy.Project.Models
         public DbSet<CE_GasSupplierProductSnapshots> CE_GasSupplierProductSnapshots { get; set; }
         public DbSet<CE_GasSupplierUpliftSnapshots> CE_GasSupplierUpliftSnapshots { get; set; }
         public DbSet<CE_InvoiceSupplierUploads> CE_InvoiceSupplierUploads { get; set; }
+        public DbSet<CE_RegSupplierFileUploads> CE_RegSupplierFileUploads { get; set; }
         public DbSet<CE_EacLogs> CE_EacLogs { get; set; }
         public DbSet<CE_ContractStatuses> CE_ContractStatuses { get; set; }
         public DbSet<CE_CommissionAndReconciliation> CE_CommissionAndReconciliation { get; set; }
@@ -87,7 +89,7 @@ namespace CobanaEnergy.Project.Models
             // Note: Polymorphic relationships for CE_BankDetails and CE_CompanyTaxInfo
             // will be handled manually in the application logic using EntityType and EntityID
             // EF6 doesn't support complex polymorphic relationships with multiple foreign keys to the same column
-            
+
             // The navigation properties are kept for convenience but won't be automatically populated by EF6
             // You'll need to manually populate them based on EntityType when querying
         }

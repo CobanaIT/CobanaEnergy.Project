@@ -140,7 +140,28 @@ $(document).ready(async function () {
         }
     };
 
-    //Invoice Supplier Dashboard Popup
+    //Reg Invoice Supplier Dashboard Popup
+    $(document).on('click', '#openRegInvoiceSupplierDashboard', function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '/RegInvoiceSupplierDashboard/RegInvoiceSupplierPopup',
+            type: 'GET',
+            success: function (html) {
+                $('body').append(html);
+                $('#invoiceUploadModal').modal('show');
+
+                $('#invoiceUploadModal').on('hidden.bs.modal', function () {
+                    $(this).remove();
+                });
+            },
+            error: function () {
+                showToastError("Failed to load Invoice Supplier popup.");
+            }
+        });
+    });
+
+    //Invoice post-sale Supplier Dashboard Popup
     $(document).on('click', '#openInvoiceSupplierDashboard', function (e) {
         e.preventDefault();
 
