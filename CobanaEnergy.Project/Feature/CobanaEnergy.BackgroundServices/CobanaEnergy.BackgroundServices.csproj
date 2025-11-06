@@ -154,21 +154,33 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\ContractEndedAgLostDateController.cs" />
+    <Compile Include="Controllers\ContractEndedNotRenewedDateController.cs" />
+    <Compile Include="Controllers\ContractEndedRenewedDateController.cs" />
     <Compile Include="Controllers\HealthController.cs" />
     <Compile Include="Controllers\ObjectionCountController.cs" />
     <Compile Include="Controllers\ObjectionDateController.cs" />
     <Compile Include="Controllers\OverduePresentContractsController.cs" />
     <Compile Include="Controllers\ProcessingPresentContractsController.cs" />
+    <Compile Include="Controllers\RenewalWindowDateController.cs" />
     <Compile Include="CQRS\Commands\ICommand.cs" />
+    <Compile Include="CQRS\Commands\ProcessContractEndedAgLostDateCommand.cs" />
+    <Compile Include="CQRS\Commands\ProcessContractEndedNotRenewedDateCommand.cs" />
+    <Compile Include="CQRS\Commands\ProcessContractEndedRenewedDateCommand.cs" />
     <Compile Include="CQRS\Commands\ProcessFutureContractsCommand.cs" />
     <Compile Include="CQRS\Commands\ProcessObjectionCountCommand.cs" />
     <Compile Include="CQRS\Commands\ProcessObjectionDateCommand.cs" />
     <Compile Include="CQRS\Commands\ProcessOverdueContractsCommand.cs" />
+    <Compile Include="CQRS\Commands\ProcessRenewalWindowDateCommand.cs" />
     <Compile Include="CQRS\Handlers\Commands\ICommandHandler.cs" />
+    <Compile Include="CQRS\Handlers\Commands\ProcessContractEndedAgLostDateCommandHandler.cs" />
+    <Compile Include="CQRS\Handlers\Commands\ProcessContractEndedNotRenewedDateCommandHandler.cs" />
+    <Compile Include="CQRS\Handlers\Commands\ProcessContractEndedRenewedDateCommandHandler.cs" />
     <Compile Include="CQRS\Handlers\Commands\ProcessFutureContractsCommandHandler.cs" />
     <Compile Include="CQRS\Handlers\Commands\ProcessObjectionCountCommandHandler.cs" />
     <Compile Include="CQRS\Handlers\Commands\ProcessObjectionDateCommandHandler.cs" />
     <Compile Include="CQRS\Handlers\Commands\ProcessOverdueContractsCommandHandler.cs" />
+    <Compile Include="CQRS\Handlers\Commands\ProcessRenewalWindowDateCommandHandler.cs" />
     <Compile Include="CQRS\Handlers\Queries\GetCommissionRecordByEIdQueryHandler.cs" />
     <Compile Include="CQRS\Handlers\Queries\GetContractDetailsByTypeQueryHandler.cs" />
     <Compile Include="CQRS\Handlers\Queries\GetContractsByStatusQueryHandler.cs" />
@@ -188,10 +200,12 @@
     <Compile Include="Services\ILoggerService.cs" />
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Models\ApiResponse.cs" />
+    <Compile Include="Models\ProcessContractEndedDateResult.cs" />
     <Compile Include="Models\ProcessContractsResult.cs" />
     <Compile Include="Models\ProcessObjectionCountResult.cs" />
     <Compile Include="Models\ProcessObjectionDateResult.cs" />
     <Compile Include="Models\ProcessOverdueContractsResult.cs" />
+    <Compile Include="Models\ProcessRenewalWindowDateResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -80,6 +80,22 @@ namespace CobanaEnergy.BackgroundServices.App_Start
                 .As<ICommandHandler<ProcessObjectionCountCommand, ProcessObjectionCountResult>>()
                 .InstancePerRequest();
 
+            builder.RegisterType<ProcessRenewalWindowDateCommandHandler>()
+                .As<ICommandHandler<ProcessRenewalWindowDateCommand, ProcessRenewalWindowDateResult>>()
+                .InstancePerRequest();
+
+            builder.RegisterType<ProcessContractEndedAgLostDateCommandHandler>()
+                .As<ICommandHandler<ProcessContractEndedAgLostDateCommand, ProcessContractEndedDateResult>>()
+                .InstancePerRequest();
+
+            builder.RegisterType<ProcessContractEndedNotRenewedDateCommandHandler>()
+                .As<ICommandHandler<ProcessContractEndedNotRenewedDateCommand, ProcessContractEndedDateResult>>()
+                .InstancePerRequest();
+
+            builder.RegisterType<ProcessContractEndedRenewedDateCommandHandler>()
+                .As<ICommandHandler<ProcessContractEndedRenewedDateCommand, ProcessContractEndedDateResult>>()
+                .InstancePerRequest();
+
 
             // Build the container
             var container = builder.Build();
