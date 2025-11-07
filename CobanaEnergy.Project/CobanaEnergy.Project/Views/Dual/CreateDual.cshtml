@@ -149,10 +149,16 @@
                         <div class="col-md-4">
                             <label class="form-label required" for="mpan">MPAN</label>
                             <div class="position-relative">
-                                <input type="text" id="mpan" class="form-control" required title="Please enter 13-digit MPAN or N/A" pattern="(^\d{13}$)|(^N\/A$)" maxlength="13" autocomplete="off" />
+                                <input type="text" id="mpan" class="form-control" required
+                                       title="Please enter 13-digit MPAN or N/A"
+                                       pattern="(^\d{13}$)|(^N\/A$)" maxlength="13" autocomplete="off" />
+
                                 <div id="mpanLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
                                     <span class="visually-hidden">Loading...</span>
                                 </div>
+
+                                <!-- dropdown suggestion list -->
+                                <ul id="mpanSuggestions" class="dropdown-menu-custom"></ul>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -259,16 +265,21 @@
                     <h6 class="subsection-title">📦 Supply & Product Information</h6>
                     <div class="row gx-4 gy-3">
                         <div class="col-md-4">
-                            <label class="form-label required" for="mprn">MPRN</label>
+                            <label class="form-label required" for="mpan">MPRN</label>
                             <div class="position-relative">
                                 <input type="text" id="mprn" class="form-control" required
                                        title="Please enter 6–10 digit MPRN or N/A"
                                        pattern="(^\d{6,10}$)|(^N\/A$)" maxlength="10" autocomplete="off" />
+
                                 <div id="mprnLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
                                     <span class="visually-hidden">Loading...</span>
                                 </div>
+
+                                <!-- dropdown suggestion list -->
+                                <ul id="mprnSuggestions" class="dropdown-menu-custom"></ul>
                             </div>
                         </div>
+
                         <div class="col-md-4"><label class="form-label required" for="gasCurrentSupplier">Gas Current Supplier</label><input type="text" id="gasCurrentSupplier" class="form-control" required title="Please enter current gas supplier" autocomplete="off" /></div>
                         <div class="col-md-4"><label class="form-label required" for="gasSupplier">Gas Supplier</label><select id="gasSupplier" class="form-select dropdown-arrow" required title="Select Gas Supplier"></select></div>
                         <div class="col-md-4">
@@ -316,8 +327,33 @@
             <div class="form-section">
                 <h4>Business Location</h4>
                 <div class="row gx-4 gy-3">
-                    <div class="col-md-4"><label for="businessName" class="form-label required">Business Name</label><input type="text" id="businessName" class="form-control" required title="Insert Business Name" autocomplete="off" /></div>
-                    <div class="col-md-4"><label for="customerName" class="form-label required">Customer Name</label><input type="text" id="customerName" class="form-control" required title="Insert Customer Name" autocomplete="off" /></div>
+                    <div class="col-md-4">
+                        <label for="businessName" class="form-label required">Business Name</label>
+                        <div class="position-relative">
+                            <input type="text" id="businessName" class="form-control" required title="Please Insert Business Name" autocomplete="off" />
+
+                            <div id="bnameLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+                            <!-- dropdown suggestion list -->
+                            <ul id="bnameSuggestions" class="dropdown-menu-custom"></ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="customerName" class="form-label required">Customer Name</label>
+                        <div class="position-relative">
+                            <input type="text" id="customerName" class="form-control" required title="Please Insert Customer Name" autocomplete="off" />
+
+                            <div id="cnameLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+                            <!-- dropdown suggestion list -->
+                            <ul id="cnameSuggestions" class="dropdown-menu-custom"></ul>
+                        </div>
+                    </div>
                     <div class="col-md-4"><label for="businessDoorNumber" class="form-label required">Business Door Number</label><input type="text" id="businessDoorNumber" class="form-control" required title="Insert Business Door Number" autocomplete="off" /></div>
                     <div class="col-md-4"><label for="businessHouseName" class="form-label">Business House Name</label><input type="text" id="businessHouseName" class="form-control" title="Insert Business House Name" autocomplete="off" /></div>
                     <div class="col-md-4"><label for="businessStreet" class="form-label required">Business Street/Road</label><input type="text" id="businessStreet" class="form-control" required title="Insert Business Street/Road" autocomplete="off" /></div>
@@ -393,12 +429,15 @@
 
     @section styles {
         <link href="~/Content/Dual/CreateDual.css" rel="stylesheet" />
+        <link href="~/Content/Common/createContract.css" rel="stylesheet" />
     }
 
     @section scripts {
         <script src="~/Scripts/Dropdown/dropdowns.js"></script>
         <script src="~/Scripts/Dual/createDual.js"></script>
         <script src="~/Scripts/Brokerage/brokerageManager.js"></script>
+        <script src="~/Scripts/Common//createContract.js"></script>
+        <script src="~/Scripts/Controls//autocompleteDropdown.js"></script>
         <script>
             $(document).ready(function () {
                 const emProcessor = '@(User.Identity?.IsAuthenticated == true ? User.Identity.Name : "Presales Team")';
@@ -409,7 +448,7 @@
     }
 
     <!-- Duplicate MPAN Modal -->
-    <div class="modal fade" id="duplicateDualMpanModal" tabindex="-1" aria-labelledby="duplicateDualMpanModalLabel" aria-hidden="true">
+    <div class="modal fade" id="duplicateMpanModal" tabindex="-1" aria-labelledby="duplicateDualMpanModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
@@ -440,7 +479,7 @@
     </div>
 
     <!-- Duplicate MPRN Modal -->
-    <div class="modal fade" id="duplicateDualMprnModal" tabindex="-1" aria-labelledby="duplicateDualMprnModalLabel" aria-hidden="true">
+    <div class="modal fade" id="duplicateMprnModal" tabindex="-1" aria-labelledby="duplicateDualMprnModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">

@@ -275,6 +275,7 @@
     <Content Include="Content\Accounts\ScottishPower\editScottishPowerContract.css" />
     <Content Include="Content\Accounts\SSEContracts\EditSSEContract.css" />
     <Content Include="Content\Accounts\TotalGasAndPower\totalGasAndPowerContract.css" />
+    <Content Include="Content\Common\createContract.css" />
     <Content Include="Content\Common\filter.css" />
     <Content Include="Content\PostSales\postSalesContract.css" />
     <Content Include="Content\PostSales\statusDashboard.css" />
@@ -323,7 +324,9 @@
     <Content Include="Scripts\Accounts\ScottishPowerContracts\editScottishPowerContract.js" />
     <Content Include="Scripts\Accounts\SSEContracts\editSSEContract.js" />
     <Content Include="Scripts\Accounts\TotalGasAndPowerContracts\editTGPContract.js" />
+    <Content Include="Scripts\Common\createContract.js" />
     <Content Include="Scripts\Common\filters.js" />
+    <Content Include="Scripts\Controls\autocompleteDropdown.js" />
     <Content Include="Scripts\Dropdown\dropdowns.js" />
     <Content Include="Scripts\Dual\createDual.js" />
     <Content Include="Scripts\Dual\editDual.js" />
@@ -505,6 +508,10 @@
     <Compile Include="Migrations\202510271412016_adding-contractid-86c5md48r.Designer.cs">
       <DependentUpon>202510271412016_adding-contractid-86c5md48r.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202511060711561_usman-add_business_contact_info_in_new_table.cs" />
+    <Compile Include="Migrations\202511060711561_usman-add_business_contact_info_in_new_table.Designer.cs">
+      <DependentUpon>202511060711561_usman-add_business_contact_info_in_new_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Accounts\AwaitingPaymentsDashboard\AwaitingPaymentsDashboard.cs" />
     <Compile Include="Models\Accounts\CalendarDashboard\CalendarDashboardViewModel.cs" />
     <Compile Include="Models\Accounts\ClawbacksDashboard\ClawbacksDashboardViewModel.cs" />
@@ -549,6 +556,7 @@
     <Compile Include="Models\Accounts\SuppliersModels\SSE\SSEEacLogViewModel.cs" />
     <Compile Include="Models\Accounts\SuppliersModels\TotalGasAndPower\EditTotalGasAndPowerViewModel.cs" />
     <Compile Include="Models\Accounts\SuppliersModels\TotalGasAndPower\TotalGasAndPowerEacLogViewModel.cs" />
+    <Compile Include="Models\Business\CE_BusinessContactInfo.cs" />
     <Compile Include="Models\Common\DataTable\DataTableQuery.cs" />
     <Compile Include="Models\Dual\EditDual\DualContractEditViewModel.cs" />
     <Compile Include="Models\Dual\LogsHelperClass\LogEntry.cs" />
@@ -827,6 +835,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202510271412016_adding-contractid-86c5md48r.resx">
       <DependentUpon>202510271412016_adding-contractid-86c5md48r.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202511060711561_usman-add_business_contact_info_in_new_table.resx">
+      <DependentUpon>202511060711561_usman-add_business_contact_info_in_new_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

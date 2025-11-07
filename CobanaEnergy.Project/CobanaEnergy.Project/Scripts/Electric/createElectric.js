@@ -253,27 +253,8 @@
         if (/^\d{13}$/.test(mpan)) {
             $('#mpanLoader').show();
 
-            $.get(`/Electric/CheckDuplicateMpan?mpan=${mpan}`, function (res) {
-                $('#mpanLoader').hide();
-
-                if (res.success && res.Data) {
-                    const d = res.Data;
-                    $('#duplicateMpanModal tbody').html(`
-                        <tr>
-                            <td>${d.Agent || 'N/A'}</td>
-                            <td>${d.BusinessName}</td>
-                            <td>${d.CustomerName}</td>
-                            <td>${d.InputDate}</td>
-                            <td>${d.PreSalesStatus}</td>
-                            <td>${d.Duration}</td>
-                        </tr>
-                    `);
-                    $('#duplicateMpanModal').modal('show');
-                }
-            }).fail(function () {
-                $('#mpanLoader').hide();
-                showToastError("Error checking MPAN.");
-            });
+            checkDuplicateMPAN(mpan);
+            populateMPANRelationData(mpan);
         }
     });
 
@@ -329,5 +310,4 @@
     $('#supplierSelect').on('change', async function () {
         await validateUpliftAgainstSupplierLimit($('#uplift'), $('#supplierSelect'), 'Electric');
     });
-
 });

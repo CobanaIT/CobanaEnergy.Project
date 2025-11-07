@@ -37,7 +37,7 @@
                         <label for="department" class="form-label required">Department</label>
                         <select id="department" class="form-select dropdown-arrow" required title="Please Select Department!" readonly></select>
                     </div>
-                    
+
                     <!-- In House Department Fields -->
                     <div class="col-md-4" id="inHouseFields" style="display: none;">
                         <label for="closer" class="form-label">Closer</label>
@@ -45,7 +45,7 @@
                             <option value="">Select Closer</option>
                         </select>
                     </div>
-                    
+
                     <!-- Brokers Department Fields -->
                     <div class="col-md-4" id="brokersFields" style="display: none;">
                         <label for="brokerageStaff" class="form-label">Brokerage Staff</label>
@@ -53,7 +53,7 @@
                             <option value="">Select Brokerage Staff</option>
                         </select>
                     </div>
-                    
+
                     <!-- Introducers Department Fields -->
                     <div class="col-md-4" id="introducersFields" style="display: none;">
                         <label for="introducer" class="form-label">Introducer</label>
@@ -61,12 +61,12 @@
                             <option value="">Select Introducer</option>
                         </select>
                     </div>
-                    
+
                     <div class="col-md-4">
                         <label for="source" class="form-label required">Source</label>
                         <select id="source" class="form-select dropdown-arrow" required title="Please Select Source!"></select>
                     </div>
-                    
+
                     <!-- Data Source Fields -->
                     <div class="col-md-4" id="dataSourceFields" style="display: none;">
                         <label for="collaboration" class="form-label">Collaboration</label>
@@ -75,14 +75,14 @@
                             <option value="Lead Generator">Lead Generator</option>
                         </select>
                     </div>
-                    
+
                     <div class="col-md-4" id="leadGeneratorField" style="display: none;">
                         <label for="leadGenerator" class="form-label">Lead Generator</label>
                         <select id="leadGenerator" class="form-select dropdown-arrow" title="Please Select Lead Generator!" disabled>
                             <option value="">Select Lead Generator</option>
                         </select>
                     </div>
-                    
+
                     <!-- Referral Partners Source Fields -->
                     <div class="col-md-4" id="referralPartnerField" style="display: none;">
                         <label for="referralPartner" class="form-label">Referral Partner</label>
@@ -90,14 +90,14 @@
                             <option value="">Select Referral Partner</option>
                         </select>
                     </div>
-                    
+
                     <div class="col-md-4" id="subReferralPartnerField" style="display: none;">
                         <label for="subReferralPartner" class="form-label">Sub Referral Partner</label>
                         <select id="subReferralPartner" class="form-select dropdown-arrow" title="Please Select Sub Referral Partner!">
                             <option value="">Select Sub Referral Partner</option>
                         </select>
                     </div>
-                    
+
                     <!-- Sub Broker Source Fields -->
                     <div class="col-md-4" id="subBrokerageField" style="display: none;">
                         <label for="subBrokerage" class="form-label">Sub Brokerage</label>
@@ -105,7 +105,7 @@
                             <option value="">Select Sub Brokerage</option>
                         </select>
                     </div>
-                    
+
                     <!-- Sub Introducer Source Fields -->
                     <div class="col-md-4" id="subIntroducerField" style="display: none;">
                         <label for="subIntroducer" class="form-label">Sub Introducer</label>
@@ -113,7 +113,7 @@
                             <option value="">Select Sub Introducer</option>
                         </select>
                     </div>
-                    
+
                     <div class="col-md-4">
                         <label for="salesType" class="form-label required">Cobana Sales Type</label>
                         <select id="salesType" class="form-select dropdown-arrow" required title="Please Select Sales Type!"></select>
@@ -138,8 +138,13 @@
                             <div id="mprnLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
+
+                            <!-- dropdown suggestion list -->
+                            <ul id="mprnSuggestions" class="dropdown-menu-custom"></ul>
                         </div>
                     </div>
+
+
                     <div class="col-md-4">
                         <label class="form-label required" for="currentSupplier">Current Supplier</label>
                         <input type="text" id="currentSupplier" class="form-control" required autocomplete="off" title="Please Insert Current Supplier" />
@@ -165,8 +170,35 @@
             <div class="form-section">
                 <h4>Business Location</h4>
                 <div class="row gx-4 gy-3">
-                    <div class="col-md-4"><label for="businessName" class="form-label required">Business Name</label><input type="text" id="businessName" class="form-control" required title="Please Insert Business Name" autocomplete="off" /></div>
-                    <div class="col-md-4"><label for="customerName" class="form-label required">Customer Name</label><input type="text" id="customerName" class="form-control" required title="Please Insert Customer Name" autocomplete="off" /></div>
+                    <div class="col-md-4">
+                        <label for="businessName" class="form-label required">Business Name</label>
+                        <div class="position-relative">
+                            <input type="text" id="businessName" class="form-control" required title="Please Insert Business Name" autocomplete="off" />
+
+                            <div id="bnameLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+                            <!-- dropdown suggestion list -->
+                            <ul id="bnameSuggestions" class="dropdown-menu-custom"></ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="customerName" class="form-label required">Customer Name</label>
+                        <div class="position-relative">
+                            <input type="text" id="customerName" class="form-control" required title="Please Insert Customer Name" autocomplete="off" />
+
+                            <div id="cnameLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+                            <!-- dropdown suggestion list -->
+                            <ul id="cnameSuggestions" class="dropdown-menu-custom"></ul>
+                        </div>
+                    </div>
+
+
                     <div class="col-md-4"><label for="businessDoorNumber" class="form-label required">Business Door Number</label><input type="text" id="businessDoorNumber" class="form-control" required title="Please Insert Door Number" autocomplete="off" /></div>
                     <div class="col-md-4"><label for="businessHouseName" class="form-label">Business House Name</label><input type="text" id="businessHouseName" class="form-control" title="Please Insert House Name" autocomplete="off" /></div>
                     <div class="col-md-4"><label for="businessStreet" class="form-label required">Business Street/Road</label><input type="text" id="businessStreet" class="form-control" required title="Please Insert Street" autocomplete="off" /></div>
@@ -257,12 +289,15 @@
 
     @section styles {
         <link href="~/Content/Gas/CreateGas.css" rel="stylesheet" />
+        <link href="~/Content/Common/createContract.css" rel="stylesheet" />
     }
 
     @section scripts {
         <script src="~/Scripts/Dropdown/dropdowns.js"></script>
         <script src="~/Scripts/Gas/createGas.js"></script>
         <script src="~/Scripts/Brokerage/brokerageManager.js"></script>
+        <script src="~/Scripts/Common/createContract.js"></script>
+        <script src="~/Scripts/Controls//autocompleteDropdown.js"></script>
         <script>
         $(document).ready(function () {
             var emProcessor = '@(User.Identity?.IsAuthenticated == true ? User.Identity.Name : "Presales Team")';
