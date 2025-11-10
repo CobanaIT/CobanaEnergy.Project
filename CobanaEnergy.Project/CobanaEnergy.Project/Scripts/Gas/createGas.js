@@ -243,31 +243,12 @@
 
     $('#mprn').on('input', function () {
         const mprn = $(this).val().trim();
-
+       
         if (/^\d{6,10}$/.test(mprn)) {
             $('#mprnLoader').show();
 
-            $.get(`/Gas/CheckDuplicateMprn?mprn=${mprn}`, function (res) {
-                $('#mprnLoader').hide();
-
-                if (res.success && res.Data) {
-                    const d = res.Data;
-                    $('#duplicateMprnModal tbody').html(`
-                        <tr>
-                            <td>${d.Agent || 'N/A'}</td>
-                            <td>${d.BusinessName}</td>
-                            <td>${d.CustomerName}</td>
-                            <td>${d.InputDate}</td>
-                            <td>${d.PreSalesStatus}</td>
-                            <td>${d.Duration}</td>
-                        </tr>
-                    `);
-                    $('#duplicateMprnModal').modal('show');
-                }
-            }).fail(function () {
-                $('#mprnLoader').hide();
-                showToastError("Error checking MPRN.");
-            });
+            checkDuplicateMPRN(mprn);
+            populateMPRNRelationalData(mprn);
         }
     });
 

@@ -52,6 +52,7 @@ namespace CobanaEnergy.BackgroundServices.CQRS.Handlers.Queries
                     InitialStartDate = ec.InitialStartDate,
                     BusinessName = ec.BusinessName,
                     MPAN_MPRN = ec.MPAN,
+                    SupplierId = ec.SupplierId,
                     Found = true
                 })
                 .FirstOrDefaultAsync();
@@ -76,6 +77,7 @@ namespace CobanaEnergy.BackgroundServices.CQRS.Handlers.Queries
                     InitialStartDate = gc.InitialStartDate,
                     BusinessName = gc.BusinessName,
                     MPAN_MPRN = gc.MPRN,
+                    SupplierId = gc.SupplierId,
                     Found = true
                 })
                 .FirstOrDefaultAsync();

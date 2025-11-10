@@ -3,6 +3,7 @@ using CobanaEnergy.Project.Filters;
 using CobanaEnergy.Project.Helpers;
 using CobanaEnergy.Project.Models;
 using CobanaEnergy.Project.Models.AccountsDBModel;
+using CobanaEnergy.Project.Models.Business;
 using CobanaEnergy.Project.Models.Dual;
 using CobanaEnergy.Project.Models.Dual.EditDual;
 using CobanaEnergy.Project.Models.Dual.LogsHelperClass;
@@ -446,6 +447,24 @@ namespace CobanaEnergy.Project.Controllers.PreSales
 
                     _db.CE_GasSupplierSnapshots.Add(gasSnapshot);
                     await _db.SaveChangesAsync();
+
+
+                    // Add Business Contact Info
+
+                    _db.CE_BusinessContactInfos.Add(new CE_BusinessContactInfo
+                    {
+                        EId = electric.EId,
+                        Type = electric.Type,
+                        BusinessName = electric.BusinessName,
+                        CustomerName = electric.CustomerName,
+                        PhoneNumber1 = electric.PhoneNumber1,
+                        PhoneNumber2 = electric.PhoneNumber2,
+                        EmailAddress = electric.EmailAddress
+
+                    });
+
+                    await _db.SaveChangesAsync();
+
 
                     tx.Commit();
 

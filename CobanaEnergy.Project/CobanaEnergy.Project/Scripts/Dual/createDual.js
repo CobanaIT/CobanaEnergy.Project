@@ -317,19 +317,8 @@
         const mpan = $(this).val().trim();
         if (/^\d{13}$/.test(mpan)) {
             $('#mpanLoader').show();
-            $.get(`/Electric/CheckDuplicateMpan?mpan=${mpan}`, function (res) {
-                $('#mpanLoader').hide();
-                if (res.success && res.Data) {
-                    const d = res.Data;
-                    $('#duplicateDualMpanModal tbody').html(`
-                        <tr><td>${d.Agent || 'N/A'}</td><td>${d.BusinessName}</td><td>${d.CustomerName}</td><td>${d.InputDate}</td><td>${d.PreSalesStatus}</td><td>${d.Duration}</td></tr>
-                    `);
-                    $('#duplicateDualMpanModal').modal('show');
-                }
-            }).fail(function () {
-                $('#mpanLoader').hide();
-                showToastError("Error checking MPAN.");
-            });
+            checkDuplicateMPAN(mpan);
+            populateMPANRelationData(mpan);
         }
     });
 
@@ -337,19 +326,7 @@
         const mprn = $(this).val().trim();
         if (/^\d{6,10}$/.test(mprn)) {
             $('#mprnLoader').show();
-            $.get(`/Gas/CheckDuplicateMprn?mprn=${mprn}`, function (res) {
-                $('#mprnLoader').hide();
-                if (res.success && res.Data) {
-                    const d = res.Data;
-                    $('#duplicateDualMprnModal tbody').html(`
-                        <tr><td>${d.Agent || 'N/A'}</td><td>${d.BusinessName}</td><td>${d.CustomerName}</td><td>${d.InputDate}</td><td>${d.PreSalesStatus}</td><td>${d.Duration}</td></tr>
-                    `);
-                    $('#duplicateDualMprnModal').modal('show');
-                }
-            }).fail(function () {
-                $('#mprnLoader').hide();
-                showToastError("Error checking MPRN.");
-            });
+            checkDuplicateMPRN(mprn);
         }
     });
 

@@ -18,6 +18,7 @@ using System.Linq;
 using System.Web;
 using CobanaEnergy.Project.Models.PostSales.Entities;
 using CobanaEnergy.Project.Models.EmailTemplateLookup;
+using CobanaEnergy.Project.Models.Business;
 
 namespace CobanaEnergy.Project.Models
 {
@@ -52,6 +53,7 @@ namespace CobanaEnergy.Project.Models
         public DbSet<CE_InvoiceSupplierUploads> CE_InvoiceSupplierUploads { get; set; }
         public DbSet<CE_EacLogs> CE_EacLogs { get; set; }
         public DbSet<CE_ContractStatuses> CE_ContractStatuses { get; set; }
+        public DbSet<CE_OverDueContracts> CE_OverDueContracts { get; set; }
         public DbSet<CE_CommissionAndReconciliation> CE_CommissionAndReconciliation { get; set; }
         public DbSet<CE_CommissionMetrics> CE_CommissionMetrics { get; set; }
         public DbSet<CE_PaymentAndNoteLogs> CE_PaymentAndNoteLogs { get; set; }
@@ -79,6 +81,7 @@ namespace CobanaEnergy.Project.Models
         public DbSet<CE_PostSaleObjection> CE_PostSaleObjections { get; set; }
         public DbSet<CE_EmailTemplateLookup> CE_EmailTemplateLookups { get; set; }
         public DbSet<CE_PostSalesLogs> CE_PostSalesLogs { get; set; }
+        public DbSet<CE_BusinessContactInfo> CE_BusinessContactInfos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
