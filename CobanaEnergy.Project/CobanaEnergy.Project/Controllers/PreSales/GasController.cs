@@ -3,6 +3,7 @@ using CobanaEnergy.Project.Filters;
 using CobanaEnergy.Project.Helpers;
 using CobanaEnergy.Project.Models;
 using CobanaEnergy.Project.Models.AccountsDBModel;
+using CobanaEnergy.Project.Models.Business;
 using CobanaEnergy.Project.Models.Gas;
 using CobanaEnergy.Project.Models.Gas.EditGas;
 using CobanaEnergy.Project.Models.Gas.GasDBModels;
@@ -259,6 +260,23 @@ namespace CobanaEnergy.Project.Controllers.PreSales
                     db.CE_GasSupplierSnapshots.Add(snapshot);
                     await db.SaveChangesAsync();
 
+
+                    // Add Business Contact Info
+
+                    db.CE_BusinessContactInfos.Add(new CE_BusinessContactInfo
+                    {
+                        EId = contract.EId,
+                        Type = contract.Type,
+                        BusinessName = contract.BusinessName,
+                        CustomerName = contract.CustomerName,
+                        PhoneNumber1 = contract.PhoneNumber1,
+                        PhoneNumber2 = contract.PhoneNumber2,
+                        EmailAddress = contract.EmailAddress
+
+                    });
+
+                    await db.SaveChangesAsync();
+
                     transaction.Commit();
 
                     return JsonResponse.Ok(new { redirectUrl = Url.Action("Dashboard", "PreSales") }, "Gas contract created successfully!");
@@ -343,6 +361,71 @@ namespace CobanaEnergy.Project.Controllers.PreSales
             {
                 Logger.Log("CheckDuplicateMprn failed: " + ex.Message);
                 return JsonResponse.Fail("Error occurred while checking MPRN.");
+            }
+        }
+
+        #endregion
+
+        #region AutoComplete MPRN
+
+        [HttpGet]
+        [Authorize]
+        public async Task<JsonResult> GetMPRNs(string search)
+        {
+            try
+            {
+                var matches = await db.CE_GasContracts
+               .Where(c => c.MPRN.StartsWith(search)).Select(c => c.MPRN)
+               .ToListAsync();
+                return JsonResponse.Ok(matches);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Failed to search MPRN(s): " + ex.Message);
+                return JsonResponse.Fail("An unexpected error occurred while searching MPRN(s).");
+            }
+
+
+        }
+
+
+        [HttpGet]
+        [Authorize]
+        public async Task<JsonResult> GetMPRNRelationalData(string mprn)
+        {
+            if (string.IsNullOrWhiteSpace(mprn) || mprn.Length < 6 || mprn.Length > 10 || !mprn.All(char.IsDigit))
+                return JsonResponse.Fail("Invalid MPRN format");
+
+            try
+            {
+                var match = await db.CE_GasContracts
+                   .Where(c => c.MPRN == mprn)
+                   .OrderByDescending(c => c.InputDate)
+                   .FirstOrDefaultAsync();
+
+                if (match != null)
+                {
+                    var result = new
+                    {
+                        match.BusinessDoorNumber,
+                        match.BusinessHouseName,
+                        match.BusinessStreet,
+                        match.BusinessTown,
+                        match.BusinessCounty,
+                        match.PostCode
+                    };
+
+                    return JsonResponse.Ok(result);
+                }
+                else
+                {
+                    return JsonResponse.Ok(null);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Failed to get MPRN releational data: " + ex.Message);
+                return JsonResponse.Fail("Error occurred while fetching MPRN relational data.");
             }
         }
 

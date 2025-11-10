@@ -141,11 +141,12 @@
                         <label class="form-label required" for="mpan">MPAN</label>
                         <div class="position-relative">
                             <input type="text" id="mpan" class="form-control" required
-                                   title="Please enter 13-digit MPAN or N/A"
-                                   pattern="(^\d{13}$)|(^N\/A$)" maxlength="13" autocomplete="off" />
+                            title="Please enter 13-digit MPAN or N/A"
+                            pattern="(^\d{13}$)|(^N\/A$)" maxlength="13" autocomplete="off" />
                             <div id="mpanLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
+                            <ul id="mpanSuggestions" class="dropdown-menu-custom"></ul>
                         </div>
                     </div>
                     <div class="col-md-4"><label class="form-label required" for="currentSupplier">Current Supplier</label><input type="text" id="currentSupplier" class="form-control" required title="Please Insert Current Supplier" autocomplete="off" /></div>
@@ -166,12 +167,33 @@
                 <div class="row gx-4 gy-3">
                     <div class="col-md-4">
                         <label for="businessName" class="form-label required">Business Name</label>
-                        <input type="text" id="businessName" class="form-control" required title="Please Insert Business Name" autocomplete="off" />
+                        <div class="position-relative">
+                            <input type="text" id="businessName" class="form-control" required title="Please Insert Business Name" autocomplete="off" />
+
+                            <div id="bnameLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+                            <!-- dropdown suggestion list -->
+                            <ul id="bnameSuggestions" class="dropdown-menu-custom"></ul>
+                        </div>
                     </div>
+
+
                     <div class="col-md-4">
                         <label for="customerName" class="form-label required">Customer Name</label>
-                        <input type="text" id="customerName" class="form-control" required title="Please Insert Customer Name" autocomplete="off" />
+                        <div class="position-relative">
+                            <input type="text" id="customerName" class="form-control" required title="Please Insert Customer Name" autocomplete="off" />
+
+                            <div id="cnameLoader" class="spinner-border text-primary small-loader" role="status" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+                            <!-- dropdown suggestion list -->
+                            <ul id="cnameSuggestions" class="dropdown-menu-custom"></ul>
+                        </div>
                     </div>
+
                     <div class="col-md-4">
                         <label for="businessDoorNumber" class="form-label required">Business Door Number</label>
                         <input type="text" id="businessDoorNumber" class="form-control" required title="Please Insert Business Door Name" autocomplete="off" />
@@ -327,12 +349,15 @@
 
     @section styles {
         <link href="~/Content/Electric/CreateElectric.css" rel="stylesheet" />
+        <link href="~/Content/Common/createContract.css" rel="stylesheet" />
     }
 
     @section scripts {
         <script src="~/Scripts/Dropdown/dropdowns.js"></script>
         <script src="~/Scripts/Electric/createElectric.js"></script>
         <script src="~/Scripts/Brokerage/brokerageManager.js"></script>
+        <script src="~/Scripts/Common//createContract.js"></script>
+        <script src="~/Scripts/Controls//autocompleteDropdown.js"></script>
 
         <script>
         $(document).ready(function () {

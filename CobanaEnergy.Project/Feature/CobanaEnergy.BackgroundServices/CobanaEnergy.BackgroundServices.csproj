@@ -222,10 +222,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CobanaEnergy.Project\CobanaEnergy.Project.csproj">
-      <Project>{ceb8310a-2f9c-4ff8-9a1a-9e092aec0527}</Project>
-      <Name>CobanaEnergy.Project</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Logic\Logic.csproj">
       <Project>{adf09c11-485c-4bb1-9229-f6729b191613}</Project>
       <Name>Logic</Name>

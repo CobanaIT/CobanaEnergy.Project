@@ -18,6 +18,7 @@ using System.Linq;
 using System.Web;
 using CobanaEnergy.Project.Models.PostSales.Entities;
 using CobanaEnergy.Project.Models.EmailTemplateLookup;
+using CobanaEnergy.Project.Models.Business;
 
 namespace CobanaEnergy.Project.Models
 {
@@ -80,6 +81,7 @@ namespace CobanaEnergy.Project.Models
         public DbSet<CE_PostSaleObjection> CE_PostSaleObjections { get; set; }
         public DbSet<CE_EmailTemplateLookup> CE_EmailTemplateLookups { get; set; }
         public DbSet<CE_PostSalesLogs> CE_PostSalesLogs { get; set; }
+        public DbSet<CE_BusinessContactInfo> CE_BusinessContactInfos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
