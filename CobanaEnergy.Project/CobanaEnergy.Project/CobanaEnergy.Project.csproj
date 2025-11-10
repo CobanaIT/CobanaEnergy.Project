@@ -516,6 +516,10 @@
     <Compile Include="Migrations\202511031440390_Faryal_OverDueContractsAdded_InitialMapping.Designer.cs">
       <DependentUpon>202511031440390_Faryal_OverDueContractsAdded_InitialMapping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202511101244019_usmans_changes.cs" />
+    <Compile Include="Migrations\202511101244019_usmans_changes.Designer.cs">
+      <DependentUpon>202511101244019_usmans_changes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Accounts\AwaitingPaymentsDashboard\AwaitingPaymentsDashboard.cs" />
     <Compile Include="Models\Accounts\CalendarDashboard\CalendarDashboardViewModel.cs" />
     <Compile Include="Models\Accounts\ClawbacksDashboard\ClawbacksDashboardViewModel.cs" />
@@ -846,6 +850,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202511031440390_Faryal_OverDueContractsAdded_InitialMapping.resx">
       <DependentUpon>202511031440390_Faryal_OverDueContractsAdded_InitialMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202511101244019_usmans_changes.resx">
+      <DependentUpon>202511101244019_usmans_changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
